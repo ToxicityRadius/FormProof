@@ -1,0 +1,14 @@
+<main>
+  <h1>Account</h1>
+  <form (ngSubmit)="handleSubmit()">
+    <label for="display-name">Display name</label>
+    <input
+      id="display-name"
+      [(ngModel)]="displayName"
+      name="displayName"
+      autocomplete="name"
+    >
+    <button type="submit">Save</button>
+  </form>
+  <p role="status" aria-live="polite">{{ status }}</p>
+</main>

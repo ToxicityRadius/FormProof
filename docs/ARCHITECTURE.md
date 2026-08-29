@@ -45,6 +45,7 @@ Adapters detect a source family and define the source extensions used for candid
 | Static HTML | `.html` or `.htm` files | HTML |
 | React / Next.js | `react` or `next` package dependency | TSX, JSX, TS, JS, HTML |
 | Vue / Nuxt | `vue` or `nuxt` package dependency | Vue SFC, TS, JS, HTML |
+| Angular | `@angular/core` or `@angular/cli` package dependency | HTML, TS, JS |
 | Flask / Jinja | Flask dependency metadata | HTML, Jinja, Python |
 
 Candidate mapping uses stable rendered identifiers such as `id` and `name`. A candidate is advisory: Codex must still inspect the source and the verification gates decide whether its patch is accepted.

@@ -1,0 +1,11 @@
+diff --git a/fixtures/angular-label/src/app/app.html b/fixtures/angular-label/src/app/app.html
+--- a/fixtures/angular-label/src/app/app.html
++++ b/fixtures/angular-label/src/app/app.html
+@@ -1,6 +1,7 @@
+ <main>
+   <h1>Account</h1>
+   <form (ngSubmit)="handleSubmit()">
++    <label for="display-name">Display name</label>
+     <input
+       id="display-name"
+       [(ngModel)]="displayName"

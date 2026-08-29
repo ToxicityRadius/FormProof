@@ -15,20 +15,20 @@ FormProof does not certify WCAG conformance and does not replace testing by peop
 The v0.1 vertical slice includes:
 
 - A stack-neutral evidence contract.
-- Static HTML, React/Next.js, Vue/Nuxt, and Flask/Jinja source adapters.
+- Static HTML, React/Next.js, Vue/Nuxt, Angular, and Flask/Jinja source adapters.
 - Playwright plus axe browser scanning.
 - Source-candidate mapping by rendered element identifiers.
 - Explicit human approval before Codex execution.
 - JSONL Codex trajectory capture and final-message capture.
 - Before/after evidence, regression decisions, screenshots, and an accessible HTML report.
 - Unit, integration, and browser tests.
-- Tracked `VERIFIED_FIXED` experiment packages for Static HTML, React, Vue, and Flask/Jinja.
+- Tracked `VERIFIED_FIXED` experiment packages for Static HTML, React, Vue, Angular, and Flask/Jinja.
 
-Angular is the next compatibility milestone. The core scanner already evaluates rendered Angular pages, but Angular source mapping is not yet classified as verified support.
+All five target stack families now have a verified semantics-and-names fixture. The next compatibility milestone expands the frozen benchmark into keyboard/focus and dynamic-state/error barriers across those stacks.
 
 ## Requirements
 
-- Node.js 22 or newer
+- Node.js 22 or newer; 22.12 or newer for the included Angular fixture
 - An authenticated Codex CLI installation
 - Chromium installed for Playwright
 
@@ -115,6 +115,29 @@ node dist/cli.js inspect `
 
 node dist/cli.js repair `
   --evidence .formproof/runs/vue-label/before.json `
+  --approve `
+  --test "npm run regression"
+```
+
+## Run the included Angular fixture
+
+Install the pinned Angular 21 dependencies and start the development server:
+
+```powershell
+npm ci --prefix fixtures/angular-label
+npm run fixture:angular
+```
+
+Then run the evidence-gated workflow in another terminal:
+
+```powershell
+node dist/cli.js inspect `
+  --url http://127.0.0.1:4177 `
+  --source fixtures/angular-label `
+  --out .formproof/runs/angular-label
+
+node dist/cli.js repair `
+  --evidence .formproof/runs/angular-label/before.json `
   --approve `
   --test "npm run regression"
 ```

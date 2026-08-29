@@ -55,6 +55,33 @@ describe("detectAdapter", () => {
     );
   });
 
+  it("detects Angular before treating its application template as static", async () => {
+    const root = await temporaryProject();
+    await mkdir(join(root, "src", "app"), { recursive: true });
+    await writeFile(
+      join(root, "package.json"),
+      JSON.stringify({ dependencies: { "@angular/core": "latest" } })
+    );
+    await writeFile(
+      join(root, "src", "app", "app.html"),
+      '<input id="display-name" name="displayName">'
+    );
+    await writeFile(join(root, "src", "index.html"), '<app-root></app-root>');
+
+    const adapter = await detectAdapter(root);
+    expect(adapter).toMatchObject({ id: "angular", displayName: "Angular" });
+    await expect(
+      mapNodeToSources(
+        root,
+        adapter,
+        ["#display-name"],
+        '<input id="display-name" name="displayName">'
+      )
+    ).resolves.toContainEqual(
+      expect.objectContaining({ path: "src/app/app.html", confidence: "high" })
+    );
+  });
+
   it("detects a Flask template project", async () => {
     const root = await temporaryProject();
     await mkdir(join(root, "templates"));
@@ -94,6 +121,16 @@ describe("detectAdapter", () => {
     await writeFile(join(root, "package.json"), JSON.stringify({ devDependencies: { nuxt: "latest" } }));
 
     await expect(detectAdapter(root)).resolves.toMatchObject({ id: "vue" });
+  });
+
+  it("detects Angular CLI in devDependencies", async () => {
+    const root = await temporaryProject();
+    await writeFile(
+      join(root, "package.json"),
+      JSON.stringify({ devDependencies: { "@angular/cli": "latest" } })
+    );
+
+    await expect(detectAdapter(root)).resolves.toMatchObject({ id: "angular" });
   });
 
   it("maps id and name evidence to likely source files", async () => {

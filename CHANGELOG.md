@@ -8,7 +8,7 @@ This file records retained changes and discarded experiments so the final compet
 
 - One primary Codex repair agent plus deterministic browser and regression gates.
 - A stack-neutral evidence contract with replaceable source adapters.
-- Static HTML, React/Next.js, Vue/Nuxt, and Flask/Jinja adapter detection.
+- Static HTML, React/Next.js, Vue/Nuxt, Angular, and Flask/Jinja adapter detection.
 - Explicit `--approve` gating before any Codex-written patch.
 - `codex exec --json` trajectory capture under `workspace-write` sandboxing.
 - `VERIFIED_FIXED`, `REGRESSION_BLOCKED`, and `HUMAN_REVIEW_REQUIRED` outcomes.
@@ -20,13 +20,14 @@ This file records retained changes and discarded experiments so the final compet
 - React `label` repair: `VERIFIED_FIXED` with zero new automated violations and a passing Playwright submission-flow regression gate.
 - Flask/Jinja `label` repair: `VERIFIED_FIXED` with zero new automated violations and a passing Flask integration plus Playwright submission-flow regression gate.
 - Vue `label` repair: `VERIFIED_FIXED` with zero new automated violations and a passing Playwright submission-flow regression gate.
+- Angular `label` repair: `VERIFIED_FIXED` with zero new automated violations and a passing Playwright submission-flow regression gate.
 
 ### Removed or deferred
 
 - **OpenAI API runtime:** removed from the first build to avoid separate API credentials and usage costs.
 - **Multi-agent repair debate:** removed because additional agents do not prove reliability; deterministic verification is the acceptance authority.
 - **Full dashboard:** deferred until the CLI and evidence contract pass the frozen benchmark.
-- **Angular source adapter:** deferred until the Static, React, Vue, and Flask reference adapters are stable.
+- **Keyboard/focus and dynamic-state/error fixtures:** deferred until the semantics-and-names reference fixture is stable across all five target stacks.
 - **Automatic remote deployment:** excluded because a repair should not publish consequential changes without a separate human-controlled release process.
 
 ### Failures that changed the implementation
@@ -41,3 +42,4 @@ This file records retained changes and discarded experiments so the final compet
 - Flask's non-debug template cache initially made the immediate after-scan report the already-repaired label as unresolved. The fixture now enables Jinja template auto-reload, and the clean single-run experiment records the edit and `VERIFIED_FIXED` decision together.
 - The Flask regression launcher originally hid a sandbox-blocked child process as `undefinedundefined`. It now reports the underlying spawn error while preserving the same unit and browser checks.
 - The reusable evidence exporter initially retained only commands containing `regression.mjs`, which omitted package-script gates such as `npm run regression`. Its representative-trajectory filter now retains either form.
+- Angular 22.1 required Node 22.22.3 or newer, but the experiment host runs Node 22.15.0. The fixture was moved to the newest compatible Angular 21.2.22 release line with TypeScript 5.9.3; its production build and package audit pass without engine warnings or known vulnerabilities.

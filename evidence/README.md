@@ -8,5 +8,6 @@ Each directory contains sanitized, tracked artifacts from one FormProof before-t
 | [React label](react-label/README.md) | React/Vite | `label` | `VERIFIED_FIXED` | Submission behavior preserved |
 | [Flask label](flask-label/README.md) | Flask/Jinja | `label` | `VERIFIED_FIXED` | Integration and submission behavior preserved |
 | [Vue label](vue-label/README.md) | Vue/Vite | `label` | `VERIFIED_FIXED` | Submission behavior preserved |
+| [Angular label](angular-label/README.md) | Angular | `label` | `VERIFIED_FIXED` | Submission behavior preserved |
 
 These packages report evidence for their automated rule and configured regression command. They are not WCAG conformance certificates.

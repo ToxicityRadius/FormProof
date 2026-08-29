@@ -1,4 +1,4 @@
-export type AdapterId = "static" | "react" | "vue" | "flask" | "unknown";
+export type AdapterId = "static" | "react" | "vue" | "angular" | "flask" | "unknown";
 export type DecisionStatus = "VERIFIED_FIXED" | "REGRESSION_BLOCKED" | "HUMAN_REVIEW_REQUIRED";
 export type Impact = "minor" | "moderate" | "serious" | "critical" | "unknown";
 

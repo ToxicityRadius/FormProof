@@ -1,0 +1,4 @@
+- Changed [src/app/app.html](</<FORMPROOF_REPO>/fixtures/angular-label/src/app/app.html:4>): added a visible `<label>` associated with `#display-name`.
+- Verification: `npm run regression` passed.
+- Evidence files changed: none.
+- Human-review items: none for this targeted repair. No broader accessibility conformance claim made.
