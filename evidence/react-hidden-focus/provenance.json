@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0",
+  "experimentId": "react-hidden-focus-first-repair",
+  "baseRepositoryCommit": "72748b384fb9b9e86a576709d5720fd76ab8a173",
+  "baselineRunId": "8aa30e99-c0ed-48b7-b65f-8c506003fa72",
+  "baselineCapturedAt": "2026-08-29T11:27:48.833Z",
+  "afterRunId": "31a6307d-cbe7-403e-b19d-3815c6330cb3",
+  "afterCapturedAt": "2026-08-29T11:31:46.048Z",
+  "adapter": "react",
+  "targetRuleIds": [
+    "aria-hidden-focus"
+  ],
+  "decision": "VERIFIED_FIXED",
+  "baselineReconstruction": "Reverse-apply repair.diff to the completed milestone source.",
+  "sanitization": {
+    "repositoryRoot": "<FORMPROOF_REPO>",
+    "userHome": "<USER_HOME>",
+    "threadId": "<REDACTED_THREAD_ID>",
+    "trajectory": "Representative decision-relevant events; environment-specific skill and memory reads omitted."
+  },
+  "artifactSha256": {
+    "after.json": "BDDF241A5CFFA904A7E1312CA229704CC34795C098C225756ED6C83F474624D1",
+    "agent-summary.md": "C575C42667A76AB83B1C1F46643BC848EC625FCC6399814897ED2026EEE93F7D",
+    "before.json": "612CF8037BD5BC2393824B1B8E2B75B5EDED534E68709CC5DD0EF450DF431776",
+    "decision.json": "AB1C24439FEFF396F3CC2257B483B1E1A3D5C42FE4CCDBBFB4E2D2524D35AE82",
+    "repair-prompt.md": "658544F1AC6E89B525C262AF1C4086200C7457B5C353657752E48248B6768C19",
+    "report.html": "22A1C4B8CA37924AB875FECD002671CAD61D30E95731EC19DFFF9EAAA95F14AC",
+    "representative-trajectory.jsonl": "B497B25A2009A9656CAC4848F3577B1C5C7DA5A8A549A31763893640D8EDD132"
+  }
+}

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FormProof Evidence Report</title>
+  <style>
+    :root { color-scheme: light dark; font-family: system-ui, sans-serif; line-height: 1.5; }
+    body { max-width: 76rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
+    .status { border: 0.25rem solid currentColor; border-radius: 0.5rem; padding: 1rem; font-weight: 700; }
+    .verified-fixed { color: #0b6b32; } .regression-blocked { color: #a3261e; } .human-review-required { color: #8a5200; }
+    dl { display: grid; grid-template-columns: max-content 1fr; gap: .25rem 1rem; } dt { font-weight: 700; }
+    .table-wrap { overflow-x: auto; } table { border-collapse: collapse; width: 100%; } th, td { border: 1px solid #777; padding: .5rem; text-align: left; vertical-align: top; }
+    code { white-space: normal; } a { color: inherit; text-decoration-thickness: .12em; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>FormProof Evidence Report</h1>
+    <p class="status verified-fixed">VERIFIED_FIXED: Every targeted automated barrier is absent and all regression gates passed.</p>
+    <p>This report covers automated evidence only. It is not a WCAG conformance certificate.</p>
+    <section aria-labelledby="before-repair">
+    <h2 id="before-repair">Before repair</h2>
+    <dl>
+      <dt>Target</dt><dd><a href="http://127.0.0.1:4179">http://127.0.0.1:4179</a></dd>
+      <dt>Adapter</dt><dd>react</dd>
+      <dt>Rules</dt><dd>1</dd>
+      <dt>Affected nodes</dt><dd>1</dd>
+    </dl>
+    <div class="table-wrap"><table>
+      <caption>Before repair automated accessibility evidence</caption>
+      <thead><tr><th scope="col">Rule</th><th scope="col">Impact</th><th scope="col">Help</th><th scope="col">Target</th><th scope="col">Source candidate</th></tr></thead>
+      <tbody><tr>
+      <th scope="row"><a href="https://dequeuniversity.com/rules/axe/4.13/aria-hidden-focus?application=playwright">aria-hidden-focus</a></th>
+      <td>serious</td>
+      <td>ARIA hidden element must not be focusable or contain focusable elements</td>
+      <td><code>#retired-actions</code></td>
+      <td>src/App.tsx (high)</td>
+    </tr></tbody>
+    </table></div>
+  </section>
+    <section aria-labelledby="after-repair">
+    <h2 id="after-repair">After repair</h2>
+    <dl>
+      <dt>Target</dt><dd><a href="http://127.0.0.1:4179">http://127.0.0.1:4179</a></dd>
+      <dt>Adapter</dt><dd>react</dd>
+      <dt>Rules</dt><dd>0</dd>
+      <dt>Affected nodes</dt><dd>0</dd>
+    </dl>
+    <div class="table-wrap"><table>
+      <caption>After repair automated accessibility evidence</caption>
+      <thead><tr><th scope="col">Rule</th><th scope="col">Impact</th><th scope="col">Help</th><th scope="col">Target</th><th scope="col">Source candidate</th></tr></thead>
+      <tbody><tr><td colspan="5">No automated violations detected.</td></tr></tbody>
+    </table></div>
+  </section>
+    <section aria-labelledby="regression-gates"><h2 id="regression-gates">Regression gates</h2><ul><li><strong>npm run regression:</strong> passed — &gt; formproof-react-hidden-focus-fixture@0.0.0 regression
+&gt; node regression.mjs
+
+React keyboard fixture regression: hidden focus exclusion and save behavior preserved.</li></ul></section>
+  </main>
+</body>
+</html>

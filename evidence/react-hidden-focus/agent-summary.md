@@ -1,0 +1,3 @@
+- Changed [src/App.tsx](../../fixtures/react-hidden-focus/src/App.tsx:11): disabled the retired legacy button.
+- Verification: `npm run regression` passed.
+- Human-review items: none for this targeted barrier. FormProof evidence files were not edited.

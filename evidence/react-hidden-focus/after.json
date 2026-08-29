@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0",
+  "runId": "31a6307d-cbe7-403e-b19d-3815c6330cb3",
+  "capturedAt": "2026-08-29T11:31:46.048Z",
+  "target": {
+    "url": "http://127.0.0.1:4179",
+    "sourceRoot": "<FORMPROOF_REPO>\\fixtures\\react-hidden-focus",
+    "adapter": "react"
+  },
+  "violations": [],
+  "totals": {
+    "violations": 0,
+    "nodes": 0
+  }
+}

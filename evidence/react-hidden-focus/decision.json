@@ -1,0 +1,13 @@
+{
+  "status": "VERIFIED_FIXED",
+  "summary": "Every targeted automated barrier is absent and all regression gates passed.",
+  "unresolvedViolationIds": [],
+  "newViolationIds": [],
+  "regressionGates": [
+    {
+      "name": "npm run regression",
+      "passed": true,
+      "details": "> formproof-react-hidden-focus-fixture@0.0.0 regression\n> node regression.mjs\n\nReact keyboard fixture regression: hidden focus exclusion and save behavior preserved."
+    }
+  ]
+}
