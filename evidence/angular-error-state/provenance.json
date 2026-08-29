@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0",
+  "experimentId": "angular-state-01",
+  "baseRepositoryCommit": "4cc9a7ef1466a71044ded10ef1182032efa2fb27",
+  "baselineRunId": "c2c3d450-959c-46f3-b1ea-c0a332743597",
+  "baselineCapturedAt": "2026-08-29T23:07:09.081Z",
+  "afterRunId": "eada7bf0-e59a-4e9a-996b-c32b3eb36489",
+  "afterCapturedAt": "2026-08-29T23:10:21.076Z",
+  "adapter": "angular",
+  "targetRuleIds": [
+    "aria-valid-attr-value"
+  ],
+  "decision": "VERIFIED_FIXED",
+  "baselineReconstruction": "Reverse-apply repair.diff to the completed milestone source.",
+  "sanitization": {
+    "repositoryRoot": "<FORMPROOF_REPO>",
+    "userHome": "<USER_HOME>",
+    "threadId": "<REDACTED_THREAD_ID>",
+    "trajectory": "Representative decision-relevant events; environment-specific skill and memory reads omitted."
+  },
+  "artifactSha256": {
+    "README.md": "2C37DB7AC5547091C3EB392EB76882CEC7963FFB19F8E58AD4215A923807267D",
+    "after.json": "229D8B2C798F7674B85FE875464B65397B089B23AB89FE375757420194001616",
+    "agent-summary.md": "A4D8A6C53E83719FE67353804B538D00471F03009A601D357A8158303CC402EC",
+    "before.json": "A1083E316320926071144540345CADDA415852CB009F50C1211BDE70B5013859",
+    "decision.json": "2B0594F1D1C4093DDD2D50AF999CC9E0BE49A804A91FB915F5801B615CE46351",
+    "rejected-attempt.md": "8D4EA79CEE918A4CCC0829B4C117E4B4DE957B20B00FFA6E93AF08DADF4369E4",
+    "repair-prompt.md": "7CBD3914660352386A8C7D39FCEC6F321412351FC126402D0A8167AFC7B2911A",
+    "repair.diff": "4F293762EEEF224C67EBF3D1DB64742ED089CC1BA069260728EDF7438A54C451",
+    "report.html": "3A1CEF4BCB61DFB471077C288D6DD28F1F20B8D80CDE1757062CD7E128493CB6",
+    "representative-trajectory.jsonl": "EA048954450DCF8671AD60AD2149A2BBEAE784B9D021E857C002260C11C8F378"
+  }
+}

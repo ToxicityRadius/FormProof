@@ -1,0 +1,3 @@
+- Changed [src/app/app.html](<FORMPROOF_REPO>/fixtures/angular-error-state/src/app/app.html:15): added `role="alert"` to the existing email error.
+- Test: `npm run regression` — passed.
+- Human-review items: none for this targeted barrier.

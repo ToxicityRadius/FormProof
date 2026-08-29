@@ -22,9 +22,9 @@ The v0.1 vertical slice includes:
 - JSONL Codex trajectory capture and final-message capture.
 - Before/after evidence, regression decisions, screenshots, and an accessible HTML report.
 - Unit, integration, and browser tests.
-- Tracked `VERIFIED_FIXED` experiment packages for semantics/name and keyboard/focus repairs across Static HTML, React, Vue, Angular, and Flask/Jinja, plus Static HTML, React, Vue, and Flask dynamic-state/error repairs.
+- Tracked `VERIFIED_FIXED` experiment packages for semantics/name, keyboard/focus, and dynamic-state/error repairs across Static HTML, React, Vue, Angular, and Flask/Jinja.
 
-All five target stack families now have verified semantics/name and keyboard/focus fixtures, while Static HTML, React, Vue, and Flask have verified dynamic-state/error fixtures. The final compatibility milestone ports the confirmed error-state pattern to Angular.
+All 15 frozen benchmark cases are implemented with tracked `VERIFIED_FIXED` evidence. Each of the five stack families now includes semantics/name, keyboard/focus, and dynamic-state/error coverage.
 
 ## Requirements
 
@@ -308,6 +308,31 @@ node dist/cli.js repair `
   --approve `
   --test "npm run regression"
 ```
+
+## Run the included Angular error-state fixture
+
+Install the pinned Angular 21 dependencies and start the development server:
+
+```powershell
+npm ci --prefix fixtures/angular-error-state
+npm run fixture:angular-state
+```
+
+Then run the evidence-gated workflow in another terminal:
+
+```powershell
+node dist/cli.js inspect `
+  --url http://127.0.0.1:4187 `
+  --source fixtures/angular-error-state `
+  --out .formproof/runs/angular-error-state
+
+node dist/cli.js repair `
+  --evidence .formproof/runs/angular-error-state/before.json `
+  --approve `
+  --test "npm run regression"
+```
+
+The regression preserves the initial Angular-rendered invalid state, waits for the submitted success text, then verifies cleared state, hidden error, and browser-console health.
 
 ## Run the included Flask fixture
 

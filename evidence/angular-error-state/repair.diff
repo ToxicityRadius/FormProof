@@ -1,0 +1,11 @@
+diff --git a/fixtures/angular-error-state/src/app/app.html b/fixtures/angular-error-state/src/app/app.html
+--- a/fixtures/angular-error-state/src/app/app.html
++++ b/fixtures/angular-error-state/src/app/app.html
+@@ -12,6 +12,6 @@
+       [attr.aria-invalid]="showError ? 'true' : null"
+       aria-errormessage="email-error"
+     >
+-    <p id="email-error" [hidden]="!showError">Enter a valid email address.</p>
++    <p id="email-error" role="alert" [hidden]="!showError">Enter a valid email address.</p>
+     <button type="submit">Subscribe</button>
+   </form>

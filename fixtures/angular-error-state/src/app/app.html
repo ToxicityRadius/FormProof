@@ -1,0 +1,19 @@
+<main>
+  <h1>Newsletter</h1>
+  <form novalidate (ngSubmit)="handleSubmit(emailInput)">
+    <label for="email">Email address</label>
+    <input
+      #emailInput
+      id="email"
+      [(ngModel)]="email"
+      name="email"
+      type="email"
+      required
+      [attr.aria-invalid]="showError ? 'true' : null"
+      aria-errormessage="email-error"
+    >
+    <p id="email-error" role="alert" [hidden]="!showError">Enter a valid email address.</p>
+    <button type="submit">Subscribe</button>
+  </form>
+  <p role="status" aria-live="polite">{{ status }}</p>
+</main>

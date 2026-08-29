@@ -30,13 +30,13 @@ This file records retained changes and discarded experiments so the final compet
 - React `aria-valid-attr-value` repair: `VERIFIED_FIXED` with high-confidence `src/App.tsx` mapping, a one-attribute live error repair, zero new automated violations, and a passing invalid-to-valid submission regression gate.
 - Vue `aria-valid-attr-value` repair: `VERIFIED_FIXED` with high-confidence `src/App.vue` mapping, a one-attribute live error repair, zero new automated violations, and a passing invalid-to-valid submission regression gate.
 - Flask/Jinja `aria-valid-attr-value` repair: `VERIFIED_FIXED` with high-confidence template mapping, a one-attribute error association, zero new automated violations, and passing integration plus invalid-to-valid browser regression gates.
+- Angular `aria-valid-attr-value` repair: `VERIFIED_FIXED` with high-confidence `src/app/app.html` mapping, a one-attribute live error repair, zero new automated violations, and a passing asynchronous invalid-to-valid regression gate.
 
 ### Removed or deferred
 
 - **OpenAI API runtime:** removed from the first build to avoid separate API credentials and usage costs.
 - **Multi-agent repair debate:** removed because additional agents do not prove reliability; deterministic verification is the acceptance authority.
 - **Full dashboard:** deferred until the CLI and evidence contract pass the frozen benchmark.
-- **Remaining dynamic-state/error fixture:** the Angular port remains planned after validating the pattern in Static HTML, React, Vue, and Flask.
 - **Axe incomplete/manual-review findings:** deferred to a separate evidence-contract change so uncertain results are surfaced without being counted as confirmed violations.
 - **Automatic remote deployment:** excluded because a repair should not publish consequential changes without a separate human-controlled release process.
 
@@ -53,6 +53,7 @@ This file records retained changes and discarded experiments so the final compet
 - The Flask regression launcher originally hid a sandbox-blocked child process as `undefinedundefined`. It now reports the underlying spawn error while preserving the same unit and browser checks.
 - The reusable evidence exporter initially retained only commands containing `regression.mjs`, which omitted package-script gates such as `npm run regression`. Its representative-trajectory filter now retains either form.
 - Angular 22.1 required Node 22.22.3 or newer, but the experiment host runs Node 22.15.0. The fixture was moved to the newest compatible Angular 21.2.22 release line with TypeScript 5.9.3; its production build and package audit pass without engine warnings or known vulnerabilities.
+- The first Angular error-state repair cleared axe but was correctly `REGRESSION_BLOCKED` because the browser gate inspected bound state before Angular rendered the success update. The gate now waits for the exact success text before checking cleared error state, and a fresh baseline-to-repair run records `VERIFIED_FIXED`.
 - Positive `tabindex` was rejected for the keyboard/focus benchmark because axe classifies it as a best-practice rule outside FormProof's frozen WCAG tag set.
 - `scrollable-region-focusable` was rejected because the installed Chromium automatically made the test scroller keyboard-focusable, so neither the browser regression nor axe could reproduce a barrier.
 - `bypass` was rejected for automatic repair because axe returned it as incomplete/manual-review evidence rather than a confirmed violation. The retained `aria-hidden-focus` case fails independently in axe and the browser Tab sequence.

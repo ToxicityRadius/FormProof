@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0",
+  "runId": "eada7bf0-e59a-4e9a-996b-c32b3eb36489",
+  "capturedAt": "2026-08-29T23:10:21.076Z",
+  "target": {
+    "url": "http://127.0.0.1:4187",
+    "sourceRoot": "<FORMPROOF_REPO>\\fixtures\\angular-error-state",
+    "adapter": "angular"
+  },
+  "violations": [],
+  "totals": {
+    "violations": 0,
+    "nodes": 0
+  }
+}

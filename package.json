@@ -31,7 +31,8 @@
     "fixture:static-state": "node scripts/serve-fixture.mjs fixtures/static-error-state 4183",
     "fixture:react-state": "npm --prefix fixtures/react-error-state run dev -- --host 127.0.0.1 --port 4184 --strictPort",
     "fixture:vue-state": "npm --prefix fixtures/vue-error-state run dev -- --host 127.0.0.1 --port 4185 --strictPort",
-    "fixture:flask-state": "fixtures\\flask-error-state\\.venv\\Scripts\\python.exe -m flask --app fixtures/flask-error-state/app.py run --host 127.0.0.1 --port 4186"
+    "fixture:flask-state": "fixtures\\flask-error-state\\.venv\\Scripts\\python.exe -m flask --app fixtures/flask-error-state/app.py run --host 127.0.0.1 --port 4186",
+    "fixture:angular-state": "npm --prefix fixtures/angular-error-state run dev -- --host 127.0.0.1 --port 4187"
   },
   "engines": {
     "node": ">=22"

@@ -17,6 +17,6 @@
     { "id": "vue-state-01", "stack": "vue", "class": "dynamic-state-and-errors", "fixtureStatus": "implemented" },
     { "id": "angular-semantics-01", "stack": "angular", "class": "semantics-and-names", "fixtureStatus": "implemented" },
     { "id": "angular-keyboard-01", "stack": "angular", "class": "keyboard-and-focus", "fixtureStatus": "implemented" },
-    { "id": "angular-state-01", "stack": "angular", "class": "dynamic-state-and-errors", "fixtureStatus": "planned" }
+    { "id": "angular-state-01", "stack": "angular", "class": "dynamic-state-and-errors", "fixtureStatus": "implemented" }
   ]
 }
