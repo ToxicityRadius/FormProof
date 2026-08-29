@@ -1,0 +1,11 @@
+diff --git a/fixtures/vue-error-state/src/App.vue b/fixtures/vue-error-state/src/App.vue
+--- a/fixtures/vue-error-state/src/App.vue
++++ b/fixtures/vue-error-state/src/App.vue
+@@ -32,6 +32,6 @@ function handleSubmit(event) {
+         aria-errormessage="email-error"
+       >
+-      <p id="email-error" v-show="invalid">Enter a valid email address.</p>
++      <p id="email-error" v-show="invalid" role="alert">Enter a valid email address.</p>
+       <button type="submit">Subscribe</button>
+     </form>
+     <p role="status" aria-live="polite">{{ status }}</p>

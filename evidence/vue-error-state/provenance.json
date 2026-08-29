@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "experimentId": "vue-state-01",
+  "baseRepositoryCommit": "4f352d9cb5b09c092881d1f9d149d6655f1869a7",
+  "baselineRunId": "e2a48d97-318f-4c8c-910b-2eb91e06ff05",
+  "baselineCapturedAt": "2026-08-29T15:53:32.598Z",
+  "afterRunId": "23c6bff0-8dd9-4b61-aaf3-476716eea384",
+  "afterCapturedAt": "2026-08-29T15:56:37.305Z",
+  "adapter": "vue",
+  "targetRuleIds": [
+    "aria-valid-attr-value"
+  ],
+  "decision": "VERIFIED_FIXED",
+  "baselineReconstruction": "Reverse-apply repair.diff to the completed milestone source.",
+  "sanitization": {
+    "repositoryRoot": "<FORMPROOF_REPO>",
+    "userHome": "<USER_HOME>",
+    "threadId": "<REDACTED_THREAD_ID>",
+    "trajectory": "Representative decision-relevant events; environment-specific skill and memory reads omitted."
+  },
+  "artifactSha256": {
+    "README.md": "49FB7A407E4D861B55A2FEA3722EC297BE465233DBF8701CAB5C1FBC267FA5ED",
+    "after.json": "EF98A9F0C3272A1D98424824D336FEFC00F52BC0ADD100267542EFAA7E376239",
+    "agent-summary.md": "187AA3445BC134B9D3F7A4738CDA993E859CB2F3599911421EBE863D60B02895",
+    "before.json": "71F53A5BD7F0E7442330FC328DEDE157C530A81824CFDAD6516A553D2B900E80",
+    "decision.json": "DC58524205B2C8AF03ADDBB910A1BDDC9AA2D60FA24892B568A5426C6FA54D43",
+    "repair-prompt.md": "454D63772FEE35411E36AF593C97A392AAF69FADDF0B8E2E38ADF238AB4AC634",
+    "repair.diff": "9744F51982814EE15B7BD140EA5D53A5A07E2643BA2ED75FAF24122DA3595B6C",
+    "report.html": "4861EB65BE43372492B79BF28447A3A289450FAAF484A9B7C7B9A099BB6B55EB",
+    "representative-trajectory.jsonl": "C02D6BC4C7E146A976E9B34DB980FFFFA575661E50C05DAD6E71192691E6ECD1"
+  }
+}

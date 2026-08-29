@@ -29,7 +29,8 @@
     "fixture:flask-keyboard": "fixtures\\flask-hidden-focus\\.venv\\Scripts\\python.exe -m flask --app fixtures/flask-hidden-focus/app.py run --host 127.0.0.1 --port 4181",
     "fixture:angular-keyboard": "npm --prefix fixtures/angular-hidden-focus run dev -- --host 127.0.0.1 --port 4182",
     "fixture:static-state": "node scripts/serve-fixture.mjs fixtures/static-error-state 4183",
-    "fixture:react-state": "npm --prefix fixtures/react-error-state run dev -- --host 127.0.0.1 --port 4184 --strictPort"
+    "fixture:react-state": "npm --prefix fixtures/react-error-state run dev -- --host 127.0.0.1 --port 4184 --strictPort",
+    "fixture:vue-state": "npm --prefix fixtures/vue-error-state run dev -- --host 127.0.0.1 --port 4185 --strictPort"
   },
   "engines": {
     "node": ">=22"

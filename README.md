@@ -22,9 +22,9 @@ The v0.1 vertical slice includes:
 - JSONL Codex trajectory capture and final-message capture.
 - Before/after evidence, regression decisions, screenshots, and an accessible HTML report.
 - Unit, integration, and browser tests.
-- Tracked `VERIFIED_FIXED` experiment packages for semantics/name and keyboard/focus repairs across Static HTML, React, Vue, Angular, and Flask/Jinja, plus Static HTML and React dynamic-state/error repairs.
+- Tracked `VERIFIED_FIXED` experiment packages for semantics/name and keyboard/focus repairs across Static HTML, React, Vue, Angular, and Flask/Jinja, plus Static HTML, React, and Vue dynamic-state/error repairs.
 
-All five target stack families now have verified semantics/name and keyboard/focus fixtures, while Static HTML and React have verified dynamic-state/error fixtures. The next compatibility milestone ports the confirmed error-state pattern to Vue before Flask and Angular.
+All five target stack families now have verified semantics/name and keyboard/focus fixtures, while Static HTML, React, and Vue have verified dynamic-state/error fixtures. The next compatibility milestone ports the confirmed error-state pattern to Flask before Angular.
 
 ## Requirements
 
@@ -237,6 +237,31 @@ node dist/cli.js repair `
   --approve `
   --test "npm run regression"
 ```
+
+## Run the included Vue error-state fixture
+
+Install the pinned dependencies and start Vite:
+
+```powershell
+npm ci --prefix fixtures/vue-error-state
+npm run fixture:vue-state
+```
+
+Then run the evidence-gated workflow in another terminal:
+
+```powershell
+node dist/cli.js inspect `
+  --url http://127.0.0.1:4185 `
+  --source fixtures/vue-error-state `
+  --out .formproof/runs/vue-error-state
+
+node dist/cli.js repair `
+  --evidence .formproof/runs/vue-error-state/before.json `
+  --approve `
+  --test "npm run regression"
+```
+
+The regression preserves the initial Vue-rendered invalid state and error reference, then verifies correction, error clearing, and success announcement.
 
 ## Run the included Angular fixture
 

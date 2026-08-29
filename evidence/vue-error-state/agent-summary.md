@@ -1,0 +1,3 @@
+- Changed [src/App.vue](../../fixtures/vue-error-state/src/App.vue:35): added `role="alert"` to the existing error message.
+- Test: `npm run regression` passed.
+- Human review: no unresolved items for this targeted repair.
