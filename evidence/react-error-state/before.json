@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0",
+  "runId": "c3394fa0-0eb9-4340-b968-9df59356d79e",
+  "capturedAt": "2026-08-29T15:41:44.539Z",
+  "target": {
+    "url": "http://127.0.0.1:4184",
+    "sourceRoot": "<FORMPROOF_REPO>\\fixtures\\react-error-state",
+    "adapter": "react"
+  },
+  "violations": [
+    {
+      "id": "aria-valid-attr-value",
+      "impact": "critical",
+      "description": "Ensure all ARIA attributes have valid values",
+      "help": "ARIA attributes must conform to valid values",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/aria-valid-attr-value?application=playwright",
+      "tags": [
+        "cat.aria",
+        "wcag2a",
+        "wcag412",
+        "EN-301-549",
+        "EN-9.4.1.2",
+        "RGAAv4",
+        "RGAA-7.1.1"
+      ],
+      "nodes": [
+        {
+          "target": [
+            "#email"
+          ],
+          "html": "<input id=\"email\" required=\"\" aria-invalid=\"true\" aria-errormessage=\"email-error\" type=\"email\" value=\"\" name=\"email\">",
+          "failureSummary": "Fix all of the following:\n  aria-errormessage value `email-error` must use a technique to announce the message (e.g., aria-live, aria-describedby, role=alert, etc.)",
+          "sourceCandidates": [
+            {
+              "path": "src/App.tsx",
+              "confidence": "high",
+              "reason": "element id match"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "violations": 1,
+    "nodes": 1
+  }
+}

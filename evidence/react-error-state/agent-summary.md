@@ -1,0 +1,3 @@
+- Changed `src/App.tsx`: added `role="alert"` to the linked email error message.
+- Test: `npm run regression` — passed.
+- Human-review items: None.

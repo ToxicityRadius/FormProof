@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0",
+  "runId": "4c418c73-743b-46a4-8706-2313c182e062",
+  "capturedAt": "2026-08-29T15:43:55.131Z",
+  "target": {
+    "url": "http://127.0.0.1:4184",
+    "sourceRoot": "<FORMPROOF_REPO>\\fixtures\\react-error-state",
+    "adapter": "react"
+  },
+  "violations": [],
+  "totals": {
+    "violations": 0,
+    "nodes": 0
+  }
+}

@@ -8,7 +8,7 @@
     { "id": "static-state-01", "stack": "static", "class": "dynamic-state-and-errors", "fixtureStatus": "implemented" },
     { "id": "react-semantics-01", "stack": "react", "class": "semantics-and-names", "fixtureStatus": "implemented" },
     { "id": "react-keyboard-01", "stack": "react", "class": "keyboard-and-focus", "fixtureStatus": "implemented" },
-    { "id": "react-state-01", "stack": "react", "class": "dynamic-state-and-errors", "fixtureStatus": "planned" },
+    { "id": "react-state-01", "stack": "react", "class": "dynamic-state-and-errors", "fixtureStatus": "implemented" },
     { "id": "flask-semantics-01", "stack": "flask", "class": "semantics-and-names", "fixtureStatus": "implemented" },
     { "id": "flask-keyboard-01", "stack": "flask", "class": "keyboard-and-focus", "fixtureStatus": "implemented" },
     { "id": "flask-state-01", "stack": "flask", "class": "dynamic-state-and-errors", "fixtureStatus": "planned" },

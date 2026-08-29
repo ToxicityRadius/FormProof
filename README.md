@@ -22,9 +22,9 @@ The v0.1 vertical slice includes:
 - JSONL Codex trajectory capture and final-message capture.
 - Before/after evidence, regression decisions, screenshots, and an accessible HTML report.
 - Unit, integration, and browser tests.
-- Tracked `VERIFIED_FIXED` experiment packages for semantics/name and keyboard/focus repairs across Static HTML, React, Vue, Angular, and Flask/Jinja, plus the first Static HTML dynamic-state/error repair.
+- Tracked `VERIFIED_FIXED` experiment packages for semantics/name and keyboard/focus repairs across Static HTML, React, Vue, Angular, and Flask/Jinja, plus Static HTML and React dynamic-state/error repairs.
 
-All five target stack families now have verified semantics/name and keyboard/focus fixtures, and Static HTML has the first verified dynamic-state/error fixture. The next compatibility milestone ports the confirmed error-association pattern to React before Vue, Flask, and Angular.
+All five target stack families now have verified semantics/name and keyboard/focus fixtures, while Static HTML and React have verified dynamic-state/error fixtures. The next compatibility milestone ports the confirmed error-state pattern to Vue before Flask and Angular.
 
 ## Requirements
 
@@ -166,6 +166,31 @@ node dist/cli.js repair `
   --approve `
   --test "npm run regression"
 ```
+
+## Run the included React error-state fixture
+
+Install the pinned dependencies and start Vite:
+
+```powershell
+npm ci --prefix fixtures/react-error-state
+npm run fixture:react-state
+```
+
+Then run the evidence-gated workflow in another terminal:
+
+```powershell
+node dist/cli.js inspect `
+  --url http://127.0.0.1:4184 `
+  --source fixtures/react-error-state `
+  --out .formproof/runs/react-error-state
+
+node dist/cli.js repair `
+  --evidence .formproof/runs/react-error-state/before.json `
+  --approve `
+  --test "npm run regression"
+```
+
+The regression preserves the initial React-rendered invalid state and error reference, then verifies correction, error clearing, and success announcement.
 
 ## Run the included Vue fixture
 
