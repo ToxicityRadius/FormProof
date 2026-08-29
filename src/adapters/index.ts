@@ -13,6 +13,7 @@ export interface FrameworkAdapter {
 const adapters: Record<AdapterId, FrameworkAdapter> = {
   static: { id: "static", displayName: "Static HTML", sourceExtensions: [".html", ".htm"] },
   react: { id: "react", displayName: "React / Next.js", sourceExtensions: [".tsx", ".jsx", ".ts", ".js", ".html"] },
+  vue: { id: "vue", displayName: "Vue / Nuxt", sourceExtensions: [".vue", ".ts", ".js", ".html"] },
   flask: { id: "flask", displayName: "Flask / Jinja", sourceExtensions: [".html", ".jinja", ".jinja2", ".py"] },
   unknown: { id: "unknown", displayName: "Unknown web stack", sourceExtensions: [".html", ".tsx", ".jsx", ".vue", ".ts", ".js", ".py"] }
 };
@@ -72,6 +73,7 @@ export async function detectAdapter(root: string): Promise<FrameworkAdapter> {
       };
       const dependencies = { ...packageJson.dependencies, ...packageJson.devDependencies };
       if ("react" in dependencies || "next" in dependencies) return adapters.react;
+      if ("vue" in dependencies || "nuxt" in dependencies) return adapters.vue;
     } catch {
       // Malformed package metadata should not prevent fallback detection.
     }

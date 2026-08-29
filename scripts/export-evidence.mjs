@@ -53,7 +53,11 @@ function sanitized(content) {
     (result, [from, to]) => result.replace(new RegExp(escaped(from), "gi"), to),
     content
   );
-  return result.replace(/<<FORMPROOF_REPO>[\\/]([^>]+)>/g, "../../$1");
+  return result
+    .replace(/[A-Za-z]:\\\\Users\\\\[^\\\r\n"']+/gi, "<USER_HOME>")
+    .replace(/[A-Za-z]:\\Users\\[^\\\r\n"']+/gi, "<USER_HOME>")
+    .replace(/[A-Za-z]:\/Users\/[^/\r\n"']+/gi, "<USER_HOME>")
+    .replace(/<<FORMPROOF_REPO>[\\/]([^>]+)>/g, "../../$1");
 }
 
 function sanitizedObject(value) {
@@ -75,7 +79,7 @@ for (const fileName of sourceFiles) {
 const summary = await readFile(resolve(runDirectory, "agent-summary.txt"), "utf8");
 await writeFile(
   resolve(outputDirectory, "agent-summary.md"),
-  sanitized(summary).replaceAll("\r\n", "\n")
+  `${sanitized(summary).replaceAll("\r\n", "\n").trimEnd()}\n`
 );
 
 const representativeEvents = trajectoryLines.filter((event) => {
@@ -88,7 +92,7 @@ const representativeEvents = trajectoryLines.filter((event) => {
   if (event.item?.type !== "command_execution") return false;
 
   const command = event.item.command ?? "";
-  return /regression\.mjs|unittest|git diff/i.test(command);
+  return /regression|unittest|git diff/i.test(command);
 });
 const representativeTrajectory = representativeEvents
   .map((event) => JSON.stringify(sanitizedObject(event)))

@@ -1,0 +1,3 @@
+- Changed [src/App.vue](<FORMPROOF_REPO>\fixtures\vue-label\src\App.vue:17): added a visible, explicit “Display name” label.
+- Test: `npm run regression` — passed.
+- Human-review items: none for this targeted repair.

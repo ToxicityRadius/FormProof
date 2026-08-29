@@ -34,6 +34,27 @@ describe("detectAdapter", () => {
     await expect(detectAdapter(root)).resolves.toMatchObject({ id: "react" });
   });
 
+  it("detects Vue before treating its Vite entry HTML as static", async () => {
+    const root = await temporaryProject();
+    await mkdir(join(root, "src"));
+    await writeFile(join(root, "package.json"), JSON.stringify({ dependencies: { vue: "latest" } }));
+    await writeFile(join(root, "src", "App.vue"), '<input id="display-name" name="displayName">');
+    await writeFile(join(root, "index.html"), '<div id="app"></div>');
+
+    const adapter = await detectAdapter(root);
+    expect(adapter).toMatchObject({ id: "vue", displayName: "Vue / Nuxt" });
+    await expect(
+      mapNodeToSources(
+        root,
+        adapter,
+        ["#display-name"],
+        '<input id="display-name" name="displayName">'
+      )
+    ).resolves.toContainEqual(
+      expect.objectContaining({ path: "src/App.vue", confidence: "high" })
+    );
+  });
+
   it("detects a Flask template project", async () => {
     const root = await temporaryProject();
     await mkdir(join(root, "templates"));
@@ -66,6 +87,13 @@ describe("detectAdapter", () => {
     const flaskRoot = await temporaryProject();
     await writeFile(join(flaskRoot, "pyproject.toml"), 'dependencies = ["Flask>=3"]');
     await expect(detectAdapter(flaskRoot)).resolves.toMatchObject({ id: "flask" });
+  });
+
+  it("detects Nuxt in devDependencies", async () => {
+    const root = await temporaryProject();
+    await writeFile(join(root, "package.json"), JSON.stringify({ devDependencies: { nuxt: "latest" } }));
+
+    await expect(detectAdapter(root)).resolves.toMatchObject({ id: "vue" });
   });
 
   it("maps id and name evidence to likely source files", async () => {
