@@ -427,6 +427,8 @@ The official Codex CLI supports non-interactive execution, JSONL event output, a
 
 The target application must remain available at the same URL during repair and verification. Commands passed through `--test` execute locally in the target repository and must be treated as trusted input.
 
+`inspect` also writes `decision.json`; a clean automated scan remains `HUMAN_REVIEW_REQUIRED` because automated evidence cannot establish complete accessibility.
+
 ## Development verification
 
 ```powershell
@@ -434,6 +436,7 @@ npm run typecheck
 npm test
 npm run test:coverage
 npm run build
+npm run benchmark:summary
 ```
 
 ## Repository map

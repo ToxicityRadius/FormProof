@@ -6,6 +6,8 @@ This file records retained changes and discarded experiments so the final compet
 
 ### Retained
 
+- A benchmark summary gate withholds `Macro-VBRR@1` and secondary metrics until all 30 frozen first-attempt results are present.
+- `inspect` persists its `HUMAN_REVIEW_REQUIRED` decision even when automation finds no violations, making the abstention boundary reviewable.
 - One primary Codex repair agent plus deterministic browser and regression gates.
 - A stack-neutral evidence contract with replaceable source adapters.
 - Static HTML, React/Next.js, Vue/Nuxt, Angular, and Flask/Jinja adapter detection.

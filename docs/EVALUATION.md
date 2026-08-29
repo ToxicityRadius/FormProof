@@ -33,3 +33,11 @@ The public manifest is [benchmark/cases.json](../benchmark/cases.json). Each sta
 - Preserve the direct-prompt and FormProof trajectories.
 - Include one challenging case in the video and written analysis.
 - Do not call an axe score a WCAG conformance result.
+
+Record only frozen first attempts in `benchmark/results.json`, then run:
+
+```powershell
+npm run benchmark:summary
+```
+
+The command returns `reportable: false` and a complete missing-run list until both conditions have one first-attempt result for every frozen case. It reports `Macro-VBRR@1` and the secondary regression, timing, token, and patch-size summaries only after all 30 required runs are present. Development repairs and pilot runs must not be copied into the final ledger.

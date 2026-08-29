@@ -48,6 +48,7 @@ describe("FormProof workflows", () => {
 
     expect(result.decision.status).toBe("HUMAN_REVIEW_REQUIRED");
     await expect(readFile(join(outDir, "before.json"), "utf8")).resolves.toContain('"label"');
+    await expect(readFile(join(outDir, "decision.json"), "utf8")).resolves.toContain("HUMAN_REVIEW_REQUIRED");
     await expect(readFile(join(outDir, "repair-prompt.md"), "utf8")).resolves.toContain("minimal source-level patch");
     await expect(readFile(join(outDir, "report.html"), "utf8")).resolves.toContain("FormProof Evidence Report");
   });
@@ -95,6 +96,7 @@ describe("FormProof workflows", () => {
     expect(result.decision.status).toBe("HUMAN_REVIEW_REQUIRED");
     expect(result.decision.summary).toContain("human review");
     expect(result.decision.unresolvedViolationIds).toEqual([]);
+    await expect(readFile(join(root, "run", "decision.json"), "utf8")).resolves.toContain("No automated violations were detected");
   });
 
   it("rejects malformed baseline evidence before invoking an agent", async () => {

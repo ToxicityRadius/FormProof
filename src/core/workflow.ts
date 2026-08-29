@@ -102,6 +102,7 @@ export async function inspectWorkflow(input: InspectWorkflowInput, dependencies:
 
   await Promise.all([
     writeJson(beforePath, before),
+    writeJson(join(input.outDir, "decision.json"), decision),
     writeFile(join(input.outDir, "repair-prompt.md"), `${buildRepairPrompt(before, targetViolationIds)}\n`, "utf8"),
     writeFile(reportPath, renderHtmlReport({ before, decision }), "utf8")
   ]);
