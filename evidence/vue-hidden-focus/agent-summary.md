@@ -1,0 +1,4 @@
+- Changed [src/App.vue](../../fixtures/vue-hidden-focus/src/App.vue:12): disabled the retired legacy button so it cannot receive focus.
+- Test: `npm run regression` — passed.
+- Evidence files changed: none.
+- Human-review items: none identified.

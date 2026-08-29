@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0",
+  "runId": "38e97cfe-2ded-4ee4-ac9c-6cc96f3790d0",
+  "capturedAt": "2026-08-29T11:48:38.227Z",
+  "target": {
+    "url": "http://127.0.0.1:4180",
+    "sourceRoot": "<FORMPROOF_REPO>\\fixtures\\vue-hidden-focus",
+    "adapter": "vue"
+  },
+  "violations": [
+    {
+      "id": "aria-hidden-focus",
+      "impact": "serious",
+      "description": "Ensure aria-hidden elements are not focusable nor contain focusable elements",
+      "help": "ARIA hidden element must not be focusable or contain focusable elements",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/aria-hidden-focus?application=playwright",
+      "tags": [
+        "cat.name-role-value",
+        "wcag2a",
+        "wcag412",
+        "TTv5",
+        "TT6.a",
+        "EN-301-549",
+        "EN-9.4.1.2",
+        "RGAAv4",
+        "RGAA-10.8.1"
+      ],
+      "nodes": [
+        {
+          "target": [
+            "#retired-actions"
+          ],
+          "html": "<div data-v-7a7a37b1=\"\" id=\"retired-actions\" aria-hidden=\"true\"><p data-v-7a7a37b1=\"\">Legacy reporting is no longer available.</p><button data-v-7a7a37b1=\"\" id=\"legacy-export\" type=\"button\">Export legacy report</button></div>",
+          "failureSummary": "Fix all of the following:\n  Focusable content should be disabled or be removed from the DOM",
+          "sourceCandidates": [
+            {
+              "path": "src/App.vue",
+              "confidence": "high",
+              "reason": "element id match"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "violations": 1,
+    "nodes": 1
+  }
+}

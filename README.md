@@ -22,9 +22,9 @@ The v0.1 vertical slice includes:
 - JSONL Codex trajectory capture and final-message capture.
 - Before/after evidence, regression decisions, screenshots, and an accessible HTML report.
 - Unit, integration, and browser tests.
-- Tracked `VERIFIED_FIXED` experiment packages for semantics/name repairs across Static HTML, React, Vue, Angular, and Flask/Jinja, plus Static HTML and React keyboard/focus repairs.
+- Tracked `VERIFIED_FIXED` experiment packages for semantics/name repairs across Static HTML, React, Vue, Angular, and Flask/Jinja, plus Static HTML, React, and Vue keyboard/focus repairs.
 
-All five target stack families now have a verified semantics-and-names fixture, and two of the five keyboard/focus cases are verified. The next compatibility milestone ports the confirmed pattern to Vue before Flask, Angular, and dynamic-state/error work.
+All five target stack families now have a verified semantics-and-names fixture, and three of the five keyboard/focus cases are verified. The next compatibility milestone ports the confirmed pattern to Flask before Angular and dynamic-state/error work.
 
 ## Requirements
 
@@ -162,6 +162,29 @@ node dist/cli.js inspect `
 
 node dist/cli.js repair `
   --evidence .formproof/runs/vue-label/before.json `
+  --approve `
+  --test "npm run regression"
+```
+
+## Run the included Vue keyboard/focus fixture
+
+Install the pinned dependencies and start Vite:
+
+```powershell
+npm ci --prefix fixtures/vue-hidden-focus
+npm run fixture:vue-keyboard
+```
+
+Then run the evidence-gated workflow in another terminal:
+
+```powershell
+node dist/cli.js inspect `
+  --url http://127.0.0.1:4180 `
+  --source fixtures/vue-hidden-focus `
+  --out .formproof/runs/vue-hidden-focus
+
+node dist/cli.js repair `
+  --evidence .formproof/runs/vue-hidden-focus/before.json `
   --approve `
   --test "npm run regression"
 ```

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "experimentId": "vue-keyboard-01",
+  "baseRepositoryCommit": "9ac0e2a0dd3850827fb36c492fe42ca13ca40e80",
+  "baselineRunId": "38e97cfe-2ded-4ee4-ac9c-6cc96f3790d0",
+  "baselineCapturedAt": "2026-08-29T11:48:38.227Z",
+  "afterRunId": "dded9d7f-8ce8-4af2-90be-830c27a1393f",
+  "afterCapturedAt": "2026-08-29T11:51:23.743Z",
+  "adapter": "vue",
+  "targetRuleIds": [
+    "aria-hidden-focus"
+  ],
+  "decision": "VERIFIED_FIXED",
+  "baselineReconstruction": "Reverse-apply repair.diff to the completed milestone source.",
+  "sanitization": {
+    "repositoryRoot": "<FORMPROOF_REPO>",
+    "userHome": "<USER_HOME>",
+    "threadId": "<REDACTED_THREAD_ID>",
+    "trajectory": "Representative decision-relevant events; environment-specific skill and memory reads omitted."
+  },
+  "artifactSha256": {
+    "README.md": "683A28852BEB11D8D1D016E1707DD93096623FED1D7EC50BD1F19D6EECC8A513",
+    "after.json": "86ADDB13BBA1E5244DD492806DC341802B8C0A38F3DAD212CBDF4EBE52051452",
+    "agent-summary.md": "3E8C726C16589C5B30506419C69867A3E161591E23AFB845DD168673C995C479",
+    "before.json": "F09A87536F8382109DFD31BA78B252023E0B9CD2AF14B8327B3EAA2BCDAA9DA3",
+    "decision.json": "6F289A14581BB702ADDB8E87F3B7A7C80AA6EE6ABF4FB8AFC668954906ECB11B",
+    "repair-prompt.md": "04D37E7992EA25E24D3CE89790A96E26A30339065EB8717495602E5D9B4E6891",
+    "repair.diff": "0252098A50E4841103D69B3C8801E0B1B6A95E6F793D12782640554D746D5E36",
+    "report.html": "B07BBD8C07386C409ED892307D4B2058B5405B1F70606251052D8EB32A1DB7FA",
+    "representative-trajectory.jsonl": "5B46E7CB4D3176F2C1447A7841F5DA7ABA96DB078AA204A1F9460E46C4E559D6"
+  }
+}
