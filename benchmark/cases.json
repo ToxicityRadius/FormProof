@@ -4,7 +4,7 @@
   "primaryMetric": "Macro-VBRR@1",
   "cases": [
     { "id": "static-semantics-01", "stack": "static", "class": "semantics-and-names", "fixtureStatus": "implemented" },
-    { "id": "static-keyboard-01", "stack": "static", "class": "keyboard-and-focus", "fixtureStatus": "planned" },
+    { "id": "static-keyboard-01", "stack": "static", "class": "keyboard-and-focus", "fixtureStatus": "implemented" },
     { "id": "static-state-01", "stack": "static", "class": "dynamic-state-and-errors", "fixtureStatus": "planned" },
     { "id": "react-semantics-01", "stack": "react", "class": "semantics-and-names", "fixtureStatus": "implemented" },
     { "id": "react-keyboard-01", "stack": "react", "class": "keyboard-and-focus", "fixtureStatus": "planned" },

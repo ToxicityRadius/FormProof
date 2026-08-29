@@ -1,0 +1,3 @@
+- Changed [index.html](</<FORMPROOF_REPO>/fixtures/static-hidden-focus/index.html:17>): disabled the retired button so it cannot receive focus.
+- Test: `node regression.mjs` — passed.
+- Human review: none unresolved. No FormProof evidence files changed.

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0",
+  "experimentId": "static-hidden-focus-first-repair",
+  "baseRepositoryCommit": "bfecbb018076af45af86ad45eb5ee32a5b983ec6",
+  "baselineRunId": "07a7c917-b53a-4689-92ca-f097b02ca55e",
+  "baselineCapturedAt": "2026-08-29T11:03:13.018Z",
+  "afterRunId": "0ebc87ad-adc8-47fa-a93d-a10a5e1cb030",
+  "afterCapturedAt": "2026-08-29T11:06:25.954Z",
+  "adapter": "static",
+  "targetRuleIds": [
+    "aria-hidden-focus"
+  ],
+  "decision": "VERIFIED_FIXED",
+  "baselineReconstruction": "Reverse-apply repair.diff to the completed milestone source.",
+  "sanitization": {
+    "repositoryRoot": "<FORMPROOF_REPO>",
+    "userHome": "<USER_HOME>",
+    "threadId": "<REDACTED_THREAD_ID>",
+    "trajectory": "Representative decision-relevant events; environment-specific skill and memory reads omitted."
+  },
+  "artifactSha256": {
+    "after.json": "D7FDB0D3C9E357AA8EB7EBEC558C0CE29AAD66F42FF7B4F5A2513FECA7D6823D",
+    "agent-summary.md": "695B4C1CF8AE12A1E6319FE815679BA5B38FC48B8FA5F9761CE4B0AF3E42CE15",
+    "before.json": "254C41DEB354212EC11184FCDA4B3B47313C2EC0B523CB7B4DC5B1FD37B48BE1",
+    "decision.json": "F9D11F35E63AAA64CB3D1966AE0035AECF3CB66FDF734F72160938D3E9900A8B",
+    "repair-prompt.md": "12D1422F5F7BDFEE9AE577F4CACF248F3DBAD0ADED0EB3DDEB9D0C4E9DB60A9B",
+    "report.html": "8B65F415A9915EC8CC38189D7A3774C862394D611664095B2B5F670625521E9B",
+    "representative-trajectory.jsonl": "375F02F6ABD293015FC8171D5A67A200BEC11378E55E431CE4C80D2F317881BC"
+  }
+}

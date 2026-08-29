@@ -5,6 +5,7 @@ Each directory contains sanitized, tracked artifacts from one FormProof before-t
 | Experiment | Adapter | Target rule | Decision | Regression gate |
 | --- | --- | --- | --- | --- |
 | [Static label](static-label/README.md) | Static HTML | `label` | `VERIFIED_FIXED` | Form structure preserved |
+| [Static hidden focus](static-hidden-focus/README.md) | Static HTML | `aria-hidden-focus` | `VERIFIED_FIXED` | Hidden action excluded; keyboard save preserved |
 | [React label](react-label/README.md) | React/Vite | `label` | `VERIFIED_FIXED` | Submission behavior preserved |
 | [Flask label](flask-label/README.md) | Flask/Jinja | `label` | `VERIFIED_FIXED` | Integration and submission behavior preserved |
 | [Vue label](vue-label/README.md) | Vue/Vite | `label` | `VERIFIED_FIXED` | Submission behavior preserved |

@@ -22,9 +22,9 @@ The v0.1 vertical slice includes:
 - JSONL Codex trajectory capture and final-message capture.
 - Before/after evidence, regression decisions, screenshots, and an accessible HTML report.
 - Unit, integration, and browser tests.
-- Tracked `VERIFIED_FIXED` experiment packages for Static HTML, React, Vue, Angular, and Flask/Jinja.
+- Tracked `VERIFIED_FIXED` experiment packages for semantics/name repairs across Static HTML, React, Vue, Angular, and Flask/Jinja, plus the first Static HTML keyboard/focus repair.
 
-All five target stack families now have a verified semantics-and-names fixture. The next compatibility milestone expands the frozen benchmark into keyboard/focus and dynamic-state/error barriers across those stacks.
+All five target stack families now have a verified semantics-and-names fixture, and the Static HTML keyboard/focus case is also verified. The next compatibility milestone ports the confirmed keyboard/focus pattern to the four framework adapters before dynamic-state/error work begins.
 
 ## Requirements
 
@@ -72,6 +72,30 @@ node dist/cli.js repair `
   --approve `
   --test "node regression.mjs"
 ```
+
+## Run the included Static keyboard/focus fixture
+
+Start the fixture in one PowerShell terminal:
+
+```powershell
+npm run fixture:static-keyboard
+```
+
+Then run the evidence-gated workflow in another terminal:
+
+```powershell
+node dist/cli.js inspect `
+  --url http://127.0.0.1:4178 `
+  --source fixtures/static-hidden-focus `
+  --out .formproof/runs/static-hidden-focus
+
+node dist/cli.js repair `
+  --evidence .formproof/runs/static-hidden-focus/before.json `
+  --approve `
+  --test "node regression.mjs"
+```
+
+The fixture exposes a dormant button inside an `aria-hidden` container. Its browser regression requires that action to remain in the document but stay outside the Tab order, then activates the visible save action entirely from the keyboard.
 
 ## Run the included React fixture
 

@@ -21,13 +21,15 @@ This file records retained changes and discarded experiments so the final compet
 - Flask/Jinja `label` repair: `VERIFIED_FIXED` with zero new automated violations and a passing Flask integration plus Playwright submission-flow regression gate.
 - Vue `label` repair: `VERIFIED_FIXED` with zero new automated violations and a passing Playwright submission-flow regression gate.
 - Angular `label` repair: `VERIFIED_FIXED` with zero new automated violations and a passing Playwright submission-flow regression gate.
+- Static HTML `aria-hidden-focus` repair: `VERIFIED_FIXED` with zero new automated violations and a passing Playwright hidden-focus plus keyboard-save regression gate.
 
 ### Removed or deferred
 
 - **OpenAI API runtime:** removed from the first build to avoid separate API credentials and usage costs.
 - **Multi-agent repair debate:** removed because additional agents do not prove reliability; deterministic verification is the acceptance authority.
 - **Full dashboard:** deferred until the CLI and evidence contract pass the frozen benchmark.
-- **Keyboard/focus and dynamic-state/error fixtures:** deferred until the semantics-and-names reference fixture is stable across all five target stacks.
+- **Framework keyboard/focus and all dynamic-state/error fixtures:** the four framework ports and every state/error case remain planned after this validated Static HTML pattern.
+- **Axe incomplete/manual-review findings:** deferred to a separate evidence-contract change so uncertain results are surfaced without being counted as confirmed violations.
 - **Automatic remote deployment:** excluded because a repair should not publish consequential changes without a separate human-controlled release process.
 
 ### Failures that changed the implementation
@@ -43,3 +45,6 @@ This file records retained changes and discarded experiments so the final compet
 - The Flask regression launcher originally hid a sandbox-blocked child process as `undefinedundefined`. It now reports the underlying spawn error while preserving the same unit and browser checks.
 - The reusable evidence exporter initially retained only commands containing `regression.mjs`, which omitted package-script gates such as `npm run regression`. Its representative-trajectory filter now retains either form.
 - Angular 22.1 required Node 22.22.3 or newer, but the experiment host runs Node 22.15.0. The fixture was moved to the newest compatible Angular 21.2.22 release line with TypeScript 5.9.3; its production build and package audit pass without engine warnings or known vulnerabilities.
+- Positive `tabindex` was rejected for the keyboard/focus benchmark because axe classifies it as a best-practice rule outside FormProof's frozen WCAG tag set.
+- `scrollable-region-focusable` was rejected because the installed Chromium automatically made the test scroller keyboard-focusable, so neither the browser regression nor axe could reproduce a barrier.
+- `bypass` was rejected for automatic repair because axe returned it as incomplete/manual-review evidence rather than a confirmed violation. The retained `aria-hidden-focus` case fails independently in axe and the browser Tab sequence.
