@@ -5,7 +5,7 @@
   "cases": [
     { "id": "static-semantics-01", "stack": "static", "class": "semantics-and-names", "fixtureStatus": "implemented" },
     { "id": "static-keyboard-01", "stack": "static", "class": "keyboard-and-focus", "fixtureStatus": "implemented" },
-    { "id": "static-state-01", "stack": "static", "class": "dynamic-state-and-errors", "fixtureStatus": "planned" },
+    { "id": "static-state-01", "stack": "static", "class": "dynamic-state-and-errors", "fixtureStatus": "implemented" },
     { "id": "react-semantics-01", "stack": "react", "class": "semantics-and-names", "fixtureStatus": "implemented" },
     { "id": "react-keyboard-01", "stack": "react", "class": "keyboard-and-focus", "fixtureStatus": "implemented" },
     { "id": "react-state-01", "stack": "react", "class": "dynamic-state-and-errors", "fixtureStatus": "planned" },

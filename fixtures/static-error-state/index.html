@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Newsletter validation</title>
+    <style>
+      button { min-width: 44px; min-height: 44px; padding: 0.5rem 1rem; }
+      :focus-visible { outline: 3px solid #175cd3; outline-offset: 3px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Newsletter signup</h1>
+      <form novalidate>
+        <label for="email">Email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          required
+          aria-invalid="true"
+          aria-errormessage="email-error"
+          aria-describedby="email-error"
+        >
+        <p id="email-error">Enter a valid email address.</p>
+        <button type="submit">Subscribe</button>
+      </form>
+      <p role="status" aria-live="polite"></p>
+    </main>
+    <script>
+      const form = document.querySelector("form");
+      const email = document.querySelector("#email");
+      const error = document.querySelector("#email-error");
+      const status = document.querySelector("[role='status']");
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (!email.validity.valid) {
+          email.setAttribute("aria-invalid", "true");
+          error.hidden = false;
+          status.textContent = "";
+          return;
+        }
+
+        email.removeAttribute("aria-invalid");
+        error.hidden = true;
+        status.textContent = `Subscription saved for ${email.value}.`;
+      });
+    </script>
+  </body>
+</html>

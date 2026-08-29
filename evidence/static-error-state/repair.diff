@@ -1,0 +1,11 @@
+diff --git a/fixtures/static-error-state/index.html b/fixtures/static-error-state/index.html
+--- a/fixtures/static-error-state/index.html
++++ b/fixtures/static-error-state/index.html
+@@ -21,6 +21,7 @@
+           required
+           aria-invalid="true"
+           aria-errormessage="email-error"
++          aria-describedby="email-error"
+         >
+         <p id="email-error">Enter a valid email address.</p>
+         <button type="submit">Subscribe</button>

@@ -26,13 +26,14 @@ This file records retained changes and discarded experiments so the final compet
 - Vue `aria-hidden-focus` repair: `VERIFIED_FIXED` with high-confidence `src/App.vue` mapping, zero new automated violations, and a passing Playwright hidden-focus plus keyboard-save regression gate.
 - Flask/Jinja `aria-hidden-focus` repair: `VERIFIED_FIXED` with high-confidence `templates/index.html` mapping, zero new automated violations, and passing Flask integration plus Playwright hidden-focus and keyboard-save regression gates.
 - Angular `aria-hidden-focus` repair: `VERIFIED_FIXED` with high-confidence `src/app/app.html` mapping, zero new automated violations, and a passing Playwright hidden-focus plus keyboard-save regression gate.
+- Static HTML `aria-valid-attr-value` repair: `VERIFIED_FIXED` with high-confidence `index.html` mapping, a one-attribute error association, zero new automated violations, and a passing invalid-to-valid submission regression gate.
 
 ### Removed or deferred
 
 - **OpenAI API runtime:** removed from the first build to avoid separate API credentials and usage costs.
 - **Multi-agent repair debate:** removed because additional agents do not prove reliability; deterministic verification is the acceptance authority.
 - **Full dashboard:** deferred until the CLI and evidence contract pass the frozen benchmark.
-- **Dynamic-state/error fixtures:** every state/error case remains planned after completing the semantics/name and keyboard/focus tracks across all five stack families.
+- **Remaining dynamic-state/error fixtures:** the React, Vue, Flask, and Angular ports remain planned after validating the Static HTML error-association pattern.
 - **Axe incomplete/manual-review findings:** deferred to a separate evidence-contract change so uncertain results are surfaced without being counted as confirmed violations.
 - **Automatic remote deployment:** excluded because a repair should not publish consequential changes without a separate human-controlled release process.
 

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "experimentId": "static-state-01",
+  "baseRepositoryCommit": "22b43d21fab5acc587cb94a4bf495ae5bcc981ad",
+  "baselineRunId": "806c8d28-4db5-4de6-a86a-0da101af9935",
+  "baselineCapturedAt": "2026-08-29T15:28:05.073Z",
+  "afterRunId": "847ae2ab-76f5-4881-be1a-b00f58c6e22a",
+  "afterCapturedAt": "2026-08-29T15:30:43.465Z",
+  "adapter": "static",
+  "targetRuleIds": [
+    "aria-valid-attr-value"
+  ],
+  "decision": "VERIFIED_FIXED",
+  "baselineReconstruction": "Reverse-apply repair.diff to the completed milestone source.",
+  "sanitization": {
+    "repositoryRoot": "<FORMPROOF_REPO>",
+    "userHome": "<USER_HOME>",
+    "threadId": "<REDACTED_THREAD_ID>",
+    "trajectory": "Representative decision-relevant events; environment-specific skill and memory reads omitted."
+  },
+  "artifactSha256": {
+    "README.md": "376F2BEA30A9FFE55B354E3E0FDA56039824F555CB6F416B7BCDD89C83C220F0",
+    "after.json": "15F4ED9FF8C791121354FB629E9FBCF17D875302B7FDC31329D7A1F5B4BC259E",
+    "agent-summary.md": "8BFE1467306B6C97CD26AA5E0AC31866B627D7392314F7AE24FB9E8A8E0291E4",
+    "before.json": "36AA01DF83E093B467A8B13081643DB199F3BD3EF08572B7A7E33101A6167C6C",
+    "decision.json": "E1793548E835D4BFC9179EF932B6F39E013B3801D29E7FA9EC09690EA5180B6E",
+    "repair-prompt.md": "A2F0CC2634DEBA7C2BECF969FA1E792C38F764AF9FD848C30F0B696FBF5C96F2",
+    "repair.diff": "95060CBEFE5D107F004AD4C25E1A83A043B21A0F3DEFFF5A340C89452A9EB0A1",
+    "report.html": "AE890016A14EE2A5A3A5151135186C41D05103ECD117006F1315C3055C196627",
+    "representative-trajectory.jsonl": "3F985EDC9DE9DF3769CE6A0BE49B8A87C4027A15EAC2869892CF5D495F9D719B"
+  }
+}

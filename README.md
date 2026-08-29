@@ -22,9 +22,9 @@ The v0.1 vertical slice includes:
 - JSONL Codex trajectory capture and final-message capture.
 - Before/after evidence, regression decisions, screenshots, and an accessible HTML report.
 - Unit, integration, and browser tests.
-- Tracked `VERIFIED_FIXED` experiment packages for semantics/name and keyboard/focus repairs across Static HTML, React, Vue, Angular, and Flask/Jinja.
+- Tracked `VERIFIED_FIXED` experiment packages for semantics/name and keyboard/focus repairs across Static HTML, React, Vue, Angular, and Flask/Jinja, plus the first Static HTML dynamic-state/error repair.
 
-All five target stack families now have verified semantics/name and keyboard/focus fixtures. The next benchmark phase implements dynamic-state/error cases.
+All five target stack families now have verified semantics/name and keyboard/focus fixtures, and Static HTML has the first verified dynamic-state/error fixture. The next compatibility milestone ports the confirmed error-association pattern to React before Vue, Flask, and Angular.
 
 ## Requirements
 
@@ -96,6 +96,30 @@ node dist/cli.js repair `
 ```
 
 The fixture exposes a dormant button inside an `aria-hidden` container. Its browser regression requires that action to remain in the document but stay outside the Tab order, then activates the visible save action entirely from the keyboard.
+
+## Run the included Static error-state fixture
+
+Start the fixture in one PowerShell terminal:
+
+```powershell
+npm run fixture:static-state
+```
+
+Then run the evidence-gated workflow in another terminal:
+
+```powershell
+node dist/cli.js inspect `
+  --url http://127.0.0.1:4183 `
+  --source fixtures/static-error-state `
+  --out .formproof/runs/static-error-state
+
+node dist/cli.js repair `
+  --evidence .formproof/runs/static-error-state/before.json `
+  --approve `
+  --test "node regression.mjs"
+```
+
+The regression requires the initial invalid email error to remain exposed through `aria-errormessage`, then verifies that correcting and submitting the address clears the invalid state, hides the error, and announces success.
 
 ## Run the included React fixture
 

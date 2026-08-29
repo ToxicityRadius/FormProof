@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0",
+  "runId": "847ae2ab-76f5-4881-be1a-b00f58c6e22a",
+  "capturedAt": "2026-08-29T15:30:43.465Z",
+  "target": {
+    "url": "http://127.0.0.1:4183",
+    "sourceRoot": "<FORMPROOF_REPO>\\fixtures\\static-error-state",
+    "adapter": "static"
+  },
+  "violations": [],
+  "totals": {
+    "violations": 0,
+    "nodes": 0
+  }
+}

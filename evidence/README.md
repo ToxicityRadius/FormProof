@@ -6,6 +6,7 @@ Each directory contains sanitized, tracked artifacts from one FormProof before-t
 | --- | --- | --- | --- | --- |
 | [Static label](static-label/README.md) | Static HTML | `label` | `VERIFIED_FIXED` | Form structure preserved |
 | [Static hidden focus](static-hidden-focus/README.md) | Static HTML | `aria-hidden-focus` | `VERIFIED_FIXED` | Hidden action excluded; keyboard save preserved |
+| [Static error state](static-error-state/README.md) | Static HTML | `aria-valid-attr-value` | `VERIFIED_FIXED` | Error exposure and correction behavior preserved |
 | [React label](react-label/README.md) | React/Vite | `label` | `VERIFIED_FIXED` | Submission behavior preserved |
 | [React hidden focus](react-hidden-focus/README.md) | React/Vite | `aria-hidden-focus` | `VERIFIED_FIXED` | Hidden action excluded; keyboard save preserved |
 | [Flask label](flask-label/README.md) | Flask/Jinja | `label` | `VERIFIED_FIXED` | Integration and submission behavior preserved |

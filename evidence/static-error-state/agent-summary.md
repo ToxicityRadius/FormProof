@@ -1,0 +1,3 @@
+- Changed [index.html](</<FORMPROOF_REPO>/fixtures/static-error-state/index.html:24>): added `aria-describedby="email-error"`.
+- Test: `node regression.mjs` — passed.
+- Human-review items: none. No evidence files changed.
