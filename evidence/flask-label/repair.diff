@@ -1,0 +1,11 @@
+diff --git a/fixtures/flask-label/templates/index.html b/fixtures/flask-label/templates/index.html
+--- a/fixtures/flask-label/templates/index.html
++++ b/fixtures/flask-label/templates/index.html
+@@ -5,6 +5,7 @@
+     <main>
+       <h1>Profile</h1>
+       <form method="post">
++        <label for="display-name">Display name</label>
+         <input id="display-name" name="display_name" autocomplete="name">
+         <button type="submit">Save</button>
+       </form>

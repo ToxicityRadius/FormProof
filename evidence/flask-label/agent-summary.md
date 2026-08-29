@@ -1,0 +1,4 @@
+- Changed [templates/index.html](../../fixtures/flask-label/templates/index.html:8): added an explicit visible label for `#display-name`.
+- Verification: `node regression.mjs` passed.
+- Human-review items: none identified.
+- Existing unrelated working-tree changes were preserved; no FormProof evidence files were edited.

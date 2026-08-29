@@ -4,7 +4,14 @@
   <body>
     <main>
       <h1>Profile</h1>
-      <input id="display-name" name="display_name">
+      <form method="post">
+        <label for="display-name">Display name</label>
+        <input id="display-name" name="display_name" autocomplete="name">
+        <button type="submit">Save</button>
+      </form>
+      {% if status %}
+        <p role="status">{{ status }}</p>
+      {% endif %}
     </main>
   </body>
 </html>

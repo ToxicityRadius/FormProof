@@ -22,7 +22,7 @@ The v0.1 vertical slice includes:
 - JSONL Codex trajectory capture and final-message capture.
 - Before/after evidence, regression decisions, screenshots, and an accessible HTML report.
 - Unit, integration, and browser tests.
-- Tracked `VERIFIED_FIXED` experiment packages for Static HTML and React.
+- Tracked `VERIFIED_FIXED` experiment packages for Static HTML, React, and Flask/Jinja.
 
 Vue/Nuxt and Angular adapters are the next compatibility milestone. The core scanner already evaluates their rendered pages, but their source mapping is not yet classified as verified support.
 
@@ -95,6 +95,33 @@ node dist/cli.js repair `
   --approve `
   --test "npm run regression"
 ```
+
+## Run the included Flask fixture
+
+Create the isolated Python environment, install the fully pinned dependencies, and start Flask:
+
+```powershell
+python -m venv fixtures/flask-label/.venv
+fixtures/flask-label/.venv/Scripts/python.exe -m pip install `
+  -r fixtures/flask-label/requirements.txt
+npm run fixture:flask
+```
+
+Then run the evidence-gated workflow in another terminal:
+
+```powershell
+node dist/cli.js inspect `
+  --url http://127.0.0.1:4175 `
+  --source fixtures/flask-label `
+  --out .formproof/runs/flask-label
+
+node dist/cli.js repair `
+  --evidence .formproof/runs/flask-label/before.json `
+  --approve `
+  --test "node regression.mjs"
+```
+
+The fixture enables Jinja template auto-reload so the post-repair scan observes the source edit without restarting Flask. Its regression command runs the Flask test-client suite before the Playwright submission flow.
 
 The official Codex CLI supports non-interactive execution, JSONL event output, approval-reviewed workspace-write execution, and final-message capture. FormProof uses `--approve-for-me`, which routes requests through that workspace-write review path; it does not combine the flag with the mutually exclusive explicit `--sandbox` option and never uses the dangerous sandbox-bypass flag.
 

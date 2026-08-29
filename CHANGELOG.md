@@ -18,6 +18,7 @@ This file records retained changes and discarded experiments so the final compet
 
 - Static HTML `label` repair: `VERIFIED_FIXED` with zero new automated violations and a passing structural regression gate.
 - React `label` repair: `VERIFIED_FIXED` with zero new automated violations and a passing Playwright submission-flow regression gate.
+- Flask/Jinja `label` repair: `VERIFIED_FIXED` with zero new automated violations and a passing Flask integration plus Playwright submission-flow regression gate.
 
 ### Removed or deferred
 
@@ -36,3 +37,5 @@ This file records retained changes and discarded experiments so the final compet
 - Playwright and axe initially installed incompatible `playwright-core` versions. The dependency was aligned before browser work continued.
 - Windows `file:` URL paths initially retained percent encoding and caused adapter detection to return `unknown`. Root normalization now decodes and resolves Windows paths before scanning.
 - The sandbox blocked Vitest's compiler subprocess. Verification commands now document when the local test runner needs its normal process permissions.
+- Flask's non-debug template cache initially made the immediate after-scan report the already-repaired label as unresolved. The fixture now enables Jinja template auto-reload, and the clean single-run experiment records the edit and `VERIFIED_FIXED` decision together.
+- The Flask regression launcher originally hid a sandbox-blocked child process as `undefinedundefined`. It now reports the underlying spawn error while preserving the same unit and browser checks.
