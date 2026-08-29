@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0",
+  "runId": "21226d88-ef92-42a1-8079-aa5f93755352",
+  "capturedAt": "2026-08-29T15:01:54.136Z",
+  "target": {
+    "url": "http://127.0.0.1:4182",
+    "sourceRoot": "<FORMPROOF_REPO>\\fixtures\\angular-hidden-focus",
+    "adapter": "angular"
+  },
+  "violations": [],
+  "totals": {
+    "violations": 0,
+    "nodes": 0
+  }
+}

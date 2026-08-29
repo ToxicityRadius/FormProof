@@ -26,7 +26,8 @@
     "fixture:static-keyboard": "node scripts/serve-fixture.mjs fixtures/static-hidden-focus 4178",
     "fixture:react-keyboard": "npm --prefix fixtures/react-hidden-focus run dev -- --host 127.0.0.1 --port 4179 --strictPort",
     "fixture:vue-keyboard": "npm --prefix fixtures/vue-hidden-focus run dev -- --host 127.0.0.1 --port 4180 --strictPort",
-    "fixture:flask-keyboard": "fixtures\\flask-hidden-focus\\.venv\\Scripts\\python.exe -m flask --app fixtures/flask-hidden-focus/app.py run --host 127.0.0.1 --port 4181"
+    "fixture:flask-keyboard": "fixtures\\flask-hidden-focus\\.venv\\Scripts\\python.exe -m flask --app fixtures/flask-hidden-focus/app.py run --host 127.0.0.1 --port 4181",
+    "fixture:angular-keyboard": "npm --prefix fixtures/angular-hidden-focus run dev -- --host 127.0.0.1 --port 4182"
   },
   "engines": {
     "node": ">=22"

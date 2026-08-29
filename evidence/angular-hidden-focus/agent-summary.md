@@ -1,0 +1,3 @@
+- Changed [src/app/app.html](../../fixtures/angular-hidden-focus/src/app/app.html:5): disabled the hidden legacy button.
+- Test: `npm run regression` — passed.
+- Human-review items: none identified.

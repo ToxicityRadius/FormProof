@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "experimentId": "angular-keyboard-01",
+  "baseRepositoryCommit": "17edb1d3d948e34da052df6fab9dfb5c116b90bf",
+  "baselineRunId": "88bf56ed-1290-484b-9580-f1da09cba47b",
+  "baselineCapturedAt": "2026-08-29T14:59:12.008Z",
+  "afterRunId": "21226d88-ef92-42a1-8079-aa5f93755352",
+  "afterCapturedAt": "2026-08-29T15:01:54.136Z",
+  "adapter": "angular",
+  "targetRuleIds": [
+    "aria-hidden-focus"
+  ],
+  "decision": "VERIFIED_FIXED",
+  "baselineReconstruction": "Reverse-apply repair.diff to the completed milestone source.",
+  "sanitization": {
+    "repositoryRoot": "<FORMPROOF_REPO>",
+    "userHome": "<USER_HOME>",
+    "threadId": "<REDACTED_THREAD_ID>",
+    "trajectory": "Representative decision-relevant events; environment-specific skill and memory reads omitted."
+  },
+  "artifactSha256": {
+    "README.md": "DCA35CFE1A99130C4F9579550C6CF86076C5CDDF93B62BBDA8B64E05E4D83E22",
+    "after.json": "6E04D17F12A7EE723430ADA8C6F2F5466488A782553DA403B8F8B59F61BD429D",
+    "agent-summary.md": "828CBE6E7BE99627BE8EA735C44DDB609DB4F0BA16060387F16DB7FD71095B9C",
+    "before.json": "2C3BCC2D44D997C9B6BBEF6FB62370FDCB01D435A6A7B4376AD27B05DA3C1C44",
+    "decision.json": "4B12706977EA235522F9F0EBED412BB089C97B2263CC5F8E8E0A0F6895DEF5F5",
+    "repair-prompt.md": "F17F77D0DC3E0A516AF2DAE3789F805216545270BA3C0308036E59EF6C4C5207",
+    "repair.diff": "56586DF941B7D98D34DF08C7204A7D1A097C048AFA116ED18AFFA94CBFA22039",
+    "report.html": "A09AD6FEF048CF0DD47E7FDDD36B1532E5A518DD7ACE0CF5405FFB54A1EFD22C",
+    "representative-trajectory.jsonl": "CF51E119187DC64339877A85FA0C3527B977532AD30B55EE1CF16F39A3E9E0F5"
+  }
+}

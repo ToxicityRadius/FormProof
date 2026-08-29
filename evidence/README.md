@@ -13,5 +13,6 @@ Each directory contains sanitized, tracked artifacts from one FormProof before-t
 | [Vue label](vue-label/README.md) | Vue/Vite | `label` | `VERIFIED_FIXED` | Submission behavior preserved |
 | [Vue hidden focus](vue-hidden-focus/README.md) | Vue/Vite | `aria-hidden-focus` | `VERIFIED_FIXED` | Hidden action excluded; keyboard save preserved |
 | [Angular label](angular-label/README.md) | Angular | `label` | `VERIFIED_FIXED` | Submission behavior preserved |
+| [Angular hidden focus](angular-hidden-focus/README.md) | Angular | `aria-hidden-focus` | `VERIFIED_FIXED` | Hidden action excluded; keyboard save preserved |
 
 These packages report evidence for their automated rule and configured regression command. They are not WCAG conformance certificates.
