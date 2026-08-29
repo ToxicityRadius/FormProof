@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0",
+  "experimentId": "static-label-first-repair",
+  "baselineCommit": "23b4a118c7e85e8374af42493382f558a08e7e4a",
+  "baselineRunId": "463912ba-369f-47e6-8cda-6d6e83cd5e7b",
+  "baselineCapturedAt": "2026-08-28T23:10:39.244Z",
+  "afterRunId": "8faf41db-a75d-4bda-9244-a070a51f9f6a",
+  "afterCapturedAt": "2026-08-28T23:18:05.642Z",
+  "adapter": "static",
+  "targetRuleIds": [
+    "label"
+  ],
+  "decision": "VERIFIED_FIXED",
+  "sanitization": {
+    "repositoryRoot": "<FORMPROOF_REPO>",
+    "userHome": "<USER_HOME>",
+    "threadId": "<REDACTED_THREAD_ID>",
+    "trajectory": "Representative decision-relevant events; environment-specific skill and memory reads omitted."
+  },
+  "artifactSha256": {
+    "after.json": "83D287A719673D9F0462D7A693AFF808BC07D25AB6FB232AD0B5042CEC6C2E86",
+    "agent-summary.md": "DA8A15DC5D2C23020CA516ECF971AF7FB78577D3E25326C103DADD5CACCF764B",
+    "before.json": "08152BC03371190D84B9FC77D99B6D66C3184A16609787CD61A4F423375CD8B4",
+    "decision.json": "A246B4CF7662B693602957469EC3E134CAE9C42AF44D5FF8F4300C79DD467E81",
+    "repair-prompt.md": "4BC92F01E47D64692AFA73E43A8E8F2BAE6A0CE314499FD2A74E195DBEA3BA72",
+    "repair.diff": "442DFFF95D6358ADE4CB62AE0893DB347F9EBA2A14ACA7715155BEB85E6FD16E",
+    "report.html": "328FC585B011FCC576EE120BCD8E48F6EBA2C4491B825249CA572E1CCF7FCE15",
+    "representative-trajectory.jsonl": "20A8509D723381A0A6C2105625EFF35F6289DD8F754191257AD54A086F9E2DBA"
+  }
+}

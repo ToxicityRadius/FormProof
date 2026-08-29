@@ -1,0 +1,3 @@
+- Changed [index.html](../../fixtures/static-label/index.html): added an explicit `Email` label for `#email`.
+- Test: static regression passed; `git diff --check` passed.
+- Human review items: none identified. Other pre-existing repository changes were untouched.

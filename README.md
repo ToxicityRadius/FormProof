@@ -72,7 +72,7 @@ node dist/cli.js repair `
   --test "npm test"
 ```
 
-The official Codex CLI supports non-interactive execution, JSONL event output, a workspace-write sandbox, and final-message capture. FormProof uses those documented controls and never uses the dangerous sandbox-bypass flag.
+The official Codex CLI supports non-interactive execution, JSONL event output, approval-reviewed workspace-write execution, and final-message capture. FormProof uses `--approve-for-me`, which routes requests through that workspace-write review path; it does not combine the flag with the mutually exclusive explicit `--sandbox` option and never uses the dangerous sandbox-bypass flag.
 
 ## Use with another local application
 
@@ -102,8 +102,9 @@ src/core/           Verification decision and inspect/repair workflows
 src/report/         Accessible standalone HTML evidence report
 src/scanner/        Playwright and axe scanner
 fixtures/           Synthetic adapter and browser fixtures
+evidence/           Sanitized, tracked experiment artifacts and trajectories
 benchmark/          Frozen benchmark manifest and evaluation protocol
 research/           Evidence-backed problem and experiment design
 ```
 
-See [Architecture](docs/ARCHITECTURE.md), [Evaluation](docs/EVALUATION.md), and [Trajectory handling](docs/TRAJECTORIES.md) for the competition evidence contract.
+See [Architecture](docs/ARCHITECTURE.md), [Evaluation](docs/EVALUATION.md), [Trajectory handling](docs/TRAJECTORIES.md), and the [first verified repair](evidence/static-label/README.md) for the competition evidence contract.

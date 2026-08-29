@@ -24,6 +24,8 @@ This file records retained changes and discarded experiments so the final compet
 
 ### Failures that changed the implementation
 
+- The first real repair exposed a Codex CLI conflict: `--approve-for-me` cannot be combined with an explicit `--sandbox workspace-write`. The runner now uses `--approve-for-me` alone because it already routes execution through the workspace-write approval path.
+
 - Playwright and axe initially installed incompatible `playwright-core` versions. The dependency was aligned before browser work continued.
 - Windows `file:` URL paths initially retained percent encoding and caused adapter detection to return `unknown`. Root normalization now decodes and resolves Windows paths before scanning.
 - The sandbox blocked Vitest's compiler subprocess. Verification commands now document when the local test runner needs its normal process permissions.

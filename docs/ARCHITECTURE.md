@@ -31,7 +31,7 @@ frozen before.json ------------> scoped repair prompt
 
 - The target repository and rendered page are untrusted input.
 - Only the human-selected repository is writable.
-- Codex runs with `workspace-write`; FormProof never enables the dangerous sandbox bypass.
+- Codex runs through `--approve-for-me`, which enforces the approval-reviewed `workspace-write` path. FormProof never combines it with the mutually exclusive explicit `--sandbox` option or enables the dangerous sandbox bypass.
 - `--test` is a local shell command supplied by the operator and must be reviewed as trusted input.
 - Axe results are evidence for machine-testable rules, not proof of complete accessibility.
 - New violations or failed regression commands block acceptance.

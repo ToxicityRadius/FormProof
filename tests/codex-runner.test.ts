@@ -31,7 +31,7 @@ afterEach(async () => {
 });
 
 describe("Codex runner", () => {
-  it("uses non-interactive JSONL output and a workspace-write sandbox", () => {
+  it("uses non-interactive JSONL output and the approval-reviewed workspace-write route", () => {
     const args = buildCodexArgs({
       sourceRoot: "C:/fixture",
       trajectoryPath: "C:/run/trajectory.jsonl",
@@ -42,14 +42,13 @@ describe("Codex runner", () => {
       "exec",
       "--json",
       "--approve-for-me",
-      "--sandbox",
-      "workspace-write",
       "--cd",
       "C:/fixture",
       "--output-last-message",
       "C:/run/agent-summary.txt",
       "-"
     ]));
+    expect(args).not.toContain("--sandbox");
     expect(args).not.toContain("--dangerously-bypass-approvals-and-sandbox");
   });
 

@@ -1,0 +1,12 @@
+diff --git a/fixtures/static-label/index.html b/fixtures/static-label/index.html
+index 6ba88fe..8c3284b 100644
+--- a/fixtures/static-label/index.html
++++ b/fixtures/static-label/index.html
+@@ -9,6 +9,7 @@
+     <main>
+       <h1>Newsletter signup</h1>
+       <form>
++        <label for="email">Email</label>
+         <input id="email" name="email" type="email">
+         <button type="submit">Subscribe</button>
+       </form>
