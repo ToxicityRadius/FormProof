@@ -1,0 +1,12 @@
+diff --git a/fixtures/react-label/src/App.tsx b/fixtures/react-label/src/App.tsx
+--- a/fixtures/react-label/src/App.tsx
++++ b/fixtures/react-label/src/App.tsx
+@@ -13,7 +13,8 @@ export function App() {
+   return (
+     <main>
+       <h1>Account</h1>
+       <form onSubmit={handleSubmit}>
++        <label htmlFor="display-name">Display name</label>
+         <input
+           id="display-name"
+           name="displayName"

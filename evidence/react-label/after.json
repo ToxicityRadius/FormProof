@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0",
+  "runId": "62e794a4-f256-4a8d-a73e-74b57ea17361",
+  "capturedAt": "2026-08-29T02:36:59.614Z",
+  "target": {
+    "url": "http://127.0.0.1:4174",
+    "sourceRoot": "<FORMPROOF_REPO>\\fixtures\\react-label",
+    "adapter": "react"
+  },
+  "violations": [],
+  "totals": {
+    "violations": 0,
+    "nodes": 0
+  }
+}

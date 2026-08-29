@@ -18,7 +18,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "fixture:static": "node scripts/serve-fixture.mjs fixtures/static-label 4173"
+    "fixture:static": "node scripts/serve-fixture.mjs fixtures/static-label 4173",
+    "fixture:react": "npm --prefix fixtures/react-label run dev -- --host 127.0.0.1 --port 4174 --strictPort"
   },
   "engines": {
     "node": ">=22"

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "1.0",
+  "runId": "36b2ee5c-3129-490f-b185-f02cbf0bb018",
+  "capturedAt": "2026-08-29T02:28:45.920Z",
+  "target": {
+    "url": "http://127.0.0.1:4174",
+    "sourceRoot": "<FORMPROOF_REPO>\\fixtures\\react-label",
+    "adapter": "react"
+  },
+  "violations": [
+    {
+      "id": "label",
+      "impact": "critical",
+      "description": "Ensure every form element has a label",
+      "help": "Form elements must have labels",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/label?application=playwright",
+      "tags": [
+        "cat.forms",
+        "wcag2a",
+        "wcag412",
+        "section508",
+        "section508.22.n",
+        "TTv5",
+        "TT5.c",
+        "EN-301-549",
+        "EN-9.4.1.2",
+        "ACT",
+        "RGAAv4",
+        "RGAA-11.1.1"
+      ],
+      "nodes": [
+        {
+          "target": [
+            "#display-name"
+          ],
+          "html": "<input id=\"display-name\" autocomplete=\"name\" value=\"\" name=\"displayName\">",
+          "failureSummary": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\"",
+          "sourceCandidates": [
+            {
+              "path": "src/App.tsx",
+              "confidence": "high",
+              "reason": "element id match"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "violations": 1,
+    "nodes": 1
+  }
+}

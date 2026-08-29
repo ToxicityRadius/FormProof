@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "1.0",
+  "experimentId": "react-label-first-repair",
+  "baseRepositoryCommit": "c01ee0bba4dc755e7b5d1da61285b0e4ba79ac00",
+  "baselineRunId": "36b2ee5c-3129-490f-b185-f02cbf0bb018",
+  "baselineCapturedAt": "2026-08-29T02:28:45.920Z",
+  "afterRunId": "62e794a4-f256-4a8d-a73e-74b57ea17361",
+  "afterCapturedAt": "2026-08-29T02:36:59.614Z",
+  "adapter": "react",
+  "targetRuleIds": [
+    "label"
+  ],
+  "decision": "VERIFIED_FIXED",
+  "baselineReconstruction": "Reverse-apply repair.diff to the completed milestone source.",
+  "sanitization": {
+    "repositoryRoot": "<FORMPROOF_REPO>",
+    "userHome": "<USER_HOME>",
+    "threadId": "<REDACTED_THREAD_ID>",
+    "trajectory": "Representative decision-relevant events; environment-specific skill and memory reads omitted."
+  },
+  "artifactSha256": {
+    "after.json": "061BF16696A4214BC86B6A31ECBDD3AE9E6D2BFD88AB26394DCDB2F43C634BA5",
+    "agent-summary.md": "CCEA9DA2CD2EE6A0A5B1D437CCA86AF8F0BBC431889518BC6AEBC1B216215E6F",
+    "before.json": "1788F8E0553B4939C0AA86161CB1CF946626A5B2A187D76B49B6B76EF800A4A9",
+    "decision.json": "5AE1BFAD22928C94B9F3A33118B56A01E58960A8234F313C1F199C89599DA8FC",
+    "repair-prompt.md": "85F9984BE966F8E56C7414EB8FA0105559692D0BD03C252D87817BE88C1FC2E0",
+    "repair.diff": "D2374583B805707E7FBF894F0290071A9566C46B9114EB0FF8F785621AB86C7F",
+    "report.html": "3A5D0CCF16ADDF80EC2B7EF19F20D8ED4C4511115B6D51B57155E0DB16A46DFD",
+    "representative-trajectory.jsonl": "3CACBCFA4B6DAB96F5A25525AA5B649A847EDFBBDFED3FC8513744CEFE580A93"
+  }
+}

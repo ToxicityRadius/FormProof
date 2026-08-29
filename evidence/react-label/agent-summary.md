@@ -1,0 +1,3 @@
+- Changed [src/App.tsx](../../fixtures/react-label/src/App.tsx): added an explicit visible “Display name” label associated via `htmlFor`.
+- Verification passed: `npm run regression`, `npm run build`, and `git diff --check`.
+- Human-review items: none for this targeted repair. No FormProof evidence files were edited.

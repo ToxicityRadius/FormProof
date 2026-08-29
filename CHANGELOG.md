@@ -14,6 +14,11 @@ This file records retained changes and discarded experiments so the final compet
 - `VERIFIED_FIXED`, `REGRESSION_BLOCKED`, and `HUMAN_REVIEW_REQUIRED` outcomes.
 - Standalone HTML and JSON evidence artifacts for reproduction and judging.
 
+### Verified experiments
+
+- Static HTML `label` repair: `VERIFIED_FIXED` with zero new automated violations and a passing structural regression gate.
+- React `label` repair: `VERIFIED_FIXED` with zero new automated violations and a passing Playwright submission-flow regression gate.
+
 ### Removed or deferred
 
 - **OpenAI API runtime:** removed from the first build to avoid separate API credentials and usage costs.
@@ -23,6 +28,8 @@ This file records retained changes and discarded experiments so the final compet
 - **Automatic remote deployment:** excluded because a repair should not publish consequential changes without a separate human-controlled release process.
 
 ### Failures that changed the implementation
+
+- Vite 8.0.10 reported a high-severity Windows `server.fs.deny` path-bypass advisory during the React fixture install. The fixture is pinned to the non-major patched release 8.2.2 and its audit returns zero vulnerabilities.
 
 - The first real repair exposed a Codex CLI conflict: `--approve-for-me` cannot be combined with an explicit `--sandbox workspace-write`. The runner now uses `--approve-for-me` alone because it already routes execution through the workspace-write approval path.
 

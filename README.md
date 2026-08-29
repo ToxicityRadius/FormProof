@@ -22,6 +22,7 @@ The v0.1 vertical slice includes:
 - JSONL Codex trajectory capture and final-message capture.
 - Before/after evidence, regression decisions, screenshots, and an accessible HTML report.
 - Unit, integration, and browser tests.
+- Tracked `VERIFIED_FIXED` experiment packages for Static HTML and React.
 
 Vue/Nuxt and Angular adapters are the next compatibility milestone. The core scanner already evaluates their rendered pages, but their source mapping is not yet classified as verified support.
 
@@ -69,7 +70,30 @@ After review, explicitly approve the repair:
 node dist/cli.js repair `
   --evidence .formproof/runs/static-label/before.json `
   --approve `
-  --test "npm test"
+  --test "node regression.mjs"
+```
+
+## Run the included React fixture
+
+Install the pinned fixture dependencies and start Vite:
+
+```powershell
+npm ci --prefix fixtures/react-label
+npm run fixture:react
+```
+
+Then run the same evidence-gated workflow in another terminal:
+
+```powershell
+node dist/cli.js inspect `
+  --url http://127.0.0.1:4174 `
+  --source fixtures/react-label `
+  --out .formproof/runs/react-label
+
+node dist/cli.js repair `
+  --evidence .formproof/runs/react-label/before.json `
+  --approve `
+  --test "npm run regression"
 ```
 
 The official Codex CLI supports non-interactive execution, JSONL event output, approval-reviewed workspace-write execution, and final-message capture. FormProof uses `--approve-for-me`, which routes requests through that workspace-write review path; it does not combine the flag with the mutually exclusive explicit `--sandbox` option and never uses the dangerous sandbox-bypass flag.
@@ -107,4 +131,4 @@ benchmark/          Frozen benchmark manifest and evaluation protocol
 research/           Evidence-backed problem and experiment design
 ```
 
-See [Architecture](docs/ARCHITECTURE.md), [Evaluation](docs/EVALUATION.md), [Trajectory handling](docs/TRAJECTORIES.md), and the [first verified repair](evidence/static-label/README.md) for the competition evidence contract.
+See [Architecture](docs/ARCHITECTURE.md), [Evaluation](docs/EVALUATION.md), [Trajectory handling](docs/TRAJECTORIES.md), and the [verified experiment index](evidence/README.md) for the competition evidence contract.
