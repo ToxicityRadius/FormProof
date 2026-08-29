@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "1.0",
+  "runId": "78c4bd69-83fe-49f7-8f64-e16b3e8478f9",
+  "capturedAt": "2026-08-29T22:41:56.072Z",
+  "target": {
+    "url": "http://127.0.0.1:4186",
+    "sourceRoot": "<FORMPROOF_REPO>\\fixtures\\flask-error-state",
+    "adapter": "flask"
+  },
+  "violations": [
+    {
+      "id": "aria-valid-attr-value",
+      "impact": "critical",
+      "description": "Ensure all ARIA attributes have valid values",
+      "help": "ARIA attributes must conform to valid values",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/aria-valid-attr-value?application=playwright",
+      "tags": [
+        "cat.aria",
+        "wcag2a",
+        "wcag412",
+        "EN-301-549",
+        "EN-9.4.1.2",
+        "RGAAv4",
+        "RGAA-7.1.1"
+      ],
+      "nodes": [
+        {
+          "target": [
+            "#email"
+          ],
+          "html": "<input id=\"email\" name=\"email\" type=\"email\" required=\"\" value=\"\" aria-invalid=\"true\" aria-errormessage=\"email-error\">",
+          "failureSummary": "Fix all of the following:\n  aria-errormessage value `email-error` must use a technique to announce the message (e.g., aria-live, aria-describedby, role=alert, etc.)",
+          "sourceCandidates": [
+            {
+              "path": "app.py",
+              "confidence": "high",
+              "reason": "element id match"
+            },
+            {
+              "path": "test_app.py",
+              "confidence": "high",
+              "reason": "element id match"
+            },
+            {
+              "path": "templates/index.html",
+              "confidence": "high",
+              "reason": "element id match"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "violations": 1,
+    "nodes": 1
+  }
+}

@@ -24,7 +24,7 @@ Compare a single direct repair prompt with the FormProof workflow using the same
 
 ## Frozen cases
 
-The public manifest is [benchmark/cases.json](../benchmark/cases.json). Each stack family receives semantics/name, keyboard/focus, and dynamic-state/error cases. Thirteen of the 15 frozen cases are implemented: semantics/name and keyboard/focus fixtures for Static, React, Vue, Angular, and Flask, plus the Static, React, and Vue dynamic-state/error fixtures. The remaining Flask and Angular dynamic-state/error cases stay explicit pending work rather than being counted as completed results.
+The public manifest is [benchmark/cases.json](../benchmark/cases.json). Each stack family receives semantics/name, keyboard/focus, and dynamic-state/error cases. Fourteen of the 15 frozen cases are implemented: semantics/name and keyboard/focus fixtures for Static, React, Vue, Angular, and Flask, plus the Static, React, Vue, and Flask dynamic-state/error fixtures. The remaining Angular dynamic-state/error case stays explicit pending work rather than being counted as a completed result.
 
 ## Reporting rules
 

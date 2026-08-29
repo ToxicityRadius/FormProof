@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask newsletter fixture</title>
+    <style>
+      button { min-height: 44px; min-width: 44px; }
+      :focus-visible { outline: 3px solid #005fcc; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Newsletter</h1>
+      <form method="post">
+        <label for="email">Email address</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          required
+          value="{{ email }}"
+          aria-invalid="{{ 'true' if invalid else 'false' }}"
+          aria-describedby="email-error"
+          aria-errormessage="email-error"
+        >
+        {% if invalid %}
+          <p id="email-error">Enter a valid email address.</p>
+        {% endif %}
+        <button type="submit">Subscribe</button>
+      </form>
+      {% if status %}
+        <p role="status" aria-live="polite">{{ status }}</p>
+      {% endif %}
+    </main>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+diff --git a/fixtures/flask-error-state/templates/index.html b/fixtures/flask-error-state/templates/index.html
+--- a/fixtures/flask-error-state/templates/index.html
++++ b/fixtures/flask-error-state/templates/index.html
+@@ -21,8 +21,9 @@
+           required
+           value="{{ email }}"
+           aria-invalid="{{ 'true' if invalid else 'false' }}"
++          aria-describedby="email-error"
+           aria-errormessage="email-error"
+         >
+         {% if invalid %}
+           <p id="email-error">Enter a valid email address.</p>
+         {% endif %}

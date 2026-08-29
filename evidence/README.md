@@ -12,6 +12,7 @@ Each directory contains sanitized, tracked artifacts from one FormProof before-t
 | [React error state](react-error-state/README.md) | React/Vite | `aria-valid-attr-value` | `VERIFIED_FIXED` | Error exposure and correction behavior preserved |
 | [Flask label](flask-label/README.md) | Flask/Jinja | `label` | `VERIFIED_FIXED` | Integration and submission behavior preserved |
 | [Flask hidden focus](flask-hidden-focus/README.md) | Flask/Jinja | `aria-hidden-focus` | `VERIFIED_FIXED` | Integration, hidden action exclusion, and keyboard save preserved |
+| [Flask error state](flask-error-state/README.md) | Flask/Jinja | `aria-valid-attr-value` | `VERIFIED_FIXED` | Integration, error exposure, and correction preserved |
 | [Vue label](vue-label/README.md) | Vue/Vite | `label` | `VERIFIED_FIXED` | Submission behavior preserved |
 | [Vue hidden focus](vue-hidden-focus/README.md) | Vue/Vite | `aria-hidden-focus` | `VERIFIED_FIXED` | Hidden action excluded; keyboard save preserved |
 | [Vue error state](vue-error-state/README.md) | Vue/Vite | `aria-valid-attr-value` | `VERIFIED_FIXED` | Error exposure and correction behavior preserved |

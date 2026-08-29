@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0",
+  "runId": "a57d27f3-5a44-45f5-afc4-71f43cf92567",
+  "capturedAt": "2026-08-29T22:45:15.104Z",
+  "target": {
+    "url": "http://127.0.0.1:4186",
+    "sourceRoot": "<FORMPROOF_REPO>\\fixtures\\flask-error-state",
+    "adapter": "flask"
+  },
+  "violations": [],
+  "totals": {
+    "violations": 0,
+    "nodes": 0
+  }
+}

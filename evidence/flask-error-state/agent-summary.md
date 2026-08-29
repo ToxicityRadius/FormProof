@@ -1,0 +1,3 @@
+- Changed [templates/index.html](<FORMPROOF_REPO>/fixtures/flask-error-state/templates/index.html:24): added `aria-describedby="email-error"`.
+- Test: `node regression.mjs` — passed.
+- Human-review items: none for this targeted barrier.

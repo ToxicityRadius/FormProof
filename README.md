@@ -22,9 +22,9 @@ The v0.1 vertical slice includes:
 - JSONL Codex trajectory capture and final-message capture.
 - Before/after evidence, regression decisions, screenshots, and an accessible HTML report.
 - Unit, integration, and browser tests.
-- Tracked `VERIFIED_FIXED` experiment packages for semantics/name and keyboard/focus repairs across Static HTML, React, Vue, Angular, and Flask/Jinja, plus Static HTML, React, and Vue dynamic-state/error repairs.
+- Tracked `VERIFIED_FIXED` experiment packages for semantics/name and keyboard/focus repairs across Static HTML, React, Vue, Angular, and Flask/Jinja, plus Static HTML, React, Vue, and Flask dynamic-state/error repairs.
 
-All five target stack families now have verified semantics/name and keyboard/focus fixtures, while Static HTML, React, and Vue have verified dynamic-state/error fixtures. The next compatibility milestone ports the confirmed error-state pattern to Flask before Angular.
+All five target stack families now have verified semantics/name and keyboard/focus fixtures, while Static HTML, React, Vue, and Flask have verified dynamic-state/error fixtures. The final compatibility milestone ports the confirmed error-state pattern to Angular.
 
 ## Requirements
 
@@ -362,6 +362,33 @@ node dist/cli.js repair `
 ```
 
 This regression runs the Flask test-client suite before checking hidden-focus exclusion and save behavior entirely from the keyboard.
+
+## Run the included Flask error-state fixture
+
+Create the isolated Python environment, install the fully pinned dependencies, and start Flask:
+
+```powershell
+python -m venv fixtures/flask-error-state/.venv
+fixtures/flask-error-state/.venv/Scripts/python.exe -m pip install `
+  -r fixtures/flask-error-state/requirements.txt
+npm run fixture:flask-state
+```
+
+Then run the evidence-gated workflow in another terminal:
+
+```powershell
+node dist/cli.js inspect `
+  --url http://127.0.0.1:4186 `
+  --source fixtures/flask-error-state `
+  --out .formproof/runs/flask-error-state
+
+node dist/cli.js repair `
+  --evidence .formproof/runs/flask-error-state/before.json `
+  --approve `
+  --test "node regression.mjs"
+```
+
+The regression runs the Flask test-client suite, preserves the initial server-rendered invalid state, then verifies correction, error clearing, and success announcement in Chromium.
 
 The official Codex CLI supports non-interactive execution, JSONL event output, approval-reviewed workspace-write execution, and final-message capture. FormProof uses `--approve-for-me`, which routes requests through that workspace-write review path; it does not combine the flag with the mutually exclusive explicit `--sandbox` option and never uses the dangerous sandbox-bypass flag.
 

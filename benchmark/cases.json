@@ -11,7 +11,7 @@
     { "id": "react-state-01", "stack": "react", "class": "dynamic-state-and-errors", "fixtureStatus": "implemented" },
     { "id": "flask-semantics-01", "stack": "flask", "class": "semantics-and-names", "fixtureStatus": "implemented" },
     { "id": "flask-keyboard-01", "stack": "flask", "class": "keyboard-and-focus", "fixtureStatus": "implemented" },
-    { "id": "flask-state-01", "stack": "flask", "class": "dynamic-state-and-errors", "fixtureStatus": "planned" },
+    { "id": "flask-state-01", "stack": "flask", "class": "dynamic-state-and-errors", "fixtureStatus": "implemented" },
     { "id": "vue-semantics-01", "stack": "vue", "class": "semantics-and-names", "fixtureStatus": "implemented" },
     { "id": "vue-keyboard-01", "stack": "vue", "class": "keyboard-and-focus", "fixtureStatus": "implemented" },
     { "id": "vue-state-01", "stack": "vue", "class": "dynamic-state-and-errors", "fixtureStatus": "implemented" },
