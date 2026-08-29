@@ -1,0 +1,3 @@
+- Changed [templates/index.html](../../fixtures/flask-hidden-focus/templates/index.html:16): disabled the legacy button inside the `aria-hidden` container.
+- Test: `node regression.mjs` — passed.
+- Human-review items: None. FormProof evidence files were not edited.

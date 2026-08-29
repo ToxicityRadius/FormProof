@@ -22,9 +22,9 @@ The v0.1 vertical slice includes:
 - JSONL Codex trajectory capture and final-message capture.
 - Before/after evidence, regression decisions, screenshots, and an accessible HTML report.
 - Unit, integration, and browser tests.
-- Tracked `VERIFIED_FIXED` experiment packages for semantics/name repairs across Static HTML, React, Vue, Angular, and Flask/Jinja, plus Static HTML, React, and Vue keyboard/focus repairs.
+- Tracked `VERIFIED_FIXED` experiment packages for semantics/name repairs across Static HTML, React, Vue, Angular, and Flask/Jinja, plus Static HTML, React, Vue, and Flask/Jinja keyboard/focus repairs.
 
-All five target stack families now have a verified semantics-and-names fixture, and three of the five keyboard/focus cases are verified. The next compatibility milestone ports the confirmed pattern to Flask before Angular and dynamic-state/error work.
+All five target stack families now have a verified semantics-and-names fixture, and four of the five keyboard/focus cases are verified. The next compatibility milestone ports the confirmed pattern to Angular before dynamic-state/error work.
 
 ## Requirements
 
@@ -238,6 +238,33 @@ node dist/cli.js repair `
 ```
 
 The fixture enables Jinja template auto-reload so the post-repair scan observes the source edit without restarting Flask. Its regression command runs the Flask test-client suite before the Playwright submission flow.
+
+## Run the included Flask keyboard/focus fixture
+
+Create the isolated Python environment, install the fully pinned dependencies, and start Flask:
+
+```powershell
+python -m venv fixtures/flask-hidden-focus/.venv
+fixtures/flask-hidden-focus/.venv/Scripts/python.exe -m pip install `
+  -r fixtures/flask-hidden-focus/requirements.txt
+npm run fixture:flask-keyboard
+```
+
+Then run the evidence-gated workflow in another terminal:
+
+```powershell
+node dist/cli.js inspect `
+  --url http://127.0.0.1:4181 `
+  --source fixtures/flask-hidden-focus `
+  --out .formproof/runs/flask-hidden-focus
+
+node dist/cli.js repair `
+  --evidence .formproof/runs/flask-hidden-focus/before.json `
+  --approve `
+  --test "node regression.mjs"
+```
+
+This regression runs the Flask test-client suite before checking hidden-focus exclusion and save behavior entirely from the keyboard.
 
 The official Codex CLI supports non-interactive execution, JSONL event output, approval-reviewed workspace-write execution, and final-message capture. FormProof uses `--approve-for-me`, which routes requests through that workspace-write review path; it does not combine the flag with the mutually exclusive explicit `--sandbox` option and never uses the dangerous sandbox-bypass flag.
 

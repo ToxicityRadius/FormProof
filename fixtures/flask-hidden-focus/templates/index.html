@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account settings</title>
+    <style>
+      button { min-block-size: 24px; min-inline-size: 24px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Account settings</h1>
+      <div id="retired-actions" aria-hidden="true">
+        <p>Legacy reporting is no longer available.</p>
+        <button id="legacy-export" type="button" disabled>Export legacy report</button>
+      </div>
+      <form method="post">
+        <button id="save-changes" type="submit">Save changes</button>
+      </form>
+      {% if status %}
+        <p role="status" aria-live="polite">{{ status }}</p>
+      {% endif %}
+    </main>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0",
+  "runId": "84f16f35-e07b-425e-93e0-973086068305",
+  "capturedAt": "2026-08-29T14:41:51.586Z",
+  "target": {
+    "url": "http://127.0.0.1:4181",
+    "sourceRoot": "<FORMPROOF_REPO>\\fixtures\\flask-hidden-focus",
+    "adapter": "flask"
+  },
+  "violations": [],
+  "totals": {
+    "violations": 0,
+    "nodes": 0
+  }
+}

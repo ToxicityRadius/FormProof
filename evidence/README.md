@@ -9,6 +9,7 @@ Each directory contains sanitized, tracked artifacts from one FormProof before-t
 | [React label](react-label/README.md) | React/Vite | `label` | `VERIFIED_FIXED` | Submission behavior preserved |
 | [React hidden focus](react-hidden-focus/README.md) | React/Vite | `aria-hidden-focus` | `VERIFIED_FIXED` | Hidden action excluded; keyboard save preserved |
 | [Flask label](flask-label/README.md) | Flask/Jinja | `label` | `VERIFIED_FIXED` | Integration and submission behavior preserved |
+| [Flask hidden focus](flask-hidden-focus/README.md) | Flask/Jinja | `aria-hidden-focus` | `VERIFIED_FIXED` | Integration, hidden action exclusion, and keyboard save preserved |
 | [Vue label](vue-label/README.md) | Vue/Vite | `label` | `VERIFIED_FIXED` | Submission behavior preserved |
 | [Vue hidden focus](vue-hidden-focus/README.md) | Vue/Vite | `aria-hidden-focus` | `VERIFIED_FIXED` | Hidden action excluded; keyboard save preserved |
 | [Angular label](angular-label/README.md) | Angular | `label` | `VERIFIED_FIXED` | Submission behavior preserved |

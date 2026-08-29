@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "experimentId": "flask-keyboard-01",
+  "baseRepositoryCommit": "4ed63ff4a57a8474a2bca72cefb3bd349ead41e2",
+  "baselineRunId": "3d08e561-b692-4841-aa93-465f2eab6ae9",
+  "baselineCapturedAt": "2026-08-29T14:39:10.282Z",
+  "afterRunId": "84f16f35-e07b-425e-93e0-973086068305",
+  "afterCapturedAt": "2026-08-29T14:41:51.586Z",
+  "adapter": "flask",
+  "targetRuleIds": [
+    "aria-hidden-focus"
+  ],
+  "decision": "VERIFIED_FIXED",
+  "baselineReconstruction": "Reverse-apply repair.diff to the completed milestone source.",
+  "sanitization": {
+    "repositoryRoot": "<FORMPROOF_REPO>",
+    "userHome": "<USER_HOME>",
+    "threadId": "<REDACTED_THREAD_ID>",
+    "trajectory": "Representative decision-relevant events; environment-specific skill and memory reads omitted."
+  },
+  "artifactSha256": {
+    "README.md": "1088E88DEC558EDC20D5DBB22D5F353B9F9253C15EFF4EE7813A810192DBD453",
+    "after.json": "1D7C535A7416E6494DB0782602CEE5DB2EC80A60299236615ECD6D5F39FFF292",
+    "agent-summary.md": "0B9A5BFB2A21BCB71F9CB44A6A5BA6E9BF597DCB773243689CD44146F349367F",
+    "before.json": "962611419B96F09CE0499100EACEEF0AA10E1ED6B9C01AC714A3A9D91CAC35CD",
+    "decision.json": "C41DCDAC248430EB41C0430E0EF097B7AFB290CADCDCEA0213C0E63C2C86940C",
+    "repair-prompt.md": "660050B956F0FF97FCD23893B70C3F69225826FD3125A422EA25C353865EADAA",
+    "repair.diff": "0D9767E32953BF8E7FF856EE6E596188BBC21E2DF7E12496E2B7E87CAF3B7449",
+    "report.html": "E3B2C64A4BD46323953F45C5676DE039266570DD0619624485973CF6EDEA5770",
+    "representative-trajectory.jsonl": "9F80092B48575E360B8B976CB81895748A99099FD7DEBD41C65CBB4E60D21BE6"
+  }
+}
