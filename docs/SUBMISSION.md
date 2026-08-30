@@ -12,8 +12,8 @@
 
 ```powershell
 npm run benchmark:freeze
-npm run benchmark:case -- --case static-semantics-01 --dry-run
-npm run benchmark:case -- --case static-semantics-01
+npm run benchmark:case:dry-run -- static-semantics-01
+npm run benchmark:case -- static-semantics-01
 ```
 
 Repeat the paired case command for each manifest ID. Do not rerun or overwrite a recorded case-condition attempt.

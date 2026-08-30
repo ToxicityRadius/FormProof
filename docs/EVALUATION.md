@@ -32,8 +32,8 @@ From a clean evaluated commit, freeze once and run one paired case at a time:
 
 ```powershell
 npm run benchmark:freeze
-npm run benchmark:case -- --case static-semantics-01 --dry-run
-npm run benchmark:case -- --case static-semantics-01
+npm run benchmark:case:dry-run -- static-semantics-01
+npm run benchmark:case -- static-semantics-01
 ```
 
 Each case command starts Direct Codex first and FormProof second from separate, byte-identical fixture-only workspaces. Setup is excluded from measured time; scanning, agent work, repair, rescan, and regression verification are included. The runner pins `gpt-5.6-sol`, medium reasoning, and a 15-minute limit for each condition.

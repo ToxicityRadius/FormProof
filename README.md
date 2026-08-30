@@ -435,8 +435,8 @@ After verification, commit the exact evaluated state and freeze it from a clean 
 
 ```powershell
 npm run benchmark:freeze
-npm run benchmark:case -- --case static-semantics-01 --dry-run
-npm run benchmark:case -- --case static-semantics-01
+npm run benchmark:case:dry-run -- static-semantics-01
+npm run benchmark:case -- static-semantics-01
 ```
 
 The case command runs Direct Codex and FormProof once each from separate copies of the same frozen fixture. Repeat it for each ID in `benchmark/cases.json`; the summary remains non-reportable until all 24 first-attempt results exist.

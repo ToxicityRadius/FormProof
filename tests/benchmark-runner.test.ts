@@ -7,6 +7,7 @@ import {
   countPatchLines,
   createBenchmarkRun,
   freezeBenchmark,
+  parseCaseArguments,
   parseTrajectoryUsage,
   removeBenchmarkWorkspace,
   runProcess,
@@ -46,6 +47,12 @@ function command(stdout = "", exitCode = 0) {
 }
 
 describe("benchmark runner", () => {
+  it("accepts npm-safe positional case arguments and the direct named form", () => {
+    expect(parseCaseArguments(["static-01"])).toEqual({ caseId: "static-01", dryRun: false });
+    expect(parseCaseArguments(["--case", "static-01", "--dry-run"])).toEqual({ caseId: "static-01", dryRun: true });
+    expect(() => parseCaseArguments([])).toThrow("Usage: benchmark case");
+  });
+
   it("freezes a clean protocol with the fixed model controls and fixture hashes", async () => {
     const root = await project();
     const runCommand = vi.fn(async (_command: string, args: string[]) => {

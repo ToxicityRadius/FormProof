@@ -54,6 +54,18 @@ export interface RunnerDependencies {
 export interface FreezeOptions { root?: string }
 export interface CaseOptions { root?: string; caseId: string; dryRun?: boolean }
 
+export function parseCaseArguments(args: string[]): CaseOptions {
+  const parsed = parseArgs({
+    args,
+    options: { case: { type: "string" }, "dry-run": { type: "boolean", default: false } },
+    allowPositionals: true,
+    strict: true
+  });
+  const caseId = parsed.values.case ?? parsed.positionals[0];
+  if (!caseId || parsed.positionals.length > 1) throw new Error("Usage: benchmark case <case-id> [--dry-run]");
+  return { caseId, dryRun: parsed.values["dry-run"] };
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return Boolean(value) && typeof value === "object";
 }
@@ -421,12 +433,10 @@ async function main(argv: string[]): Promise<void> {
     return;
   }
   if (command === "case") {
-    const parsed = parseArgs({ args: rest, options: { case: { type: "string" }, "dry-run": { type: "boolean", default: false } }, strict: true });
-    if (!parsed.values.case) throw new Error("Missing required option --case");
-    process.stdout.write(`${JSON.stringify(await runBenchmarkCase({ caseId: parsed.values.case, dryRun: parsed.values["dry-run"] }), null, 2)}\n`);
+    process.stdout.write(`${JSON.stringify(await runBenchmarkCase(parseCaseArguments(rest)), null, 2)}\n`);
     return;
   }
-  throw new Error("Usage: benchmark runner <freeze|case --case <id> [--dry-run]>");
+  throw new Error("Usage: benchmark runner <freeze|case <case-id> [--dry-run]>");
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
