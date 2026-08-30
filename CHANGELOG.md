@@ -6,6 +6,7 @@ This file records retained changes and discarded experiments so the final compet
 
 ### Retained
 
+- Formal benchmark agents now run with Codex global memory disabled; the pre-correction `static-semantics-01` pair is retained only as a protocol pilot and the official ledger restarts empty.
 - `repair` now requires a regression command and rejects empty or unknown target rule IDs, so `VERIFIED_FIXED` cannot be produced without evidence for the requested repair.
 - A benchmark summary gate withholds `Macro-VBRR@1` and secondary metrics until all 24 formal first-attempt results are present.
 - `inspect` persists its `HUMAN_REVIEW_REQUIRED` decision even when automation finds no violations, making the abstention boundary reviewable.

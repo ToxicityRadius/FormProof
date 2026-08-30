@@ -160,6 +160,7 @@ export async function freezeBenchmark(options: FreezeOptions = {}, dependencies:
     fixtureSha256: await fixtureHashes(root, manifest),
     model: MODEL,
     reasoningEffort: REASONING,
+    memoryEnabled: false,
     timeoutMs: TIMEOUT_MS
   };
   if (!/^[a-f0-9]{40}$/i.test(protocol.baseCommit)) throw new Error("Git HEAD must resolve to a 40-character commit hash.");

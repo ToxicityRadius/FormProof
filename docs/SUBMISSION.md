@@ -4,9 +4,11 @@
 
 - Confirm the working tree is clean and record the commit hash.
 - Use `gpt-5.6-sol` with medium reasoning for every formal baseline and FormProof run.
+- Require frozen metadata to record `memoryEnabled: false`; the runner must pass `--disable memories` to both conditions.
 - Keep `benchmark/cases.json`, every fixture, regression command, direct prompt, model, and reasoning setting unchanged across both conditions.
 - Run each of the 12 cases once with `benchmark/direct-prompt.md` and once with FormProof.
 - Record every first attempt, including failures and timeouts, in `benchmark/results.json`.
+- Keep protocol pilots in `benchmark/pilot-results.json`; never copy them into the formal ledger.
 - Run `npm run benchmark:summary`; do not publish a primary score while it reports `reportable: false`.
 - Preserve raw trajectories privately, then sanitize the representative trajectories before submission.
 

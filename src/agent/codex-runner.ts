@@ -33,6 +33,8 @@ export function buildCodexArgs(input: CodexArgsInput): string[] {
     "exec",
     "--json",
     "--approve-for-me",
+    "--disable",
+    "memories",
     "--cd",
     input.sourceRoot,
     "--output-last-message",

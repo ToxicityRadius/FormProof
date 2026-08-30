@@ -42,6 +42,8 @@ describe("Codex runner", () => {
       "exec",
       "--json",
       "--approve-for-me",
+      "--disable",
+      "memories",
       "--cd",
       "C:/fixture",
       "--output-last-message",

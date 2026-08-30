@@ -18,6 +18,7 @@ const protocol: NonNullable<BenchmarkResults["protocol"]> = {
   fixtureSha256: { "static-01": "c".repeat(64), "react-01": "d".repeat(64) },
   model: "gpt-5.6-sol",
   reasoningEffort: "medium",
+  memoryEnabled: false,
   timeoutMs: 900_000
 };
 

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "1.0",
+  "classification": "protocol-pilot",
+  "excludedReason": "Formal agents inherited global memory before the protocol disabled it.",
+  "protocol": {
+    "baseCommit": "ffcb061bce2fd526de5688ba7aad6b5d17298af3",
+    "frozenAt": "2026-08-30T09:45:47.024Z",
+    "manifestSha256": "b2776f81b86bff1831aacd2650e5c42d3b8160456b7a9fb10f9e17a696b5199c",
+    "fixtureSha256": {
+      "static-semantics-01": "8c9e554e5f1af286617dc2193656f2c38db2c3b890a2348c7e7a8021eeb9a214",
+      "static-keyboard-01": "1cde863810f4386523b47e0872fa17993be006648fce1797740fc7f3dbd101be",
+      "static-state-01": "6315ad0e63650080ba216fe80cbcf41c3e55212694bd97045ee9e57000e2ccd5",
+      "react-semantics-01": "b9f41fb73ae7e67bf52e55a8362c063cc8c9f8a8d3e127b3cb592c9e987f7437",
+      "react-keyboard-01": "d2a86aee75313f8793653e8b1d92e028030a935ff32b7cb980e5c11fd4dc759a",
+      "react-state-01": "19e96dcbc5f9f86c23f340ded6a0290f22115d14c004f56110e613d5bbe270f1",
+      "vue-semantics-01": "df9cd4b151bd00ab977ef33e15c3ff8a21ef7b7fc99f21474aae641e9496d7e6",
+      "vue-keyboard-01": "e7cfb24f0a034adb39aa3e8fa6cee15a6a7713963346b649935f6c1d7ff80359",
+      "vue-state-01": "394bb7425268951290d202c5f87dff4e9d9d4d2a6c57e9524a942b202b3da662",
+      "flask-semantics-01": "f2b4fd98c19325a1e14a3efa589057cc255ef5b05d8fb955f94788bcaf56aecd",
+      "flask-keyboard-01": "d1d68b14e41f3fcaedecc4e4bb0186eab8ef34c3f5d27723f6af7047436ccb54",
+      "flask-state-01": "d53dfafb7c97928f8b9b7cc7fd20740fd2faabd87edae128a56b4e5c3ba17621"
+    },
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": "medium",
+    "timeoutMs": 900000
+  },
+  "runs": [
+    {
+      "caseId": "static-semantics-01",
+      "condition": "direct",
+      "attempt": 1,
+      "decision": "VERIFIED_FIXED",
+      "newViolationCount": 0,
+      "regressionPassed": true,
+      "wallClockMs": 125873,
+      "inputTokens": 220085,
+      "outputTokens": 1737,
+      "patchLines": 2
+    },
+    {
+      "caseId": "static-semantics-01",
+      "condition": "formproof",
+      "attempt": 1,
+      "decision": "VERIFIED_FIXED",
+      "newViolationCount": 0,
+      "regressionPassed": true,
+      "wallClockMs": 89995,
+      "inputTokens": 163789,
+      "outputTokens": 1268,
+      "patchLines": 1
+    }
+  ]
+}

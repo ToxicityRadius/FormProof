@@ -29,6 +29,7 @@ export interface BenchmarkResults {
     fixtureSha256: Record<string, string>;
     model: "gpt-5.6-sol";
     reasoningEffort: "medium";
+    memoryEnabled: false;
     timeoutMs: number;
   } | null;
   runs: Array<{
@@ -100,6 +101,7 @@ export function parseResults(value: unknown): BenchmarkResults {
       || !Object.values(protocol.fixtureSha256).every((hash) => typeof hash === "string" && /^[a-f\d]{64}$/i.test(hash))
       || protocol.model !== "gpt-5.6-sol"
       || protocol.reasoningEffort !== "medium"
+      || protocol.memoryEnabled !== false
       || !Number.isInteger(protocol.timeoutMs) || (protocol.timeoutMs as number) <= 0) {
       throw new Error("Invalid benchmark protocol.");
     }

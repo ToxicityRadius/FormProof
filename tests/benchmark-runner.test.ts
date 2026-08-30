@@ -72,6 +72,7 @@ describe("benchmark runner", () => {
       frozenAt: "2026-08-30T00:00:00.000Z",
       model: "gpt-5.6-sol",
       reasoningEffort: "medium",
+      memoryEnabled: false,
       timeoutMs: 900_000
     });
     expect(protocol.manifestSha256).toMatch(/^[a-f0-9]{64}$/);
@@ -105,6 +106,7 @@ describe("benchmark runner", () => {
       fixtureSha256: { "static-01": "c".repeat(64) },
       model: "gpt-5.6-sol",
       reasoningEffort: "medium",
+      memoryEnabled: false,
       timeoutMs: 900_000
     };
     await writeFile(resultsPath, `${JSON.stringify(existing, null, 2)}\n`);

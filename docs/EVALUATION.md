@@ -2,7 +2,7 @@
 
 ## Research comparison
 
-Compare a single direct repair prompt with the FormProof workflow using the same Codex model, repository copies, cases, tool access, and time or token cap. Freeze case sources and grader hashes before either condition runs. Do not expose private grader assertions to the repair agent.
+Compare a single direct repair prompt with the FormProof workflow using the same Codex model, repository copies, cases, tool access, disabled global memory, and time or token cap. Freeze case sources and grader hashes before either condition runs. Do not expose private grader assertions to the repair agent.
 
 ## Primary metric
 
@@ -26,7 +26,7 @@ Compare a single direct repair prompt with the FormProof workflow using the same
 
 The public manifest is [benchmark/cases.json](../benchmark/cases.json). It defines 12 cases across Static HTML, React, Vue, and Flask; each stack receives semantics/name, keyboard/focus, and dynamic-state/error cases. Angular remains supported and documented as development evidence, but it is excluded from the formal comparison to keep the benchmark representative of the solo-developer audience and feasible to reproduce.
 
-The formal protocol is not frozen until the clean commit, manifest hash, fixture hashes, direct prompt, model, reasoning setting, and timeout are recorded. Existing packages under `evidence/development` predate that freeze and are not formal results.
+The formal protocol is not frozen until the clean commit, manifest hash, fixture hashes, direct prompt, model, reasoning setting, disabled-memory state, and timeout are recorded. Existing packages under `evidence/development` predate that freeze and are not formal results. The first `static-semantics-01` pair is retained in `benchmark/pilot-results.json` as a protocol pilot because it ran before global memory was disabled; it is excluded from the formal ledger.
 
 From a clean evaluated commit, freeze once and run one paired case at a time:
 
@@ -36,7 +36,7 @@ npm run benchmark:case:dry-run -- static-semantics-01
 npm run benchmark:case -- static-semantics-01
 ```
 
-Each case command starts Direct Codex first and FormProof second from separate, byte-identical fixture-only workspaces. Setup is excluded from measured time; scanning, agent work, repair, rescan, and regression verification are included. The runner pins `gpt-5.6-sol`, medium reasoning, and a 15-minute limit for each condition.
+Each case command starts Direct Codex first and FormProof second from separate, byte-identical fixture-only workspaces. Setup is excluded from measured time; scanning, agent work, repair, rescan, and regression verification are included. The runner pins `gpt-5.6-sol`, medium reasoning, disables the Codex `memories` feature, and applies a 15-minute limit to each condition.
 
 ## Reporting rules
 
