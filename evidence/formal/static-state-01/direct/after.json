@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0",
+  "runId": "6b60f269-9a5b-464d-aaa2-452af7992d52",
+  "capturedAt": "2026-08-30T10:47:45.652Z",
+  "target": {
+    "url": "http://127.0.0.1:4183",
+    "sourceRoot": "<FORMPROOF_REPO>\\.formproof\\benchmark\\workspaces\\static-state-01-direct-ahvoOH",
+    "adapter": "static"
+  },
+  "violations": [],
+  "totals": {
+    "violations": 0,
+    "nodes": 0
+  }
+}

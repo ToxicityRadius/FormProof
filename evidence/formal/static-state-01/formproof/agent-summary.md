@@ -1,0 +1,3 @@
+- Changed [index.html](</<FORMPROOF_REPO>/.formproof/benchmark/workspaces/static-state-01-formproof-NVwUxG/index.html:25>): added `role="alert"` to the referenced email error.
+- Regression: passed.
+- Human-review items: none.

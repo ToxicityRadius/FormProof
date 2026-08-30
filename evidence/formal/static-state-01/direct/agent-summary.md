@@ -1,0 +1,3 @@
+- Changed [index.html](</<FORMPROOF_REPO>/.formproof/benchmark/workspaces/static-state-01-direct-ahvoOH/index.html:25>): added `role="alert"` to the validation error.
+- Tests: required regression passed; axe scan reported 0 violations; `git diff --check` passed.
+- Human review: confirm error announcements with representative screen readers.

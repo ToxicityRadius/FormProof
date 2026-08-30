@@ -6,6 +6,7 @@ This file records retained changes and discarded experiments so the final compet
 
 ### Retained
 
+- The frozen benchmark preserves all 24 first attempts, including infrastructure failures; `static-state-01` is exported as the valid sanitized representative pair.
 - Formal benchmark agents now run with Codex global memory disabled; the pre-correction `static-semantics-01` pair is retained only as a protocol pilot and the official ledger restarts empty.
 - `repair` now requires a regression command and rejects empty or unknown target rule IDs, so `VERIFIED_FIXED` cannot be produced without evidence for the requested repair.
 - A benchmark summary gate withholds `Macro-VBRR@1` and secondary metrics until all 24 formal first-attempt results are present.
@@ -48,6 +49,9 @@ These 15 experiments were completed while the fixtures and protocol were still c
 - **Angular formal cases:** removed from the scored benchmark to keep the 12-case comparison focused on the four stacks most representative of the solo-developer audience. Angular support and development evidence remain in the repository.
 
 ### Failures that changed the implementation
+
+- Codex usage was exhausted during the formal sequence. Eleven rows recorded explicit agent errors and six later Flask rows completed with zero tokens; the ledger is preserved unchanged and the aggregate score is labeled infrastructure-limited rather than treated as a clean capability comparison.
+- The formal React FormProof attempt exposed sandboxed Chromium `EPERM` inside the repair agent. The failure remains part of the frozen first attempt and is not silently retried.
 
 - Vite 8.0.10 reported a high-severity Windows `server.fs.deny` path-bypass advisory during the React fixture install. The fixture is pinned to the non-major patched release 8.2.2 and its audit returns zero vulnerabilities.
 

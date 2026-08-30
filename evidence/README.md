@@ -1,6 +1,12 @@
 # Evaluation evidence
 
-The packages indexed below are development experiments, not frozen formal benchmark attempts. Formal evidence is reserved for sanitized artifacts exported after the 12-case benchmark is complete; raw trajectories remain under the ignored `.formproof` directory.
+## Formal evidence
+
+The sanitized representative [`static-state-01`](formal/static-state-01/) pair is available for the completed frozen benchmark. Read the [results and validity analysis](../docs/RESULTS.md) with it; raw trajectories remain under the ignored `.formproof` directory.
+
+## Development evidence
+
+The packages indexed below are development experiments, not frozen formal benchmark attempts.
 
 | Experiment | Adapter | Target rule | Decision | Regression gate |
 | --- | --- | --- | --- | --- |

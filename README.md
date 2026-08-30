@@ -24,7 +24,7 @@ The v0.1 vertical slice includes:
 - Unit, integration, and browser tests.
 - Tracked development experiment packages for semantics/name, keyboard/focus, and dynamic-state/error repairs across Static HTML, React, Vue, Angular, and Flask/Jinja.
 
-The formal benchmark uses 12 cases across Static HTML, React, Vue, and Flask/Jinja: three barrier classes per stack and two conditions per case. The existing 15 `VERIFIED_FIXED` packages are development evidence rather than frozen formal results; Angular support remains available but is excluded from the scored comparison.
+The formal benchmark recorded 12 cases across Static HTML, React, Vue, and Flask/Jinja: three barrier classes per stack and two conditions per case. Its complete first-attempt ledger is infrastructure-limited by Codex usage exhaustion; read [the results analysis](docs/RESULTS.md) before interpreting the score. The existing 15 `VERIFIED_FIXED` packages remain development evidence, and Angular support is excluded from the scored comparison.
 
 ## Requirements
 
@@ -439,7 +439,7 @@ npm run benchmark:case:dry-run -- static-semantics-01
 npm run benchmark:case -- static-semantics-01
 ```
 
-The case command runs Direct Codex and FormProof once each from separate copies of the same frozen fixture. Repeat it for each ID in `benchmark/cases.json`; the summary remains non-reportable until all 24 first-attempt results exist.
+The case command runs Direct Codex and FormProof once each from separate copies of the same frozen fixture. The checked-in ledger contains all 24 first attempts and the sanitized representative pair is under `evidence/formal/static-state-01`.
 
 ## Development verification
 

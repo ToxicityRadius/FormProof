@@ -7,5 +7,7 @@ describe("evidence exporter", () => {
     const exporter = await readFile(resolve("scripts/export-evidence.mjs"), "utf8");
 
     expect(exporter).toContain("/regression|unittest|git diff/i.test(command)");
+    expect(exporter).toContain("await access(resolve(runDirectory, fileName))");
+    expect(exporter).toContain("Use baseRepositoryCommit and before.json");
   });
 });

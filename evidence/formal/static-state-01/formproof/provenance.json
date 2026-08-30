@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0",
+  "experimentId": "formal-static-state-formproof-attempt-1",
+  "baseRepositoryCommit": "3d3487d5b7bb68ab7dac15e847691e0e95d6b6f8",
+  "baselineRunId": "94f0ecfd-e829-4d52-a12b-9f07b2e4ad2c",
+  "baselineCapturedAt": "2026-08-30T10:47:48.345Z",
+  "afterRunId": "9f87b825-8e80-4fa2-9dc4-450d228860f4",
+  "afterCapturedAt": "2026-08-30T10:50:30.122Z",
+  "adapter": "static",
+  "targetRuleIds": [
+    "aria-valid-attr-value"
+  ],
+  "decision": "VERIFIED_FIXED",
+  "baselineReconstruction": "Use baseRepositoryCommit and before.json to reconstruct the frozen baseline.",
+  "sanitization": {
+    "repositoryRoot": "<FORMPROOF_REPO>",
+    "userHome": "<USER_HOME>",
+    "threadId": "<REDACTED_THREAD_ID>",
+    "trajectory": "Representative decision-relevant events; environment-specific skill and memory reads omitted."
+  },
+  "artifactSha256": {
+    "after.json": "E1219812C04FBC43ECC96200B611BC3CDF7E524A6281112261DB43212ECA5D7D",
+    "agent-summary.md": "EE498BEEC20C5DEEDC4D553FC83C36BBF63E204F168B5942A642CD35E9F672E2",
+    "before.json": "0A644341924AB42BBFE81A794336EEA7EC5E42106FD46641B6F8FCE9A5E3B965",
+    "decision.json": "BE2FCDD752DB16146CCF642D4CD49F1F0A857E9A5D79995BCCA01B2F01A9AD6E",
+    "repair-prompt.md": "9E13CA95769709C0D7C32B13DC7124A7614033476E962F97E5F46E46BD8B015E",
+    "report.html": "6924830237C7372554F766697C239AD14C80A75D362C562271599E2614D0633E",
+    "representative-trajectory.jsonl": "C3848B827208DE2FA61AC145116E38D8F8DCDBCE5A2BA6D6FA592346CB608BB2"
+  }
+}

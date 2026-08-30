@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import { access, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { basename, resolve } from "node:path";
 
 const [runDirectoryArg, outputDirectoryArg, experimentId, baseRepositoryCommit] =
@@ -69,6 +69,11 @@ function sanitizedObject(value) {
 }
 
 for (const fileName of sourceFiles) {
+  try {
+    await access(resolve(runDirectory, fileName));
+  } catch {
+    continue;
+  }
   const content = await readFile(resolve(runDirectory, fileName), "utf8");
   const exported = fileName.endsWith(".json")
     ? `${JSON.stringify(sanitizedObject(JSON.parse(content)), null, 2)}\n`
@@ -129,7 +134,7 @@ const provenance = {
   adapter: before.target.adapter,
   targetRuleIds: before.violations.map((violation) => violation.id),
   decision: decision.status,
-  baselineReconstruction: "Reverse-apply repair.diff to the completed milestone source.",
+  baselineReconstruction: "Use baseRepositoryCommit and before.json to reconstruct the frozen baseline.",
   sanitization: {
     repositoryRoot: "<FORMPROOF_REPO>",
     userHome: "<USER_HOME>",

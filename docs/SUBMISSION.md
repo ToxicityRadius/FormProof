@@ -1,5 +1,15 @@
 # Submission runbook
 
+## Current status
+
+- [x] Corrected protocol frozen at `3d3487d5b7bb68ab7dac15e847691e0e95d6b6f8`.
+- [x] All 24 first attempts preserved and committed separately.
+- [x] Summary generated and infrastructure limitation documented in [RESULTS.md](RESULTS.md).
+- [x] Representative Direct/FormProof trajectories sanitized for `static-state-01`.
+- [x] Reproduction guide, changelog, and [disclosure inventory](DISCLOSURES.md) present.
+- [ ] Record and host the five-minute video.
+- [ ] Confirm dashboard-only submission fields and accepted trajectory format.
+
 ## Freeze before evaluation
 
 - Confirm the working tree is clean and record the commit hash.
@@ -22,15 +32,17 @@ Repeat the paired case command for each manifest ID. Do not rerun or overwrite a
 
 ## Five-minute demo
 
+Use the valid `static-state-01` pair; do not use an infrastructure-failed React, Vue, or Flask row as the product demonstration.
+
 | Time | Show |
 | --- | --- |
 | 0:00–0:30 | The inaccessible local form and the user problem |
-| 0:30–1:10 | `formproof inspect`, the baseline axe finding, and source-candidate mapping |
+| 0:30–1:10 | `static-state-01`: `formproof inspect`, the baseline axe finding, and source-candidate mapping |
 | 1:10–1:35 | The explicit approval boundary and scoped repair prompt |
 | 1:35–2:35 | `formproof repair --approve --test ...` and the minimal source diff |
 | 2:35–3:20 | Independent rescan, regression gate, and `VERIFIED_FIXED` report |
 | 3:20–4:00 | A clean scan that remains `HUMAN_REVIEW_REQUIRED` |
-| 4:00–4:35 | The 12 frozen benchmark cases and completed comparison summary |
+| 4:00–4:35 | The 12 frozen cases, completed summary, and the usage-limit validity caveat |
 | 4:35–5:00 | Reproduction command, limitations, and no-conformance disclaimer |
 
 ## Final package

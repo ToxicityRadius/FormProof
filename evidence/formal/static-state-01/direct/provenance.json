@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0",
+  "experimentId": "formal-static-state-direct-attempt-1",
+  "baseRepositoryCommit": "3d3487d5b7bb68ab7dac15e847691e0e95d6b6f8",
+  "baselineRunId": "df1fb31a-6dec-47b7-8e4d-cdf9ea1b5ad1",
+  "baselineCapturedAt": "2026-08-30T10:42:36.705Z",
+  "afterRunId": "6b60f269-9a5b-464d-aaa2-452af7992d52",
+  "afterCapturedAt": "2026-08-30T10:47:45.652Z",
+  "adapter": "static",
+  "targetRuleIds": [
+    "aria-valid-attr-value"
+  ],
+  "decision": "VERIFIED_FIXED",
+  "baselineReconstruction": "Use baseRepositoryCommit and before.json to reconstruct the frozen baseline.",
+  "sanitization": {
+    "repositoryRoot": "<FORMPROOF_REPO>",
+    "userHome": "<USER_HOME>",
+    "threadId": "<REDACTED_THREAD_ID>",
+    "trajectory": "Representative decision-relevant events; environment-specific skill and memory reads omitted."
+  },
+  "artifactSha256": {
+    "after.json": "9E7BBA0F0D4643D9502F7F692A30D8B51D57CDCD7E23C31B2D38FD4498C46870",
+    "agent-summary.md": "358F3AF7A14F5B23C114A59F398663B306535275D6F0F2D7464BF758414132F7",
+    "before.json": "8A3C363F11279A937D21FFCED2F04B939080533EA90BBE97DDEFCE5AEC714CB9",
+    "decision.json": "B7B82BE9975058D0CC9E9FB30CC802A408F080B1ED91FFAD1609FF7589FF205B",
+    "representative-trajectory.jsonl": "F1C69F00F4168EDF694E846BAE46FC24B6BC8A74F12F840B3000F64854F41E92"
+  }
+}
