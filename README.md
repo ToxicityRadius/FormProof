@@ -1,6 +1,8 @@
 # FormProof
 
-FormProof is an evidence-gated CLI for solo web developers who can find accessibility warnings but need a safe, repeatable way to turn them into verified source repairs. It freezes a browser-based baseline, maps axe findings back to likely source files, requires explicit human approval, runs Codex in a workspace-write sandbox, rescans the application, applies a required regression gate, and produces a reviewable HTML evidence report.
+FormProof is an evidence-gated CLI for solo web developers who can find accessibility warnings but still have to translate rendered browser findings into safe source repairs. Their bottleneck is not discovering a warning; it is locating the responsible source, constraining an AI edit, and proving the change did not break behavior.
+
+FormProof freezes a browser-based baseline, maps axe findings back to likely source files, requires explicit human approval, runs Codex in a workspace-write sandbox, rescans the application, applies a required regression gate, and produces a reviewable HTML evidence report. This makes each repair inspectable and reproducible instead of asking a developer to trust a plausible patch or an AI summary.
 
 FormProof reports one of three outcomes:
 
@@ -466,3 +468,5 @@ research/           Evidence-backed problem and experiment design
 ```
 
 See [Architecture](docs/ARCHITECTURE.md), [Evaluation](docs/EVALUATION.md), [Trajectory handling](docs/TRAJECTORIES.md), and the [evidence index](evidence/README.md) for the competition evidence contract.
+
+For judging, use the [clean-environment reproduction guide](docs/REPRODUCTION.md), [Improvement Changelog](CHANGELOG.md), [submission copy and upload manifest](docs/SUBMISSION_COPY.md), and [five-minute video script](docs/SUBMISSION.md). The baseline agent instruction is tracked in [`benchmark/direct-prompt.md`](benchmark/direct-prompt.md); the representative FormProof instruction, tool events, human checkpoint, and final result are packaged under [`evidence/formal/static-state-01`](evidence/formal/static-state-01/).

@@ -2,6 +2,21 @@
 
 This file records retained changes and discarded experiments so the final competition submission can explain why each agent capability exists.
 
+## Evidence-linked iteration ledger
+
+| Iteration | Evidence that guided the next decision | Decision |
+| --- | --- | --- |
+| Evidence-gated MVP (`23b4a11`) | The [architecture contract](docs/ARCHITECTURE.md) separated automated evidence from human judgment. | Keep one repair agent behind explicit approval, then let deterministic verification decide the outcome. |
+| First Static repair (`c01ee0b`) | The [Static semantics package](evidence/development/static-label/) reached `VERIFIED_FIXED` with a minimal patch. | Retain the evidence schema and test whether source mapping transfers across stacks. |
+| Cross-stack semantics (`53ce433`–`bfecbb0`) | React, Flask, Vue, and Angular packages under [development evidence](evidence/development/) independently passed their regressions. | Keep stack adapters thin and reuse the same evidence contract. |
+| Keyboard/focus expansion (`72748b3`–`22b43d2`) | Five `*-hidden-focus` packages confirmed the barrier through both axe and browser Tab behavior. Rejected candidates were not reproducible in both. | Retain `aria-hidden-focus`; reject positive `tabindex`, `scrollable-region-focusable`, and incomplete `bypass` evidence. |
+| Dynamic-state expansion (`a7a6bb2`–`eecf6ff`) | Five `*-error-state` packages tested invalid-to-valid behavior. The first Angular attempt cleared axe but was [regression blocked](evidence/development/angular-error-state/). | Make the regression command mandatory and wait for observable UI state before accepting the repair. |
+| Fair-comparison gate (`7d88c28`) | Development experiments were produced while the protocol changed, so they could not support a fair aggregate claim. | Separate development evidence from a frozen formal ledger and withhold metrics until all 24 rows exist. |
+| Formal harness and pilot (`fc3457f`–`ffcb061`) | The [pilot ledger](benchmark/pilot-results.json) exposed protocol and command-line issues before scoring. | Preserve the pilot separately and run each condition once in isolated copies. |
+| Memory-isolation correction (`3d3487d`) | The pilot Direct agent could inherit unrelated global memory, violating condition isolation. | Disable Codex memory for both conditions, freeze a new protocol, and restart the official ledger empty. |
+| Formal first attempts (`af826d7`) | The [24-row ledger](benchmark/results.json) preserved usage exhaustion and sandbox failures instead of hiding them. | Do not rerun failures; label the aggregate infrastructure-limited. |
+| Representative export (`ea734eb`) | Only `static-state-01` completed normally in both conditions and passed the same behavioral gate. | Export its sanitized [Direct and FormProof evidence](evidence/formal/static-state-01/) for the video and trajectory review. |
+
 ## 0.1.0 — benchmark-first vertical slice
 
 ### Retained
@@ -68,3 +83,9 @@ These 15 experiments were completed while the fixtures and protocol were still c
 - Positive `tabindex` was rejected for the keyboard/focus benchmark because axe classifies it as a best-practice rule outside FormProof's frozen WCAG tag set.
 - `scrollable-region-focusable` was rejected because the installed Chromium automatically made the test scroller keyboard-focusable, so neither the browser regression nor axe could reproduce a barrier.
 - `bypass` was rejected for automatic repair because axe returned it as incomplete/manual-review evidence rather than a confirmed violation. The retained `aria-hidden-focus` case fails independently in axe and the browser Tab sequence.
+
+## Main failure mode and hot take
+
+The main failure mode was evaluation infrastructure, not an observed accessibility regression: Codex usage was exhausted partway through the frozen sequence, affecting 17 of 24 rows and making the aggregate unsuitable as a clean capability comparison. The ledger keeps those first attempts unchanged so the limitation remains auditable.
+
+**Hot take:** a convincing agent patch is not evidence. A smaller system that can abstain, requires human approval, and refuses `VERIFIED_FIXED` without an independent rescan and behavioral regression is more useful than adding another planning or reviewer agent.

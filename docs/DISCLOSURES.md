@@ -16,4 +16,13 @@
 
 - Benchmark forms and data are synthetic; no personal or production data is required.
 - No credentials are included in the repository or exported representative evidence.
-- The repository does not identify separately incorporated participant background IP. The submitter must confirm that statement against any material added outside this repository before submission.
+- No FormProof source, fixture, benchmark, or evidence package is identified as pre-competition participant background IP. Git history records the competition work from the initial evidence-gated MVP through the formal export.
+- Pre-existing components are the publicly distributed development tools, AI service, frameworks, libraries, browser, and accessibility engine listed above; their own licences and service terms remain controlling.
+- Competition additions are the FormProof workflow and CLI, adapters, synthetic fixtures, tests, benchmark protocol and ledger, evidence packages, documentation, and Improvement Changelog in this repository.
+- The submitter must still confirm that no material added outside this repository changes this inventory before upload.
+
+## Human and consequential-action boundaries
+
+- FormProof edits only a local workspace after explicit approval. It does not deploy or publish repaired code.
+- A configured regression command is required before `VERIFIED_FIXED`; a clean automated scan alone remains `HUMAN_REVIEW_REQUIRED`.
+- Claims that can significantly affect people, including WCAG conformance or real assistive-technology usability, remain decisions for a qualified human reviewer.

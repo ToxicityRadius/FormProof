@@ -7,8 +7,10 @@
 - [x] Summary generated and infrastructure limitation documented in [RESULTS.md](RESULTS.md).
 - [x] Representative Direct/FormProof trajectories sanitized for `static-state-01`.
 - [x] Reproduction guide, changelog, and [disclosure inventory](DISCLOSURES.md) present.
+- [x] Dashboard fields confirmed: title, formatted description, video URL, and source ZIP no larger than 50 MB.
+- [x] Trajectory requirement confirmed without a mandated container format; sanitized JSONL, prompts, summaries, tool responses, retries, and the approval checkpoint are included.
 - [ ] Record and host the five-minute video.
-- [ ] Confirm dashboard-only submission fields and accepted trajectory format.
+- [ ] Upload the final source ZIP and paste the title, description, and video URL.
 
 ## Freeze before evaluation
 
@@ -30,20 +32,25 @@ npm run benchmark:case -- static-semantics-01
 
 Repeat the paired case command for each manifest ID. Do not rerun or overwrite a recorded case-condition attempt.
 
-## Five-minute demo
+## Five-minute video script
 
 Use the valid `static-state-01` pair; do not use an infrastructure-failed React, Vue, or Flask row as the product demonstration.
 
-| Time | Show |
-| --- | --- |
-| 0:00–0:30 | The inaccessible local form and the user problem |
-| 0:30–1:10 | `static-state-01`: `formproof inspect`, the baseline axe finding, and source-candidate mapping |
-| 1:10–1:35 | The explicit approval boundary and scoped repair prompt |
-| 1:35–2:35 | `formproof repair --approve --test ...` and the minimal source diff |
-| 2:35–3:20 | Independent rescan, regression gate, and `VERIFIED_FIXED` report |
-| 3:20–4:00 | A clean scan that remains `HUMAN_REVIEW_REQUIRED` |
-| 4:00–4:35 | The 12 frozen cases, completed summary, and the usage-limit validity caveat |
-| 4:35–5:00 | Reproduction command, limitations, and no-conformance disclaimer |
+| Time | Screen | Narration target |
+| --- | --- | --- |
+| 0:00–0:35 | The synthetic invalid-email form, then the README opening | Solo developers can find accessibility warnings, but locating the source, constraining an AI edit, and proving behavior still works is the bottleneck. |
+| 0:35–1:00 | `benchmark/direct-prompt.md` and the Direct trajectory | The simple baseline gives Codex the page, a broad repair instruction, and the same regression command, without FormProof's evidence package or approval boundary. |
+| 1:00–1:35 | Run or replay `inspect`; show `before.json`, screenshot, and `#email` mapped to `index.html` | FormProof freezes one critical `aria-valid-attr-value` finding and maps the rendered element to a high-confidence source candidate. |
+| 1:35–2:00 | `repair-prompt.md`, then pause on `--approve` | Repository text and evidence are treated as untrusted. The developer reviews the target, prompt, and source scope before the agent can edit. |
+| 2:00–2:45 | Run or replay `repair --approve --test "node regression.mjs"`; show the two-line diff and trajectory tool events | The agent makes the smallest patch. FormProof then rescans independently and runs the existing invalid-to-valid browser flow. |
+| 2:45–3:15 | `decision.json` and `report.html` | The target is absent, no new automated rule appeared, the regression passed, and the result is `VERIFIED_FIXED`; this is evidence, not WCAG certification. |
+| 3:15–3:45 | Representative pair README or both decisions | In this valid pair, Direct and FormProof both changed two lines and passed. Direct took about 5.2 minutes; FormProof took about 2.7 minutes. One case is illustrative, not a general superiority claim. |
+| 3:45–4:15 | Improvement Changelog: mandatory regression gate and Angular blocked attempt | The biggest improvement was requiring a regression command. It caught a repair that cleared axe but initially failed the asynchronous browser behavior, preventing a false `VERIFIED_FIXED`. |
+| 4:15–4:35 | Changelog removed/deferred section | The multi-agent repair debate was removed: more agent opinions add cost but do not prove correctness; deterministic checks are the acceptance authority. |
+| 4:35–4:50 | `npm run benchmark:summary` and `docs/RESULTS.md` | Show Direct 33.33% and FormProof 25.00%, then immediately disclose that usage exhaustion affected 17 rows, so this is an infrastructure-limited ledger. |
+| 4:50–5:00 | `docs/REPRODUCTION.md`, trajectories, and disclosures | Close with the exact clean-machine commands, synthetic-data statement, human-review boundary, and repository link. |
+
+Record at 1080p with the terminal and text enlarged enough to read. Prefer a rehearsed artifact replay over rerunning the frozen benchmark; the representative package already preserves the actual prompts, tool responses, retry context, approval checkpoint, diff, and decisions.
 
 ## Final package
 
@@ -56,6 +63,11 @@ Use the valid `static-state-01` pair; do not use an infrastructure-failed React,
 - AI, dependency, third-party material, and background-IP disclosures
 - Final secret and personal-path review
 
-## Dashboard-only checks
+## Confirmed dashboard fields
 
-Confirm the deadline and timezone, repository visibility, upload-size limits, required form fields, accepted trajectory format, video-hosting rules, and whether deployment is required in the logged-in organizer dashboard or released brief. Do not infer these values from public search results.
+- Required title
+- Required formatted description with links
+- Required video URL; no additional video rule beyond the challenge's five-minute maximum
+- Required source-code upload, maximum 50 MB
+
+The challenge text asks for representative trajectories for every agent but does not prescribe a file container. The tracked Direct and FormProof JSONL packages therefore remain the submission format unless the organizer supplies a later clarification.
