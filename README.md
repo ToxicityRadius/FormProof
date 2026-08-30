@@ -1,10 +1,10 @@
 # FormProof
 
-FormProof is an evidence-gated CLI for repairing web accessibility barriers with Codex. It freezes a browser-based baseline, maps axe findings back to likely source files, requires explicit human approval, runs Codex in a workspace-write sandbox, rescans the application, applies regression gates, and produces a reviewable HTML evidence report.
+FormProof is an evidence-gated CLI for solo web developers who can find accessibility warnings but need a safe, repeatable way to turn them into verified source repairs. It freezes a browser-based baseline, maps axe findings back to likely source files, requires explicit human approval, runs Codex in a workspace-write sandbox, rescans the application, applies a required regression gate, and produces a reviewable HTML evidence report.
 
 FormProof reports one of three outcomes:
 
-- `VERIFIED_FIXED`: every targeted automated barrier is absent, no new axe rule appeared, and every configured regression command passed.
+- `VERIFIED_FIXED`: every targeted automated barrier is absent, no new axe rule appeared, and the required regression command passed.
 - `REGRESSION_BLOCKED`: a new automated violation appeared or a regression command failed.
 - `HUMAN_REVIEW_REQUIRED`: the available evidence cannot establish that the repair is correct.
 
@@ -22,9 +22,9 @@ The v0.1 vertical slice includes:
 - JSONL Codex trajectory capture and final-message capture.
 - Before/after evidence, regression decisions, screenshots, and an accessible HTML report.
 - Unit, integration, and browser tests.
-- Tracked `VERIFIED_FIXED` experiment packages for semantics/name, keyboard/focus, and dynamic-state/error repairs across Static HTML, React, Vue, Angular, and Flask/Jinja.
+- Tracked development experiment packages for semantics/name, keyboard/focus, and dynamic-state/error repairs across Static HTML, React, Vue, Angular, and Flask/Jinja.
 
-All 15 frozen benchmark cases are implemented with tracked `VERIFIED_FIXED` evidence. Each of the five stack families now includes semantics/name, keyboard/focus, and dynamic-state/error coverage.
+The formal benchmark uses 12 cases across Static HTML, React, Vue, and Flask/Jinja: three barrier classes per stack and two conditions per case. The existing 15 `VERIFIED_FIXED` packages are development evidence rather than frozen formal results; Angular support remains available but is excluded from the scored comparison.
 
 ## Requirements
 
@@ -421,13 +421,25 @@ The official Codex CLI supports non-interactive execution, JSONL event output, a
 
 1. Start the target application locally.
 2. Run `formproof inspect` with its URL and source directory.
-3. Review the frozen evidence and proposed prompt.
+3. Review the baseline evidence and proposed prompt.
 4. Run `formproof repair --approve` only if the target and proposed scope are correct.
 5. Inspect `decision.json`, `after.json`, `trajectory.jsonl`, and `report.html`.
 
 The target application must remain available at the same URL during repair and verification. Commands passed through `--test` execute locally in the target repository and must be treated as trusted input.
 
 `inspect` also writes `decision.json`; a clean automated scan remains `HUMAN_REVIEW_REQUIRED` because automated evidence cannot establish complete accessibility.
+
+## Run the formal benchmark
+
+After verification, commit the exact evaluated state and freeze it from a clean working tree:
+
+```powershell
+npm run benchmark:freeze
+npm run benchmark:case -- --case static-semantics-01 --dry-run
+npm run benchmark:case -- --case static-semantics-01
+```
+
+The case command runs Direct Codex and FormProof once each from separate copies of the same frozen fixture. Repeat it for each ID in `benchmark/cases.json`; the summary remains non-reportable until all 24 first-attempt results exist.
 
 ## Development verification
 
@@ -448,9 +460,9 @@ src/core/           Verification decision and inspect/repair workflows
 src/report/         Accessible standalone HTML evidence report
 src/scanner/        Playwright and axe scanner
 fixtures/           Synthetic adapter and browser fixtures
-evidence/           Sanitized, tracked experiment artifacts and trajectories
-benchmark/          Frozen benchmark manifest and evaluation protocol
+evidence/           Development evidence and post-benchmark formal exports
+benchmark/          Formal benchmark manifest, protocol, and result ledger
 research/           Evidence-backed problem and experiment design
 ```
 
-See [Architecture](docs/ARCHITECTURE.md), [Evaluation](docs/EVALUATION.md), [Trajectory handling](docs/TRAJECTORIES.md), and the [verified experiment index](evidence/README.md) for the competition evidence contract.
+See [Architecture](docs/ARCHITECTURE.md), [Evaluation](docs/EVALUATION.md), [Trajectory handling](docs/TRAJECTORIES.md), and the [evidence index](evidence/README.md) for the competition evidence contract.

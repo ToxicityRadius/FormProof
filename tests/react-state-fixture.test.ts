@@ -26,6 +26,7 @@ describe("React dynamic-state and error fixture", () => {
     expect(app).toContain('aria-invalid={invalid ? "true" : undefined}');
     expect(app).toContain('aria-errormessage="email-error"');
     expect(app).toContain('id="email-error"');
+    expect(app).not.toContain('role="alert"');
     expect(app).toContain("input.validity.valid");
     expect(app).toContain("setInvalid(false)");
     expect(app).toContain("Subscription saved for");
@@ -35,9 +36,7 @@ describe("React dynamic-state and error fixture", () => {
     const regression = await fixtureFile("regression.mjs");
 
     expect(regression).toContain('getAttribute("aria-errormessage")');
-    expect(regression).toContain('getAttribute("aria-describedby")');
-    expect(regression).toContain('getAttribute("aria-live")');
-    expect(regression).toContain('getAttribute("role")');
+    expect(regression).not.toContain('getAttribute("role")');
     expect(regression).toContain('fill("ada@example.com")');
     expect(regression).toContain('getAttribute("aria-invalid")');
     expect(regression).toContain("Subscription saved for ada@example.com.");

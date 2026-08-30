@@ -14,7 +14,6 @@ export function App() {
     <main>
       <h1>Account</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="display-name">Display name</label>
         <input
           id="display-name"
           name="displayName"

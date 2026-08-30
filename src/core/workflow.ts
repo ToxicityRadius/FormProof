@@ -22,7 +22,7 @@ export interface RepairWorkflowInput {
   outDir: string;
   approved: boolean;
   targetViolationIds?: string[];
-  regressionCommand?: string;
+  regressionCommand: string;
   model?: string;
 }
 
@@ -112,12 +112,17 @@ export async function inspectWorkflow(input: InspectWorkflowInput, dependencies:
 
 export async function repairWorkflow(input: RepairWorkflowInput, dependencies: RepairDependencies = {}): Promise<WorkflowResult> {
   if (!input.approved) throw new Error("Repair requires explicit human approval. Re-run with --approve after reviewing before.json and repair-prompt.md.");
+  if (!input.regressionCommand.trim()) throw new Error("Repair requires a regression command supplied with --test.");
 
   const scan = dependencies.scan ?? scanUrl;
   const runAgent = dependencies.runAgent ?? runCodexRepair;
   const runRegression = dependencies.runRegression ?? runRegressionCommand;
   const before = await readEvidence(input.beforePath);
   const targetViolationIds = input.targetViolationIds ?? before.violations.map((violation) => violation.id);
+  if (targetViolationIds.length === 0) throw new Error("Repair requires at least one target violation from the frozen evidence.");
+  const availableViolationIds = new Set(before.violations.map((violation) => violation.id));
+  const unknownViolationIds = [...new Set(targetViolationIds.filter((id) => !availableViolationIds.has(id)))].sort();
+  if (unknownViolationIds.length > 0) throw new Error(`Unknown target violation ID(s): ${unknownViolationIds.join(", ")}`);
   const prompt = buildRepairPrompt(before, targetViolationIds, input.regressionCommand);
   await mkdir(input.outDir, { recursive: true });
 
@@ -154,9 +159,7 @@ export async function repairWorkflow(input: RepairWorkflowInput, dependencies: R
     sourceRoot: before.target.sourceRoot,
     screenshotPath: join(input.outDir, "after.png")
   });
-  const regressionGates = input.regressionCommand
-    ? [await runRegression(input.regressionCommand, before.target.sourceRoot)]
-    : [];
+  const regressionGates = [await runRegression(input.regressionCommand, before.target.sourceRoot)];
   const decision = decideOutcome({ before, after, targetViolationIds, regressionGates });
 
   await Promise.all([

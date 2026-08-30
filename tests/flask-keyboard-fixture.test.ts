@@ -36,11 +36,13 @@ describe("Flask keyboard and focus fixture", () => {
     expect(app).toContain('status = "Changes saved."');
     expect(template).toContain('aria-hidden="true"');
     expect(template).toContain('id="legacy-export"');
+    expect(template).toContain('<button id="legacy-export" type="button">');
+    expect(template).not.toContain('<button id="legacy-export" type="button" disabled>');
     expect(template).toContain('id="save-changes"');
     expect(template).toContain('role="status"');
   });
 
-  it("checks Flask integration, hidden-focus exclusion, and keyboard save", async () => {
+  it("checks Flask integration and save behavior without masking the focus defect", async () => {
     const [integration, regression] = await Promise.all([
       fixtureFile("test_app.py"),
       fixtureFile("regression.mjs")
@@ -51,9 +53,8 @@ describe("Flask keyboard and focus fixture", () => {
     expect(regression).toContain("python -m unittest");
     expect(regression).toContain("unitTests.error");
     expect(regression).toContain('locator("#legacy-export")');
-    expect(regression).toContain('page.keyboard.press("Tab")');
-    expect(regression).toContain('focusedId !== "save-changes"');
-    expect(regression).toContain('page.keyboard.press("Enter")');
+    expect(regression).toContain('locator("#save-changes")');
+    expect(regression).not.toContain('page.keyboard.press("Tab")');
     expect(regression).toContain('page.on("pageerror"');
     expect(regression).toContain('message.type() === "error"');
   });

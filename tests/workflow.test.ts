@@ -60,7 +60,7 @@ describe("FormProof workflows", () => {
     const runAgent = vi.fn();
 
     await expect(repairWorkflow(
-      { beforePath, outDir: join(root, "repair"), approved: false },
+      { beforePath, outDir: join(root, "repair"), approved: false, regressionCommand: "npm test" },
       { scan: vi.fn(), runAgent, runRegression: vi.fn() }
     )).rejects.toThrow("--approve");
     expect(runAgent).not.toHaveBeenCalled();
@@ -106,7 +106,7 @@ describe("FormProof workflows", () => {
     const runAgent = vi.fn();
 
     await expect(repairWorkflow(
-      { beforePath, outDir: join(root, "repair"), approved: true },
+      { beforePath, outDir: join(root, "repair"), approved: true, regressionCommand: "npm test" },
       { scan: vi.fn(), runAgent }
     )).rejects.toThrow("Invalid FormProof evidence");
     expect(runAgent).not.toHaveBeenCalled();
@@ -119,7 +119,7 @@ describe("FormProof workflows", () => {
     const scan = vi.fn();
 
     const result = await repairWorkflow(
-      { beforePath, outDir: join(root, "repair"), approved: true, targetViolationIds: ["label"], model: "gpt-test" },
+      { beforePath, outDir: join(root, "repair"), approved: true, targetViolationIds: ["label"], regressionCommand: "npm test", model: "gpt-test" },
       {
         scan,
         runAgent: vi.fn().mockResolvedValue({
@@ -137,24 +137,58 @@ describe("FormProof workflows", () => {
     await expect(readFile(join(root, "repair", "decision.json"), "utf8")).resolves.toContain("HUMAN_REVIEW_REQUIRED");
   });
 
-  it("can verify a repair without a configured regression command", async () => {
+  it("refuses repair without a configured regression command", async () => {
     const root = await temporaryRun();
     const beforePath = join(root, "before.json");
     await writeFile(beforePath, JSON.stringify(evidence(root, ["label"])));
+    const runAgent = vi.fn();
     const runRegression = vi.fn();
 
-    const result = await repairWorkflow(
-      { beforePath, outDir: join(root, "repair"), approved: true },
+    await expect(repairWorkflow(
+      { beforePath, outDir: join(root, "repair"), approved: true, regressionCommand: "" },
       {
         scan: vi.fn().mockResolvedValue(evidence(root, [])),
-        runAgent: vi.fn().mockResolvedValue({ exitCode: 0, trajectoryPath: "trajectory", lastMessagePath: "summary", stderr: "" }),
+        runAgent,
         runRegression
       }
-    );
+    )).rejects.toThrow("regression command");
 
-    expect(result.decision.status).toBe("VERIFIED_FIXED");
-    expect(result.decision.regressionGates).toEqual([]);
+    expect(runAgent).not.toHaveBeenCalled();
     expect(runRegression).not.toHaveBeenCalled();
+  });
+
+  it("rejects target rule IDs that are absent from the frozen evidence", async () => {
+    const root = await temporaryRun();
+    const beforePath = join(root, "before.json");
+    await writeFile(beforePath, JSON.stringify(evidence(root, ["label"])));
+    const runAgent = vi.fn();
+
+    await expect(repairWorkflow(
+      {
+        beforePath,
+        outDir: join(root, "repair"),
+        approved: true,
+        targetViolationIds: ["not-in-evidence"],
+        regressionCommand: "npm test"
+      },
+      { scan: vi.fn(), runAgent, runRegression: vi.fn() }
+    )).rejects.toThrow("Unknown target violation ID");
+
+    expect(runAgent).not.toHaveBeenCalled();
+  });
+
+  it("rejects repair when the frozen evidence contains no target violations", async () => {
+    const root = await temporaryRun();
+    const beforePath = join(root, "before.json");
+    await writeFile(beforePath, JSON.stringify(evidence(root, [])));
+    const runAgent = vi.fn();
+
+    await expect(repairWorkflow(
+      { beforePath, outDir: join(root, "repair"), approved: true, regressionCommand: "npm test" },
+      { scan: vi.fn(), runAgent, runRegression: vi.fn() }
+    )).rejects.toThrow("at least one target violation");
+
+    expect(runAgent).not.toHaveBeenCalled();
   });
 
   it("records regression command output and exit status", async () => {

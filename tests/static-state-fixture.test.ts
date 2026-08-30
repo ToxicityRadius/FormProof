@@ -24,6 +24,7 @@ describe("Static dynamic-state and error fixture", () => {
 
     expect(html).toContain('aria-invalid="true"');
     expect(html).toContain('aria-errormessage="email-error"');
+    expect(html).not.toContain('aria-describedby="email-error"');
     expect(html).toContain('id="email-error"');
     expect(html).toContain('addEventListener("submit"');
     expect(html).toContain('email.removeAttribute("aria-invalid")');
@@ -35,9 +36,7 @@ describe("Static dynamic-state and error fixture", () => {
     const regression = await fixtureFile("regression.mjs");
 
     expect(regression).toContain('getAttribute("aria-errormessage")');
-    expect(regression).toContain('getAttribute("aria-describedby")');
-    expect(regression).toContain('getAttribute("aria-live")');
-    expect(regression).toContain('getAttribute("role")');
+    expect(regression).not.toContain('getAttribute("aria-describedby")');
     expect(regression).toContain('fill("ada@example.com")');
     expect(regression).toContain('getAttribute("aria-invalid")');
     expect(regression).toContain("Subscription saved for ada@example.com.");

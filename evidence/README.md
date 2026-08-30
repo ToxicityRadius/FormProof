@@ -1,23 +1,23 @@
-# Verified experiment evidence
+# Evaluation evidence
 
-Each directory contains sanitized, tracked artifacts from one FormProof before-to-after repair experiment. Raw local screenshots and unsanitized trajectories remain under the ignored `.formproof/runs` directory.
+The packages indexed below are development experiments, not frozen formal benchmark attempts. Formal evidence is reserved for sanitized artifacts exported after the 12-case benchmark is complete; raw trajectories remain under the ignored `.formproof` directory.
 
 | Experiment | Adapter | Target rule | Decision | Regression gate |
 | --- | --- | --- | --- | --- |
-| [Static label](static-label/README.md) | Static HTML | `label` | `VERIFIED_FIXED` | Form structure preserved |
-| [Static hidden focus](static-hidden-focus/README.md) | Static HTML | `aria-hidden-focus` | `VERIFIED_FIXED` | Hidden action excluded; keyboard save preserved |
-| [Static error state](static-error-state/README.md) | Static HTML | `aria-valid-attr-value` | `VERIFIED_FIXED` | Error exposure and correction behavior preserved |
-| [React label](react-label/README.md) | React/Vite | `label` | `VERIFIED_FIXED` | Submission behavior preserved |
-| [React hidden focus](react-hidden-focus/README.md) | React/Vite | `aria-hidden-focus` | `VERIFIED_FIXED` | Hidden action excluded; keyboard save preserved |
-| [React error state](react-error-state/README.md) | React/Vite | `aria-valid-attr-value` | `VERIFIED_FIXED` | Error exposure and correction behavior preserved |
-| [Flask label](flask-label/README.md) | Flask/Jinja | `label` | `VERIFIED_FIXED` | Integration and submission behavior preserved |
-| [Flask hidden focus](flask-hidden-focus/README.md) | Flask/Jinja | `aria-hidden-focus` | `VERIFIED_FIXED` | Integration, hidden action exclusion, and keyboard save preserved |
-| [Flask error state](flask-error-state/README.md) | Flask/Jinja | `aria-valid-attr-value` | `VERIFIED_FIXED` | Integration, error exposure, and correction preserved |
-| [Vue label](vue-label/README.md) | Vue/Vite | `label` | `VERIFIED_FIXED` | Submission behavior preserved |
-| [Vue hidden focus](vue-hidden-focus/README.md) | Vue/Vite | `aria-hidden-focus` | `VERIFIED_FIXED` | Hidden action excluded; keyboard save preserved |
-| [Vue error state](vue-error-state/README.md) | Vue/Vite | `aria-valid-attr-value` | `VERIFIED_FIXED` | Error exposure and correction behavior preserved |
-| [Angular label](angular-label/README.md) | Angular | `label` | `VERIFIED_FIXED` | Submission behavior preserved |
-| [Angular hidden focus](angular-hidden-focus/README.md) | Angular | `aria-hidden-focus` | `VERIFIED_FIXED` | Hidden action excluded; keyboard save preserved |
-| [Angular error state](angular-error-state/README.md) | Angular | `aria-valid-attr-value` | `VERIFIED_FIXED` | Async error exposure and correction preserved |
+| [Static label](development/static-label/README.md) | Static HTML | `label` | `VERIFIED_FIXED` | Form structure preserved |
+| [Static hidden focus](development/static-hidden-focus/README.md) | Static HTML | `aria-hidden-focus` | `VERIFIED_FIXED` | Hidden action excluded; keyboard save preserved |
+| [Static error state](development/static-error-state/README.md) | Static HTML | `aria-valid-attr-value` | `VERIFIED_FIXED` | Error exposure and correction behavior preserved |
+| [React label](development/react-label/README.md) | React/Vite | `label` | `VERIFIED_FIXED` | Submission behavior preserved |
+| [React hidden focus](development/react-hidden-focus/README.md) | React/Vite | `aria-hidden-focus` | `VERIFIED_FIXED` | Hidden action excluded; keyboard save preserved |
+| [React error state](development/react-error-state/README.md) | React/Vite | `aria-valid-attr-value` | `VERIFIED_FIXED` | Error exposure and correction behavior preserved |
+| [Flask label](development/flask-label/README.md) | Flask/Jinja | `label` | `VERIFIED_FIXED` | Integration and submission behavior preserved |
+| [Flask hidden focus](development/flask-hidden-focus/README.md) | Flask/Jinja | `aria-hidden-focus` | `VERIFIED_FIXED` | Integration, hidden action exclusion, and keyboard save preserved |
+| [Flask error state](development/flask-error-state/README.md) | Flask/Jinja | `aria-valid-attr-value` | `VERIFIED_FIXED` | Integration, error exposure, and correction preserved |
+| [Vue label](development/vue-label/README.md) | Vue/Vite | `label` | `VERIFIED_FIXED` | Submission behavior preserved |
+| [Vue hidden focus](development/vue-hidden-focus/README.md) | Vue/Vite | `aria-hidden-focus` | `VERIFIED_FIXED` | Hidden action excluded; keyboard save preserved |
+| [Vue error state](development/vue-error-state/README.md) | Vue/Vite | `aria-valid-attr-value` | `VERIFIED_FIXED` | Error exposure and correction behavior preserved |
+| [Angular label](development/angular-label/README.md) | Angular | `label` | `VERIFIED_FIXED` | Submission behavior preserved |
+| [Angular hidden focus](development/angular-hidden-focus/README.md) | Angular | `aria-hidden-focus` | `VERIFIED_FIXED` | Hidden action excluded; keyboard save preserved |
+| [Angular error state](development/angular-error-state/README.md) | Angular | `aria-valid-attr-value` | `VERIFIED_FIXED` | Async error exposure and correction preserved |
 
 These packages report evidence for their automated rule and configured regression command. They are not WCAG conformance certificates.

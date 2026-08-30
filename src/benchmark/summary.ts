@@ -8,11 +8,29 @@ type RunDecision = "VERIFIED_FIXED" | "REGRESSION_BLOCKED" | "HUMAN_REVIEW_REQUI
 export interface BenchmarkManifest {
   schemaVersion: "1.0";
   primaryMetric: "Macro-VBRR@1";
-  cases: Array<{ id: string; stack: string }>;
+  cases: Array<{
+    id: string;
+    stack: string;
+    class: string;
+    fixturePath: string;
+    url: string;
+    setupCommand: string;
+    serverCommand: string;
+    regressionCommand: string;
+  }>;
 }
 
 export interface BenchmarkResults {
   schemaVersion: "1.0";
+  protocol: {
+    baseCommit: string;
+    frozenAt: string;
+    manifestSha256: string;
+    fixtureSha256: Record<string, string>;
+    model: "gpt-5.6-sol";
+    reasoningEffort: "medium";
+    timeoutMs: number;
+  } | null;
   runs: Array<{
     caseId: string;
     condition: Condition;
@@ -38,6 +56,7 @@ interface SecondarySummary {
 
 export interface BenchmarkSummary {
   reportable: boolean;
+  protocolFrozen: boolean;
   missingRuns: string[];
   macroVbrrAt1: Record<Condition, number | null>;
   improvementPercentagePoints: number | null;
@@ -48,25 +67,42 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return Boolean(value) && typeof value === "object";
 }
 
-function parseManifest(value: unknown): BenchmarkManifest {
+export function parseManifest(value: unknown): BenchmarkManifest {
   if (!isRecord(value) || value.schemaVersion !== "1.0" || value.primaryMetric !== "Macro-VBRR@1" || !Array.isArray(value.cases)) {
     throw new Error("Invalid benchmark manifest.");
   }
   if (value.cases.length === 0) throw new Error("Benchmark manifest must contain cases.");
   const ids = new Set<string>();
   for (const item of value.cases) {
-    if (!isRecord(item) || typeof item.id !== "string" || item.id.length === 0 || typeof item.stack !== "string" || item.stack.length === 0) {
+    if (!isRecord(item)
+      || ![item.id, item.stack, item.class, item.fixturePath, item.url, item.serverCommand, item.regressionCommand]
+        .every((field) => typeof field === "string" && field.length > 0)
+      || typeof item.setupCommand !== "string") {
       throw new Error("Invalid benchmark case.");
     }
-    if (ids.has(item.id)) throw new Error(`Duplicate benchmark case: ${item.id}`);
-    ids.add(item.id);
+    const id = item.id as string;
+    if (ids.has(id)) throw new Error(`Duplicate benchmark case: ${id}`);
+    ids.add(id);
   }
   return value as unknown as BenchmarkManifest;
 }
 
-function parseResults(value: unknown): BenchmarkResults {
-  if (!isRecord(value) || value.schemaVersion !== "1.0" || !Array.isArray(value.runs)) {
+export function parseResults(value: unknown): BenchmarkResults {
+  if (!isRecord(value) || value.schemaVersion !== "1.0" || !(value.protocol === null || isRecord(value.protocol)) || !Array.isArray(value.runs)) {
     throw new Error("Invalid benchmark results.");
+  }
+  if (isRecord(value.protocol)) {
+    const protocol = value.protocol;
+    if (typeof protocol.baseCommit !== "string" || !/^[a-f\d]{40}$/i.test(protocol.baseCommit)
+      || typeof protocol.frozenAt !== "string" || Number.isNaN(Date.parse(protocol.frozenAt))
+      || typeof protocol.manifestSha256 !== "string" || !/^[a-f\d]{64}$/i.test(protocol.manifestSha256)
+      || !isRecord(protocol.fixtureSha256)
+      || !Object.values(protocol.fixtureSha256).every((hash) => typeof hash === "string" && /^[a-f\d]{64}$/i.test(hash))
+      || protocol.model !== "gpt-5.6-sol"
+      || protocol.reasoningEffort !== "medium"
+      || !Number.isInteger(protocol.timeoutMs) || (protocol.timeoutMs as number) <= 0) {
+      throw new Error("Invalid benchmark protocol.");
+    }
   }
   for (const run of value.runs) {
     if (!isRecord(run)
@@ -90,6 +126,14 @@ export function summarizeBenchmark(manifestInput: BenchmarkManifest, resultsInpu
   const caseById = new Map(manifest.cases.map((item) => [item.id, item]));
   const firstAttempts = new Map<string, BenchmarkResults["runs"][number]>();
 
+  if (results.protocol) {
+    const frozenCases = Object.keys(results.protocol.fixtureSha256).sort();
+    const manifestCases = [...caseById.keys()].sort();
+    if (JSON.stringify(frozenCases) !== JSON.stringify(manifestCases)) {
+      throw new Error("Benchmark protocol fixture hashes do not match the manifest.");
+    }
+  }
+
   for (const run of results.runs) {
     if (!caseById.has(run.caseId)) throw new Error(`Unknown benchmark case: ${run.caseId}`);
     if (run.attempt !== 1) continue;
@@ -100,9 +144,10 @@ export function summarizeBenchmark(manifestInput: BenchmarkManifest, resultsInpu
 
   const required = conditions.flatMap((condition) => manifest.cases.map((item) => `${condition}:${item.id}`));
   const missingRuns = required.filter((key) => !firstAttempts.has(key)).sort();
-  if (missingRuns.length > 0) {
+  if (missingRuns.length > 0 || results.protocol === null) {
     return {
       reportable: false,
+      protocolFrozen: results.protocol !== null,
       missingRuns,
       macroVbrrAt1: { direct: null, formproof: null },
       improvementPercentagePoints: null,
@@ -144,7 +189,8 @@ export function summarizeBenchmark(manifestInput: BenchmarkManifest, resultsInpu
     };
   };
   return {
-    reportable: true,
+    reportable: results.protocol !== null,
+    protocolFrozen: results.protocol !== null,
     missingRuns: [],
     macroVbrrAt1: { direct, formproof },
     improvementPercentagePoints: (formproof - direct) * 100,

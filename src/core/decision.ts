@@ -21,6 +21,16 @@ export function decideOutcome(input: DecisionInput): Decision {
     };
   }
 
+  if (input.regressionGates.length === 0) {
+    return {
+      status: "HUMAN_REVIEW_REQUIRED",
+      summary: "No regression gate was provided, so the repair cannot be verified.",
+      unresolvedViolationIds,
+      newViolationIds,
+      regressionGates: []
+    };
+  }
+
   if (unresolvedViolationIds.length > 0) {
     return {
       status: "HUMAN_REVIEW_REQUIRED",

@@ -19,6 +19,8 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "benchmark:summary": "tsx src/benchmark/summary.ts",
+    "benchmark:freeze": "tsx src/benchmark/run.ts freeze",
+    "benchmark:case": "tsx src/benchmark/run.ts case",
     "fixture:static": "node scripts/serve-fixture.mjs fixtures/static-label 4173",
     "fixture:react": "npm --prefix fixtures/react-label run dev -- --host 127.0.0.1 --port 4174 --strictPort",
     "fixture:flask": "fixtures\\flask-label\\.venv\\Scripts\\python.exe -m flask --app fixtures/flask-label/app.py run --host 127.0.0.1 --port 4175",

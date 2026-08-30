@@ -38,6 +38,7 @@ describe("Flask dynamic-state and error fixture", () => {
     expect(app).toContain("Subscription saved for");
     expect(template).toContain('aria-invalid="{{ \'true\' if invalid else \'false\' }}"');
     expect(template).toContain('aria-errormessage="email-error"');
+    expect(template).not.toContain('aria-describedby="email-error"');
     expect(template).toContain('id="email-error"');
   });
 
@@ -51,9 +52,7 @@ describe("Flask dynamic-state and error fixture", () => {
     expect(integration).toContain("ada@example.com");
     expect(regression).toContain("python -m unittest");
     expect(regression).toContain('getAttribute("aria-errormessage")');
-    expect(regression).toContain('getAttribute("aria-describedby")');
-    expect(regression).toContain('getAttribute("aria-live")');
-    expect(regression).toContain('getAttribute("role")');
+    expect(regression).not.toContain('getAttribute("aria-describedby")');
     expect(regression).toContain('fill("ada@example.com")');
     expect(regression).toContain("Subscription saved for ada@example.com.");
     expect(regression).toContain('page.on("pageerror"');

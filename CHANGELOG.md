@@ -6,7 +6,8 @@ This file records retained changes and discarded experiments so the final compet
 
 ### Retained
 
-- A benchmark summary gate withholds `Macro-VBRR@1` and secondary metrics until all 30 frozen first-attempt results are present.
+- `repair` now requires a regression command and rejects empty or unknown target rule IDs, so `VERIFIED_FIXED` cannot be produced without evidence for the requested repair.
+- A benchmark summary gate withholds `Macro-VBRR@1` and secondary metrics until all 24 formal first-attempt results are present.
 - `inspect` persists its `HUMAN_REVIEW_REQUIRED` decision even when automation finds no violations, making the abstention boundary reviewable.
 - One primary Codex repair agent plus deterministic browser and regression gates.
 - A stack-neutral evidence contract with replaceable source adapters.
@@ -16,7 +17,9 @@ This file records retained changes and discarded experiments so the final compet
 - `VERIFIED_FIXED`, `REGRESSION_BLOCKED`, and `HUMAN_REVIEW_REQUIRED` outcomes.
 - Standalone HTML and JSON evidence artifacts for reproduction and judging.
 
-### Verified experiments
+### Development experiments
+
+These 15 experiments were completed while the fixtures and protocol were still changing. They remain useful implementation evidence but are excluded from the 12-case formal benchmark.
 
 - Static HTML `label` repair: `VERIFIED_FIXED` with zero new automated violations and a passing structural regression gate.
 - React `label` repair: `VERIFIED_FIXED` with zero new automated violations and a passing Playwright submission-flow regression gate.
@@ -41,6 +44,7 @@ This file records retained changes and discarded experiments so the final compet
 - **Full dashboard:** deferred until the CLI and evidence contract pass the frozen benchmark.
 - **Axe incomplete/manual-review findings:** deferred to a separate evidence-contract change so uncertain results are surfaced without being counted as confirmed violations.
 - **Automatic remote deployment:** excluded because a repair should not publish consequential changes without a separate human-controlled release process.
+- **Angular formal cases:** removed from the scored benchmark to keep the 12-case comparison focused on the four stacks most representative of the solo-developer audience. Angular support and development evidence remain in the repository.
 
 ### Failures that changed the implementation
 

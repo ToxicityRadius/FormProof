@@ -32,7 +32,7 @@ function handleSubmit(event) {
         :aria-invalid="invalid ? 'true' : undefined"
         aria-errormessage="email-error"
       >
-      <p id="email-error" v-show="invalid" role="alert">Enter a valid email address.</p>
+      <p id="email-error" v-show="invalid">Enter a valid email address.</p>
       <button type="submit">Subscribe</button>
     </form>
     <p role="status" aria-live="polite">{{ status }}</p>

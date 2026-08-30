@@ -14,7 +14,6 @@ function handleSubmit() {
   <main>
     <h1>Account</h1>
     <form @submit.prevent="handleSubmit">
-      <label for="display-name">Display name</label>
       <input
         id="display-name"
         v-model="displayName"

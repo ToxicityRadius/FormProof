@@ -40,6 +40,18 @@ describe("decideOutcome", () => {
     expect(result.status).toBe("VERIFIED_FIXED");
   });
 
+  it("requires human review when no regression gate is provided", () => {
+    const result = decideOutcome({
+      before: evidence(["label"]),
+      after: evidence([]),
+      targetViolationIds: ["label"],
+      regressionGates: []
+    });
+
+    expect(result.status).toBe("HUMAN_REVIEW_REQUIRED");
+    expect(result.summary).toContain("regression gate");
+  });
+
   it("blocks a repair when a regression gate fails", () => {
     const result = decideOutcome({
       before: evidence(["label"]),

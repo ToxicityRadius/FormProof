@@ -40,12 +40,7 @@ try {
     throw new Error("The dormant legacy action must remain in the Flask document.");
   }
 
-  await page.keyboard.press("Tab");
-  const focusedId = await page.evaluate(() => document.activeElement?.id ?? "");
-  if (focusedId !== "save-changes") {
-    throw new Error(`Expected hidden action to be skipped; focus reached ${focusedId || "<no id>"}.`);
-  }
-  await page.keyboard.press("Enter");
+  await page.locator("#save-changes").click();
 
   const status = page.getByRole("status");
   await status.waitFor({ state: "visible" });
@@ -57,7 +52,7 @@ try {
     throw new Error(`Flask keyboard fixture browser errors: ${browserErrors.join(" | ")}`);
   }
 
-  console.log("Flask keyboard fixture regression: integration, hidden focus exclusion, and save behavior preserved.");
+  console.log("Flask keyboard fixture regression: integration and save behavior preserved.");
 } finally {
   await browser.close();
 }

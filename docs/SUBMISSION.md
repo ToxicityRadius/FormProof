@@ -3,23 +3,32 @@
 ## Freeze before evaluation
 
 - Confirm the working tree is clean and record the commit hash.
+- Use `gpt-5.6-sol` with medium reasoning for every formal baseline and FormProof run.
 - Keep `benchmark/cases.json`, every fixture, regression command, direct prompt, model, and reasoning setting unchanged across both conditions.
-- Run each of the 15 cases once with `benchmark/direct-prompt.md` and once with FormProof.
+- Run each of the 12 cases once with `benchmark/direct-prompt.md` and once with FormProof.
 - Record every first attempt, including failures and timeouts, in `benchmark/results.json`.
 - Run `npm run benchmark:summary`; do not publish a primary score while it reports `reportable: false`.
 - Preserve raw trajectories privately, then sanitize the representative trajectories before submission.
+
+```powershell
+npm run benchmark:freeze
+npm run benchmark:case -- --case static-semantics-01 --dry-run
+npm run benchmark:case -- --case static-semantics-01
+```
+
+Repeat the paired case command for each manifest ID. Do not rerun or overwrite a recorded case-condition attempt.
 
 ## Five-minute demo
 
 | Time | Show |
 | --- | --- |
 | 0:00–0:30 | The inaccessible local form and the user problem |
-| 0:30–1:10 | `formproof inspect`, the frozen axe finding, and source-candidate mapping |
+| 0:30–1:10 | `formproof inspect`, the baseline axe finding, and source-candidate mapping |
 | 1:10–1:35 | The explicit approval boundary and scoped repair prompt |
 | 1:35–2:35 | `formproof repair --approve --test ...` and the minimal source diff |
 | 2:35–3:20 | Independent rescan, regression gate, and `VERIFIED_FIXED` report |
 | 3:20–4:00 | A clean scan that remains `HUMAN_REVIEW_REQUIRED` |
-| 4:00–4:35 | Frozen benchmark cases and the completed comparison summary |
+| 4:00–4:35 | The 12 frozen benchmark cases and completed comparison summary |
 | 4:35–5:00 | Reproduction command, limitations, and no-conformance disclaimer |
 
 ## Final package

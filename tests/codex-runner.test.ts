@@ -67,10 +67,12 @@ describe("Codex runner", () => {
       sourceRoot: "C:/fixture",
       trajectoryPath: "C:/run/trajectory.jsonl",
       lastMessagePath: "C:/run/agent-summary.txt",
-      model: "gpt-test"
+      model: "gpt-test",
+      reasoningEffort: "medium"
     });
 
     expect(args).toEqual(expect.arrayContaining(["--model", "gpt-test"]));
+    expect(args).toEqual(expect.arrayContaining(["-c", 'model_reasoning_effort="medium"']));
     expect(buildRepairPrompt(evidence, ["label"])).toContain("existing focused test command");
   });
 
@@ -125,5 +127,26 @@ describe("Codex runner", () => {
     });
 
     expect(result.exitCode).toBe(7);
+    expect(result.timedOut).toBe(false);
+  });
+
+  it("terminates an agent that exceeds its timeout", async () => {
+    const root = await mkdtemp(join(tmpdir(), "formproof-runner-timeout-"));
+    temporaryDirectories.push(root);
+    const fakeAgentPath = join(root, "fake-agent.mjs");
+    await writeFile(fakeAgentPath, "process.stdin.resume(); setInterval(() => {}, 1000);", "utf8");
+
+    const result = await runCodexRepair({
+      sourceRoot: root,
+      trajectoryPath: join(root, "trajectory.jsonl"),
+      lastMessagePath: join(root, "agent-summary.txt"),
+      prompt: "repair safely",
+      executable: process.execPath,
+      executableArgs: [fakeAgentPath],
+      timeoutMs: 50
+    });
+
+    expect(result.timedOut).toBe(true);
+    expect(result.exitCode).toBe(124);
   });
 });

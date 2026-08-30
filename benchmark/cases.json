@@ -1,22 +1,126 @@
 {
   "schemaVersion": "1.0",
-  "frozenAt": "2026-08-29T00:00:00Z",
   "primaryMetric": "Macro-VBRR@1",
   "cases": [
-    { "id": "static-semantics-01", "stack": "static", "class": "semantics-and-names", "fixtureStatus": "implemented" },
-    { "id": "static-keyboard-01", "stack": "static", "class": "keyboard-and-focus", "fixtureStatus": "implemented" },
-    { "id": "static-state-01", "stack": "static", "class": "dynamic-state-and-errors", "fixtureStatus": "implemented" },
-    { "id": "react-semantics-01", "stack": "react", "class": "semantics-and-names", "fixtureStatus": "implemented" },
-    { "id": "react-keyboard-01", "stack": "react", "class": "keyboard-and-focus", "fixtureStatus": "implemented" },
-    { "id": "react-state-01", "stack": "react", "class": "dynamic-state-and-errors", "fixtureStatus": "implemented" },
-    { "id": "flask-semantics-01", "stack": "flask", "class": "semantics-and-names", "fixtureStatus": "implemented" },
-    { "id": "flask-keyboard-01", "stack": "flask", "class": "keyboard-and-focus", "fixtureStatus": "implemented" },
-    { "id": "flask-state-01", "stack": "flask", "class": "dynamic-state-and-errors", "fixtureStatus": "implemented" },
-    { "id": "vue-semantics-01", "stack": "vue", "class": "semantics-and-names", "fixtureStatus": "implemented" },
-    { "id": "vue-keyboard-01", "stack": "vue", "class": "keyboard-and-focus", "fixtureStatus": "implemented" },
-    { "id": "vue-state-01", "stack": "vue", "class": "dynamic-state-and-errors", "fixtureStatus": "implemented" },
-    { "id": "angular-semantics-01", "stack": "angular", "class": "semantics-and-names", "fixtureStatus": "implemented" },
-    { "id": "angular-keyboard-01", "stack": "angular", "class": "keyboard-and-focus", "fixtureStatus": "implemented" },
-    { "id": "angular-state-01", "stack": "angular", "class": "dynamic-state-and-errors", "fixtureStatus": "implemented" }
+    {
+      "id": "static-semantics-01",
+      "stack": "static",
+      "class": "semantics-and-names",
+      "fixturePath": "fixtures/static-label",
+      "url": "http://127.0.0.1:4173",
+      "setupCommand": "",
+      "serverCommand": "node \"{root}/scripts/serve-fixture.mjs\" \"{fixture}\" 4173",
+      "regressionCommand": "node \"{fixture}/regression.mjs\""
+    },
+    {
+      "id": "static-keyboard-01",
+      "stack": "static",
+      "class": "keyboard-and-focus",
+      "fixturePath": "fixtures/static-hidden-focus",
+      "url": "http://127.0.0.1:4178",
+      "setupCommand": "",
+      "serverCommand": "node \"{root}/scripts/serve-fixture.mjs\" \"{fixture}\" 4178",
+      "regressionCommand": "node \"{fixture}/regression.mjs\""
+    },
+    {
+      "id": "static-state-01",
+      "stack": "static",
+      "class": "dynamic-state-and-errors",
+      "fixturePath": "fixtures/static-error-state",
+      "url": "http://127.0.0.1:4183",
+      "setupCommand": "",
+      "serverCommand": "node \"{root}/scripts/serve-fixture.mjs\" \"{fixture}\" 4183",
+      "regressionCommand": "node \"{fixture}/regression.mjs\""
+    },
+    {
+      "id": "react-semantics-01",
+      "stack": "react",
+      "class": "semantics-and-names",
+      "fixturePath": "fixtures/react-label",
+      "url": "http://127.0.0.1:4174",
+      "setupCommand": "npm ci --prefix \"{fixture}\"",
+      "serverCommand": "npm --prefix \"{fixture}\" run dev -- --host 127.0.0.1 --port 4174 --strictPort",
+      "regressionCommand": "node \"{fixture}/regression.mjs\""
+    },
+    {
+      "id": "react-keyboard-01",
+      "stack": "react",
+      "class": "keyboard-and-focus",
+      "fixturePath": "fixtures/react-hidden-focus",
+      "url": "http://127.0.0.1:4179",
+      "setupCommand": "npm ci --prefix \"{fixture}\"",
+      "serverCommand": "npm --prefix \"{fixture}\" run dev -- --host 127.0.0.1 --port 4179 --strictPort",
+      "regressionCommand": "node \"{fixture}/regression.mjs\""
+    },
+    {
+      "id": "react-state-01",
+      "stack": "react",
+      "class": "dynamic-state-and-errors",
+      "fixturePath": "fixtures/react-error-state",
+      "url": "http://127.0.0.1:4184",
+      "setupCommand": "npm ci --prefix \"{fixture}\"",
+      "serverCommand": "npm --prefix \"{fixture}\" run dev -- --host 127.0.0.1 --port 4184 --strictPort",
+      "regressionCommand": "node \"{fixture}/regression.mjs\""
+    },
+    {
+      "id": "vue-semantics-01",
+      "stack": "vue",
+      "class": "semantics-and-names",
+      "fixturePath": "fixtures/vue-label",
+      "url": "http://127.0.0.1:4176",
+      "setupCommand": "npm ci --prefix \"{fixture}\"",
+      "serverCommand": "npm --prefix \"{fixture}\" run dev -- --host 127.0.0.1 --port 4176 --strictPort",
+      "regressionCommand": "node \"{fixture}/regression.mjs\""
+    },
+    {
+      "id": "vue-keyboard-01",
+      "stack": "vue",
+      "class": "keyboard-and-focus",
+      "fixturePath": "fixtures/vue-hidden-focus",
+      "url": "http://127.0.0.1:4180",
+      "setupCommand": "npm ci --prefix \"{fixture}\"",
+      "serverCommand": "npm --prefix \"{fixture}\" run dev -- --host 127.0.0.1 --port 4180 --strictPort",
+      "regressionCommand": "node \"{fixture}/regression.mjs\""
+    },
+    {
+      "id": "vue-state-01",
+      "stack": "vue",
+      "class": "dynamic-state-and-errors",
+      "fixturePath": "fixtures/vue-error-state",
+      "url": "http://127.0.0.1:4185",
+      "setupCommand": "npm ci --prefix \"{fixture}\"",
+      "serverCommand": "npm --prefix \"{fixture}\" run dev -- --host 127.0.0.1 --port 4185 --strictPort",
+      "regressionCommand": "node \"{fixture}/regression.mjs\""
+    },
+    {
+      "id": "flask-semantics-01",
+      "stack": "flask",
+      "class": "semantics-and-names",
+      "fixturePath": "fixtures/flask-label",
+      "url": "http://127.0.0.1:4175",
+      "setupCommand": "python -m venv \"{fixture}/.venv\" && \"{fixture}/.venv/Scripts/python.exe\" -m pip install -r \"{fixture}/requirements.txt\"",
+      "serverCommand": "\"{fixture}/.venv/Scripts/python.exe\" -m flask --app \"{fixture}/app.py\" run --host 127.0.0.1 --port 4175",
+      "regressionCommand": "node \"{fixture}/regression.mjs\""
+    },
+    {
+      "id": "flask-keyboard-01",
+      "stack": "flask",
+      "class": "keyboard-and-focus",
+      "fixturePath": "fixtures/flask-hidden-focus",
+      "url": "http://127.0.0.1:4181",
+      "setupCommand": "python -m venv \"{fixture}/.venv\" && \"{fixture}/.venv/Scripts/python.exe\" -m pip install -r \"{fixture}/requirements.txt\"",
+      "serverCommand": "\"{fixture}/.venv/Scripts/python.exe\" -m flask --app \"{fixture}/app.py\" run --host 127.0.0.1 --port 4181",
+      "regressionCommand": "node \"{fixture}/regression.mjs\""
+    },
+    {
+      "id": "flask-state-01",
+      "stack": "flask",
+      "class": "dynamic-state-and-errors",
+      "fixturePath": "fixtures/flask-error-state",
+      "url": "http://127.0.0.1:4186",
+      "setupCommand": "python -m venv \"{fixture}/.venv\" && \"{fixture}/.venv/Scripts/python.exe\" -m pip install -r \"{fixture}/requirements.txt\"",
+      "serverCommand": "\"{fixture}/.venv/Scripts/python.exe\" -m flask --app \"{fixture}/app.py\" run --host 127.0.0.1 --port 4186",
+      "regressionCommand": "node \"{fixture}/regression.mjs\""
+    }
   ]
 }

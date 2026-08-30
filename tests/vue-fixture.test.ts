@@ -41,6 +41,7 @@ describe("Vue label fixture", () => {
     expect(config).toContain("plugins: [vue()]");
     expect(app).toContain('<script setup>');
     expect(app).toContain('v-model="displayName"');
+    expect(app).not.toContain('<label for="display-name">');
     expect(app).toContain('@submit.prevent="handleSubmit"');
     expect(app).toContain('<button type="submit">Save</button>');
     expect(app).toContain('role="status"');

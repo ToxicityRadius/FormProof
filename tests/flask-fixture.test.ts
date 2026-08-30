@@ -35,6 +35,7 @@ describe("Flask label fixture", () => {
     expect(app).toContain("status=status");
     expect(template).toContain('<form method="post">');
     expect(template).toContain('name="display_name"');
+    expect(template).not.toContain('<label for="display-name">');
     expect(template).toContain('<button type="submit">Save</button>');
     expect(template).toContain('role="status"');
   });

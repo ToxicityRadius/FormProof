@@ -22,9 +22,21 @@ Compare a single direct repair prompt with the FormProof workflow using the same
 - Codex token or usage information when available in the JSONL trajectory
 - Patch size
 
-## Frozen cases
+## Formal cases
 
-The public manifest is [benchmark/cases.json](../benchmark/cases.json). Each stack family receives semantics/name, keyboard/focus, and dynamic-state/error cases. All 15 frozen cases are implemented across Static, React, Vue, Angular, and Flask. A case is counted as completed only when its tracked experiment records `VERIFIED_FIXED` with zero new automated violations and a passing regression gate.
+The public manifest is [benchmark/cases.json](../benchmark/cases.json). It defines 12 cases across Static HTML, React, Vue, and Flask; each stack receives semantics/name, keyboard/focus, and dynamic-state/error cases. Angular remains supported and documented as development evidence, but it is excluded from the formal comparison to keep the benchmark representative of the solo-developer audience and feasible to reproduce.
+
+The formal protocol is not frozen until the clean commit, manifest hash, fixture hashes, direct prompt, model, reasoning setting, and timeout are recorded. Existing packages under `evidence/development` predate that freeze and are not formal results.
+
+From a clean evaluated commit, freeze once and run one paired case at a time:
+
+```powershell
+npm run benchmark:freeze
+npm run benchmark:case -- --case static-semantics-01 --dry-run
+npm run benchmark:case -- --case static-semantics-01
+```
+
+Each case command starts Direct Codex first and FormProof second from separate, byte-identical fixture-only workspaces. Setup is excluded from measured time; scanning, agent work, repair, rescan, and regression verification are included. The runner pins `gpt-5.6-sol`, medium reasoning, and a 15-minute limit for each condition.
 
 ## Reporting rules
 
@@ -40,4 +52,4 @@ Record only frozen first attempts in `benchmark/results.json`, then run:
 npm run benchmark:summary
 ```
 
-The command returns `reportable: false` and a complete missing-run list until both conditions have one first-attempt result for every frozen case. It reports `Macro-VBRR@1` and the secondary regression, timing, token, and patch-size summaries only after all 30 required runs are present. Development repairs and pilot runs must not be copied into the final ledger.
+The command returns `reportable: false` and a complete missing-run list until both conditions have one first-attempt result for every frozen case. It reports `Macro-VBRR@1` and the secondary regression, timing, token, and patch-size summaries only after all 24 required runs are present. Development repairs and pilot runs must not be copied into the final ledger.

@@ -7,7 +7,7 @@ const help = `FormProof — evidence-gated web accessibility repair
 
 Usage:
   formproof inspect --url <url> --source <directory> [--out <directory>]
-  formproof repair --evidence <before.json> --approve [--out <directory>] [--test <command>] [--model <model>]
+  formproof repair --evidence <before.json> --approve --test <command> [--out <directory>] [--model <model>]
 
 Commands:
   inspect  Freeze axe evidence, screenshot, repair prompt, and HTML report.
@@ -65,11 +65,12 @@ async function main(argv: string[]): Promise<void> {
       strict: true
     });
     const beforePath = resolve(requireString(parsed.values.evidence, "--evidence"));
+    const regressionCommand = requireString(parsed.values.test, "--test");
     const result = await repairWorkflow({
       beforePath,
       outDir: resolve(parsed.values.out ?? dirname(beforePath)),
       approved: parsed.values.approve,
-      ...(parsed.values.test ? { regressionCommand: parsed.values.test } : {}),
+      regressionCommand,
       ...(parsed.values.model ? { model: parsed.values.model } : {}),
       ...(parsed.values.rules ? { targetViolationIds: parsed.values.rules } : {})
     });

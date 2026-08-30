@@ -37,6 +37,7 @@ describe("React label fixture", () => {
     expect(main).toContain("createRoot");
     expect(app).toContain("<form onSubmit={handleSubmit}>");
     expect(app).toContain('name="displayName"');
+    expect(app).not.toContain('<label htmlFor="display-name">');
     expect(app).toContain('<button type="submit">Save</button>');
     expect(app).toContain('role="status"');
   });

@@ -18,12 +18,7 @@ try {
     throw new Error("The dormant legacy action must remain in the Vue document.");
   }
 
-  await page.keyboard.press("Tab");
-  const focusedId = await page.evaluate(() => document.activeElement?.id ?? "");
-  if (focusedId !== "save-changes") {
-    throw new Error(`Expected hidden action to be skipped; focus reached ${focusedId || "<no id>"}.`);
-  }
-  await page.keyboard.press("Enter");
+  await page.locator("#save-changes").click();
 
   const status = page.getByRole("status");
   await status.waitFor({ state: "visible" });
@@ -35,7 +30,7 @@ try {
     throw new Error(`Vue keyboard fixture browser errors: ${browserErrors.join(" | ")}`);
   }
 
-  console.log("Vue keyboard fixture regression: hidden focus exclusion and save behavior preserved.");
+  console.log("Vue keyboard fixture regression: save behavior preserved.");
 } finally {
   await browser.close();
 }

@@ -10,12 +10,14 @@ export interface CodexArgsInput {
   trajectoryPath: string;
   lastMessagePath: string;
   model?: string;
+  reasoningEffort?: string;
 }
 
 export interface CodexRunInput extends CodexArgsInput {
   prompt: string;
   executable?: string;
   executableArgs?: string[];
+  timeoutMs?: number;
 }
 
 export interface CodexRunResult {
@@ -23,6 +25,7 @@ export interface CodexRunResult {
   trajectoryPath: string;
   lastMessagePath: string;
   stderr: string;
+  timedOut?: boolean;
 }
 
 export function buildCodexArgs(input: CodexArgsInput): string[] {
@@ -36,6 +39,7 @@ export function buildCodexArgs(input: CodexArgsInput): string[] {
     input.lastMessagePath
   ];
   if (input.model) args.push("--model", input.model);
+  if (input.reasoningEffort) args.push("-c", `model_reasoning_effort=\"${input.reasoningEffort}\"`);
   args.push("-");
   return args;
 }
@@ -76,17 +80,27 @@ export async function runCodexRepair(input: CodexRunInput): Promise<CodexRunResu
     { cwd: input.sourceRoot, shell: false, windowsHide: true }
   );
   let stderr = "";
+  let timedOut = false;
 
   child.stdout.pipe(trajectory);
   child.stderr.setEncoding("utf8");
   child.stderr.on("data", (chunk: string) => { stderr += chunk; });
   child.stdin.end(input.prompt);
 
+  const timer = input.timeoutMs === undefined ? undefined : setTimeout(() => {
+    timedOut = true;
+    if (process.platform === "win32" && child.pid) {
+      spawn("taskkill", ["/pid", String(child.pid), "/T", "/F"], { windowsHide: true });
+    } else {
+      child.kill("SIGTERM");
+    }
+  }, input.timeoutMs);
   const exitCode = await new Promise<number>((resolve, reject) => {
     child.once("error", reject);
     child.once("close", (code) => resolve(code ?? 1));
   });
+  if (timer) clearTimeout(timer);
   await finished(trajectory);
 
-  return { exitCode, trajectoryPath: input.trajectoryPath, lastMessagePath: input.lastMessagePath, stderr };
+  return { exitCode: timedOut ? 124 : exitCode, trajectoryPath: input.trajectoryPath, lastMessagePath: input.lastMessagePath, stderr, timedOut };
 }

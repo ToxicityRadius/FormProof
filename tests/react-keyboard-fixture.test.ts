@@ -38,18 +38,19 @@ describe("React keyboard and focus fixture", () => {
 
     expect(app).toContain('aria-hidden="true"');
     expect(app).toContain('id="legacy-export"');
+    expect(app).toContain('<button id="legacy-export" type="button">');
+    expect(app).not.toContain('<button id="legacy-export" type="button" disabled>');
     expect(app).toContain('id="save-changes"');
     expect(app).toContain('onClick={() => setStatus("Changes saved.")}');
     expect(app).toContain('role="status"');
   });
 
-  it("checks hidden-focus exclusion, keyboard save, and browser errors in Playwright", async () => {
+  it("checks save behavior and browser errors without masking the focus defect", async () => {
     const regression = await fixtureFile("regression.mjs");
 
-    expect(regression).toContain('page.keyboard.press("Tab")');
-    expect(regression).toContain('focusedId !== "save-changes"');
     expect(regression).toContain('locator("#legacy-export")');
-    expect(regression).toContain('page.keyboard.press("Enter")');
+    expect(regression).toContain('locator("#save-changes")');
+    expect(regression).not.toContain('page.keyboard.press("Tab")');
     expect(regression).toContain("Changes saved.");
     expect(regression).toContain('page.on("pageerror"');
     expect(regression).toContain('message.type() === "error"');
