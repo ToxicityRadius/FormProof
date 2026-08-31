@@ -31,7 +31,10 @@ export async function scanUrl(options: ScanOptions): Promise<ScanEvidence> {
   try {
     const context = await browser.newContext({ reducedMotion: "reduce" });
     const page = await context.newPage();
-    await page.goto(options.url, { waitUntil: "domcontentloaded", timeout: 30_000 });
+    const response = await page.goto(options.url, { waitUntil: "domcontentloaded", timeout: 30_000 });
+    if (!response || !response.ok()) {
+      throw new Error(`Cannot scan ${options.url}: ${response ? `HTTP ${response.status()}` : "no HTTP response"}.`);
+    }
     const results = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
       .analyze();

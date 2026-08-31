@@ -86,6 +86,46 @@ describe("FormProof workflows", () => {
     await expect(readFile(join(outDir, "decision.json"), "utf8")).resolves.toContain("VERIFIED_FIXED");
   });
 
+  it.each(["agent", "scan", "regression"])("invalidates a previous success before rerunning and records a %s exception", async (stage) => {
+    const root = await temporaryRun();
+    const beforePath = join(root, "before.json");
+    const before = evidence(root, ["label"]);
+    await writeFile(beforePath, JSON.stringify(before));
+    const input = { beforePath, outDir: root, approved: true, regressionCommand: "npm test" };
+    const agentResult = { exitCode: 0, trajectoryPath: "", lastMessagePath: "", stderr: "" };
+    await repairWorkflow(input, {
+      runAgent: async () => agentResult,
+      scan: async () => evidence(root, []),
+      runRegression: async () => ({ name: "npm test", passed: true, details: "ok" })
+    });
+    await writeFile(join(root, "after.png"), "previous screenshot");
+    const failure = new Error(`${stage} failed`);
+
+    await expect(repairWorkflow(input, {
+      runAgent: async () => {
+        expect(JSON.parse(await readFile(join(root, "decision.json"), "utf8")).status).toBe("HUMAN_REVIEW_REQUIRED");
+        expect(await readFile(join(root, "report.html"), "utf8")).not.toContain("VERIFIED_FIXED");
+        await expect(readFile(join(root, "after.json"))).rejects.toMatchObject({ code: "ENOENT" });
+        await expect(readFile(join(root, "after.png"))).rejects.toMatchObject({ code: "ENOENT" });
+        if (stage === "agent") throw failure;
+        return agentResult;
+      },
+      scan: async () => {
+        if (stage === "scan") throw failure;
+        return evidence(root, []);
+      },
+      runRegression: async () => { throw failure; }
+    })).rejects.toBe(failure);
+
+    const decision = JSON.parse(await readFile(join(root, "decision.json"), "utf8"));
+    expect(decision).toMatchObject({ status: "HUMAN_REVIEW_REQUIRED", unresolvedViolationIds: ["label"] });
+    expect(decision.summary).toContain(failure.message);
+    const report = await readFile(join(root, "report.html"), "utf8");
+    expect(report).toContain(failure.message);
+    expect(report).not.toContain("VERIFIED_FIXED");
+    expect(JSON.parse(await readFile(beforePath, "utf8"))).toEqual(before);
+  });
+
   it("describes a clean automated baseline without treating it as conformance", async () => {
     const root = await temporaryRun();
     const result = await inspectWorkflow(

@@ -17,6 +17,12 @@ This file records retained changes and discarded experiments so the final compet
 | Formal first attempts (`af826d7`) | The [24-row ledger](benchmark/results.json) preserved usage exhaustion and sandbox failures instead of hiding them. | Do not rerun failures; label the aggregate infrastructure-limited. |
 | Representative export (`ea734eb`) | Only `static-state-01` completed normally in both conditions and passed the same behavioral gate. | Export its sanitized [Direct and FormProof evidence](evidence/formal/static-state-01/) for the video and trajectory review. |
 
+## Post-benchmark reliability fixes
+
+- Reject unsuccessful HTTP responses (or missing responses) before scanning, so an error page cannot stand in for a repaired application.
+- Invalidate previous repair decisions and reports before agent execution, remove stale after-scan artifacts, and record agent or verification exceptions as `HUMAN_REVIEW_REQUIRED` while preserving the command failure.
+- These fixes have dedicated regression tests and do not change the frozen protocol, results, or retained benchmark evidence.
+
 ## 0.1.0 — benchmark-first vertical slice
 
 ### Retained

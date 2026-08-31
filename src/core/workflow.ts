@@ -1,5 +1,5 @@
 import { spawn } from "node:child_process";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { buildRepairPrompt, runCodexRepair, type CodexRunInput, type CodexRunResult } from "../agent/codex-runner.js";
 import type { Decision, RegressionGate, ScanEvidence } from "../contracts.js";
@@ -129,44 +129,60 @@ export async function repairWorkflow(input: RepairWorkflowInput, dependencies: R
   const reportPath = join(input.outDir, "report.html");
   const decisionPath = join(input.outDir, "decision.json");
   const afterPath = join(input.outDir, "after.json");
-  await writeFile(join(input.outDir, "repair-prompt.md"), `${prompt}\n`, "utf8");
-
-  const agentResult = await runAgent({
-    sourceRoot: before.target.sourceRoot,
-    trajectoryPath: join(input.outDir, "trajectory.jsonl"),
-    lastMessagePath: join(input.outDir, "agent-summary.txt"),
-    prompt,
-    ...(input.model ? { model: input.model } : {})
-  });
-
-  if (agentResult.exitCode !== 0) {
-    const decision: Decision = {
-      status: "HUMAN_REVIEW_REQUIRED",
-      summary: `Codex exited with code ${agentResult.exitCode}; no repair was accepted.`,
-      unresolvedViolationIds: targetViolationIds,
-      newViolationIds: [],
-      regressionGates: []
-    };
+  const pendingDecision: Decision = {
+    status: "HUMAN_REVIEW_REQUIRED",
+    summary: "Repair started; verification has not completed. No repair has been accepted for this attempt.",
+    unresolvedViolationIds: targetViolationIds,
+    newViolationIds: [],
+    regressionGates: []
+  };
+  const saveDecision = async (decision: Decision, after?: ScanEvidence): Promise<void> => {
     await Promise.all([
       writeJson(decisionPath, decision),
-      writeFile(reportPath, renderHtmlReport({ before, decision }), "utf8")
+      writeFile(reportPath, renderHtmlReport({ before, decision, ...(after ? { after } : {}) }), "utf8")
     ]);
-    return { decision, reportPath, beforePath: input.beforePath };
+  };
+
+  await saveDecision(pendingDecision);
+  try {
+    await Promise.all([
+      rm(afterPath, { force: true }),
+      rm(join(input.outDir, "after.png"), { force: true }),
+      writeFile(join(input.outDir, "repair-prompt.md"), `${prompt}\n`, "utf8")
+    ]);
+    const agentResult = await runAgent({
+      sourceRoot: before.target.sourceRoot,
+      trajectoryPath: join(input.outDir, "trajectory.jsonl"),
+      lastMessagePath: join(input.outDir, "agent-summary.txt"),
+      prompt,
+      ...(input.model ? { model: input.model } : {})
+    });
+
+    if (agentResult.exitCode !== 0) {
+      const decision: Decision = {
+        ...pendingDecision,
+        summary: `Codex exited with code ${agentResult.exitCode}; no repair was accepted.`
+      };
+      await saveDecision(decision);
+      return { decision, reportPath, beforePath: input.beforePath };
+    }
+
+    const after = await scan({
+      url: before.target.url,
+      sourceRoot: before.target.sourceRoot,
+      screenshotPath: join(input.outDir, "after.png")
+    });
+    const regressionGates = [await runRegression(input.regressionCommand, before.target.sourceRoot)];
+    const decision = decideOutcome({ before, after, targetViolationIds, regressionGates });
+
+    await writeJson(afterPath, after);
+    await saveDecision(decision, after);
+    return { decision, reportPath, beforePath: input.beforePath, afterPath };
+  } catch (error) {
+    await saveDecision({
+      ...pendingDecision,
+      summary: `Repair or verification failed; no repair was accepted: ${error instanceof Error ? error.message : String(error)}`
+    });
+    throw error;
   }
-
-  const after = await scan({
-    url: before.target.url,
-    sourceRoot: before.target.sourceRoot,
-    screenshotPath: join(input.outDir, "after.png")
-  });
-  const regressionGates = [await runRegression(input.regressionCommand, before.target.sourceRoot)];
-  const decision = decideOutcome({ before, after, targetViolationIds, regressionGates });
-
-  await Promise.all([
-    writeJson(afterPath, after),
-    writeJson(decisionPath, decision),
-    writeFile(reportPath, renderHtmlReport({ before, after, decision }), "utf8")
-  ]);
-
-  return { decision, reportPath, beforePath: input.beforePath, afterPath };
 }

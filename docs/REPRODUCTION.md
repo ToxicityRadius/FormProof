@@ -90,4 +90,4 @@ npm run build
 npm audit --audit-level=high
 ```
 
-The final submission checkpoint passed 102 tests, typecheck, build, and the dependency audit with zero known vulnerabilities. Automated checks do not establish WCAG conformance; representative assistive-technology review remains a qualified-human responsibility.
+The original submission checkpoint passed 102 tests, typecheck, build, and the dependency audit with zero known vulnerabilities. The post-benchmark reliability fixes passed 107 tests, typecheck, and build; they are not part of the frozen evaluation, and its protocol, results, fixtures, and evidence remain unchanged. Automated checks do not establish WCAG conformance; representative assistive-technology review remains a qualified-human responsibility.
